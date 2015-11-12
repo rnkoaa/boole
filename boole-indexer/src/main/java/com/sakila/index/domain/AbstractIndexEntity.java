@@ -1,4 +1,4 @@
-package com.sakila.index.domain;
+package com.boole.index.domain;
 
 import io.searchbox.annotations.JestId;
 import org.joda.time.DateTime;

@@ -21,9 +21,12 @@ dependencies{
     compile "com.fasterxml.jackson.core:jackson-core"
     compile "com.fasterxml.jackson.core:jackson-annotations"
     compile "com.fasterxml.jackson.core:jackson-databind"
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.0")
 
-    runtime('mysql:mysql-connector-java')
+    compile("org.postgresql:postgresql:${postgresql_version}")
+    testCompile("com.h2database:h2")
+
     // jackson, for JSON and XML serialization
     /*compile "com.fasterxml.jackson.core:jackson-core"
     compile "com.fasterxml.jackson.core:jackson-annotations"

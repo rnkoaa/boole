@@ -1,8 +1,8 @@
-package com.sakila.repository;
+package com.boole.repository;
 
-import com.sakila.config.SakilaApplication;
-import com.sakila.domain.Customer;
-import com.sakila.domain.Store;
+import com.boole.config.booleApplication;
+import com.boole.domain.Customer;
+import com.boole.domain.Store;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by rnkoaa on 10/29/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SakilaApplication.class)
+@SpringApplicationConfiguration(classes = booleApplication.class)
 public class StoreRepositoryTest {
     @Autowired
     public StoreRepository storeRepository;

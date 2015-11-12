@@ -1,6 +1,6 @@
-package com.sakila;
+package com.boole;
 
-import com.sakila.config.SakilaApplication;
+import com.boole.config.booleApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -8,9 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SakilaApplication.class)
+@SpringApplicationConfiguration(classes = booleApplication.class)
 @WebAppConfiguration
-public class SakilaWebApplicationTests {
+public class booleWebApplicationTests {
 
     @Test
     public void contextLoads() {

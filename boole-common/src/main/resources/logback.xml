@@ -17,7 +17,7 @@
         </filter>
     </appender>
 
-    <logger name="com.sakila" additivity="false">
+    <logger name="com.boole" additivity="false">
         <level value="TRACE"/>
         <appender-ref ref="consoleAppender"/>
     </logger>

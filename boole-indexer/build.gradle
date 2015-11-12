@@ -1,4 +1,4 @@
-springBoot.mainClass = 'sakila.IndexerMain'
+springBoot.mainClass = 'boole.IndexerMain'
 
 /*
 sourceSets {

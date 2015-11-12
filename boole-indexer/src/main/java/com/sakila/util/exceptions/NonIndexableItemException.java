@@ -1,4 +1,4 @@
-package com.sakila.util.exceptions;
+package com.boole.common.util.exceptions;
 
 /**
  * Created on 11/5/2015.

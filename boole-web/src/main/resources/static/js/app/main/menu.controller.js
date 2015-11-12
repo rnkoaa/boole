@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sakilaStoreApp')
+angular.module('booleStoreApp')
     .controller('menuController', ['$scope', 'storeFactory', function ($scope, storeFactory) {
         $scope.stores = [];
 

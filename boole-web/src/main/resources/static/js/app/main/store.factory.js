@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('sakilaStoreApp')
+angular.module('booleStoreApp')
     .factory('storeFactory', ['$http', '$q', function ($http, $q) {
         var storeFactory = {};
         storeFactory.findAll = function () {
             var defer = $q.defer();
-            $http.get("/sakila/api/stores")
+            $http.get("/boole/api/stores")
                 .success(function (response) {
                     defer.resolve(response);
                 })
@@ -18,7 +18,7 @@ angular.module('sakilaStoreApp')
 
         storeFactory.findOne = function (storeId) {
             var defer = $q.defer();
-            $http.get("/sakila/api/stores/" + storeId)
+            $http.get("/boole/api/stores/" + storeId)
                 .success(function (response) {
                     console.log(response);
                     defer.resolve(response);
@@ -32,7 +32,7 @@ angular.module('sakilaStoreApp')
 
         storeFactory.findCustomers = function (storeId) {
             var defer = $q.defer();
-            $http.get("/sakila/api/stores/" + storeId + "/customers")
+            $http.get("/boole/api/stores/" + storeId + "/customers")
                 .success(function (response) {
                     console.log(response);
                     defer.resolve(response);

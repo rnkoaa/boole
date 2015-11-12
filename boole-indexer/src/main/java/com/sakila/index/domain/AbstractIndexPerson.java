@@ -1,4 +1,4 @@
-package com.sakila.index.domain;
+package com.boole.index.domain;
 
 /**
  * Created using Intellij IDE

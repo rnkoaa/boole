@@ -1,7 +1,7 @@
 'use strict';
 
 //NavBarController
-angular.module('sakilaStoreApp')
+angular.module('booleStoreApp')
     .controller('NavBarController', ['$scope', function($scope) {
         //$scope.greeting = 'Hola!';
     }]);

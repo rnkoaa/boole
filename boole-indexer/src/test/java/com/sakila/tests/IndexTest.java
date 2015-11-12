@@ -1,11 +1,11 @@
-package com.sakila.tests;
+package com.boole.tests;
 
-import com.sakila.config.IndexerTestConfig;
-import com.sakila.domain.Film;
-import com.sakila.index.domain.IndexFilm;
-import com.sakila.service.Indexer;
-import com.sakila.repository.FilmRepository;
-import com.sakila.service.IndexService;
+import com.boole.config.IndexerTestConfig;
+import com.boole.domain.Film;
+import com.boole.index.domain.IndexFilm;
+import com.boole.common.service.Indexer;
+import com.boole.repository.FilmRepository;
+import com.boole.common.service.IndexService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

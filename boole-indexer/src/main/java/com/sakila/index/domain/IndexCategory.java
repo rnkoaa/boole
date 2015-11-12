@@ -1,6 +1,6 @@
-package com.sakila.index.domain;
+package com.boole.index.domain;
 
-import com.sakila.domain.Category;
+import com.boole.domain.Category;
 import org.joda.time.DateTime;
 
 import java.util.Objects;

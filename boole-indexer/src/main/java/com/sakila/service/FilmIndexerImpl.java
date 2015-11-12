@@ -1,8 +1,8 @@
-package com.sakila.service;
+package com.boole.common.service;
 
-import com.sakila.index.domain.IndexFilm;
-import com.sakila.repository.FilmRepository;
-import com.sakila.util.exceptions.NonIndexableItemException;
+import com.boole.index.domain.IndexFilm;
+import com.boole.repository.FilmRepository;
+import com.boole.common.util.exceptions.NonIndexableItemException;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResultHandler;
 import io.searchbox.core.Bulk;
@@ -44,9 +44,9 @@ public class FilmIndexerImpl implements Indexer<IndexFilm> {
     @Override
     public void bulkIndexItems(List<IndexFilm> films) {
         try {
-            boolean indexExists = jestClient.execute(new IndicesExists.Builder("sakila").build()).isSucceeded();
+            boolean indexExists = jestClient.execute(new IndicesExists.Builder("boole").build()).isSucceeded();
             if (!indexExists) {
-                jestClient.execute(new CreateIndex.Builder("sakila").build());
+                jestClient.execute(new CreateIndex.Builder("boole").build());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class FilmIndexerImpl implements Indexer<IndexFilm> {
         Bulk.Builder bulkBuilder = new Bulk.Builder();
         films.forEach(indexFilm ->
                 bulkBuilder.addAction(new Index.Builder(indexFilm)
-                        .index("sakila")
+                        .index("boole")
                         .type("film")
                         .id(String.valueOf(indexFilm.getId()))
                         .build()));
@@ -87,16 +87,16 @@ public class FilmIndexerImpl implements Indexer<IndexFilm> {
             throw new NonIndexableItemException("The Item cannot be indexed");
 
         try {
-            boolean indexExists = jestClient.execute(new IndicesExists.Builder("sakila").build()).isSucceeded();
+            boolean indexExists = jestClient.execute(new IndicesExists.Builder("boole").build()).isSucceeded();
             if (!indexExists) {
-                jestClient.execute(new CreateIndex.Builder("sakila").build());
+                jestClient.execute(new CreateIndex.Builder("boole").build());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //now lets index the sucker
-        Index index = new Index.Builder(indexable).index("sakila").type("film").id(String.valueOf(indexable.getId())).build();
+        Index index = new Index.Builder(indexable).index("boole").type("film").id(String.valueOf(indexable.getId())).build();
         jestClient.executeAsync(index, new JestResultHandler<DocumentResult>() {
             @Override
             public void completed(DocumentResult result) {

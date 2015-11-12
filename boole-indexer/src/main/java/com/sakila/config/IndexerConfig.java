@@ -1,15 +1,14 @@
-package com.sakila.config;
+package com.boole.config;
 
-import com.fasterxml.jackson.datatype.joda.deser.DateTimeDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sakila.DateTimeTypeConverter;
-import com.sakila.SakilaCommonApplicationConfig;
-import com.sakila.domain.Film;
-import com.sakila.index.domain.IndexFilm;
-import com.sakila.repository.FilmRepository;
-import com.sakila.service.IndexService;
-import com.sakila.service.Indexer;
+import com.boole.DateTimeTypeConverter;
+import com.boole.booleCommonApplicationConfig;
+import com.boole.domain.Film;
+import com.boole.index.domain.IndexFilm;
+import com.boole.repository.FilmRepository;
+import com.boole.common.service.IndexService;
+import com.boole.common.service.Indexer;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
 import io.searchbox.client.config.HttpClientConfig;
@@ -23,17 +22,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 /**
  * Created on 11/3/2015.
@@ -41,10 +36,10 @@ import java.util.stream.Collectors;
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages = {"com.sakila.service",
-        "com.sakila.index",
-        "com.sakila.config"})
-@Import({SakilaCommonApplicationConfig.class})
+@ComponentScan(basePackages = {"com.boole.common.service",
+        "com.boole.index",
+        "com.boole.config"})
+@Import({booleCommonApplicationConfig.class})
 class IndexerConfig implements CommandLineRunner {
 
     @Autowired

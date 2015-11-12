@@ -1,4 +1,4 @@
-package com.sakila.util.exceptions;
+package com.boole.common.util.exceptions;
 
 /**
  * Created using Intellij IDE

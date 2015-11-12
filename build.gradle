@@ -1,6 +1,6 @@
 def vJavaLang = '1.8'
 def javaProjects = [project(':boole-web'), project(':boole-indexer'), project(':boole-common')]
-def bootProjects = javaProjects //- project(':sakila-common')
+def bootProjects = javaProjects //- project(':boole-common')
 def gradleDir = "${rootProject.rootDir}/gradle"
 
 wrapper.gradleVersion = '2.8'

@@ -18,27 +18,27 @@ angular.module('uiroutesApp')
 
         $stateProvider.state('home', {
             url: '/home',
-            templateUrl: '/sakila/js/contacts/partials/home.html'
+            templateUrl: '/boole/js/contacts/partials/home.html'
         });
         $stateProvider.state('about', {
             url: '/about',
-            templateUrl: '/sakila/js/contacts/partials/about.html'
+            templateUrl: '/boole/js/contacts/partials/about.html'
         });
 
         $stateProvider.state('contacts', {
             url: '/contacts',
             controller: 'ListContactsController',
-            templateUrl: '/sakila/js/contacts/partials/contacts.html'
+            templateUrl: '/boole/js/contacts/partials/contacts.html'
         });
         $stateProvider.state('contacts.contactCard', {
             url: '/card/:contactId',
             controller: 'ContactCardController',
-            templateUrl: '/sakila/js/contacts/partials/contact-card.html'
+            templateUrl: '/boole/js/contacts/partials/contact-card.html'
         });
         $stateProvider.state('contactCard', {
             url: '/card/:contactId',
             controller: 'ContactCardController',
-            templateUrl: '/sakila/js/contacts/partials/contact-card.html'
+            templateUrl: '/boole/js/contacts/partials/contact-card.html'
         });
     });
 

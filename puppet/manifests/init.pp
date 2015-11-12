@@ -35,7 +35,7 @@ class othertools {
 class { 'elasticsearch':
   package_url   => 'https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.3.deb',
   config        => {
-    'cluster.name'           => 'sakila-cluster',
+    'cluster.name'           => 'boole-cluster',
     'http.enabled'           => true,
     'http.cors.enabled'      => true,
     'http.cors.allow-origin' => '"*"',
@@ -63,25 +63,15 @@ class { 'postgresql::server':
   listen_addresses  => '*',
   postgres_password => 'postgresql',
 }->
-postgresql::server::db { 'sakila':
-  user     => 'sakila_user',
-  password => postgresql_password('sakila_user', 's@kil@_us3r'),
+postgresql::server::db { 'boole':
+  user     => 'boole_user',
+  password => postgresql_password('boole_user', 'b00le_us3r'),
   #grant         => 'all',
 }->
-postgresql::server::db { 'imdb':
-  user     => 'imdb_user',
-  password => postgresql_password('imdb_user', 'imdb_us3r'),
-  #grant         => 'all',
-}->
-postgresql::server::database_grant { 'sakila':
+postgresql::server::database_grant { 'boole':
   privilege => 'ALL',
-  db        => 'sakila',
-  role      => 'sakila_user',
-}->
-postgresql::server::database_grant { 'imdb':
-  privilege => 'ALL',
-  db        => 'imdb',
-  role      => 'imdb_user',
+  db        => 'boole',
+  role      => 'boole_user',
 }
 
 # rule for remote connections

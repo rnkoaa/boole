@@ -1,6 +1,6 @@
-package com.sakila.index.domain;
+package com.boole.index.domain;
 
-import com.sakila.domain.Actor;
+import com.boole.domain.Actor;
 import org.joda.time.DateTime;
 
 /**

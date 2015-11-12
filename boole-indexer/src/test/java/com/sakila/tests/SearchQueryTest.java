@@ -1,7 +1,7 @@
-package com.sakila.tests;
+package com.boole.tests;
 
 import com.google.gson.Gson;
-import com.sakila.config.IndexerTestConfig;
+import com.boole.config.IndexerTestConfig;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Search;
@@ -41,7 +41,7 @@ public class SearchQueryTest extends IndexerTestConfig {
 
         Search search = new Search.Builder(searchSourceBuilder.toString())
                 // multiple index or types can be added.
-                .addIndex("sakila")
+                .addIndex("boole")
                 .addType("film")
                 .build();
 

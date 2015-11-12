@@ -43,3 +43,5 @@ http://www.stefanalexandru.com/java/spring-boot-with-thymeleaf-and-maven-first-i
 git always use https: instead of git
 
 git config --global url."https://".insteadOf git://
+
+https://github.com/ns/java-imdb-db-parser

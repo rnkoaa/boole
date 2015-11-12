@@ -1,6 +1,6 @@
-package com.sakila.config;
+package com.boole.config;
 
-import com.sakila.SakilaCommonApplicationConfig;
+import com.boole.booleCommonApplicationConfig;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

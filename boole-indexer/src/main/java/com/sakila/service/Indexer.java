@@ -1,6 +1,6 @@
-package com.sakila.service;
+package com.boole.common.service;
 
-import com.sakila.index.domain.IndexFilm;
+import com.boole.index.domain.IndexFilm;
 
 import java.util.List;
 

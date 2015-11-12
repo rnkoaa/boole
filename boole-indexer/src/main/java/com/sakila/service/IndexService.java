@@ -1,4 +1,4 @@
-package com.sakila.service;
+package com.boole.common.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

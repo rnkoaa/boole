@@ -1,4 +1,4 @@
-package com.sakila;
+package com.boole;
 
 import com.google.gson.*;
 import org.joda.time.DateTime;

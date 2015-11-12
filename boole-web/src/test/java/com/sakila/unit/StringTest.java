@@ -1,6 +1,6 @@
-package com.sakila.unit;
+package com.boole.unit;
 
-import com.sakila.util.StringUtil;
+import com.boole.common.util.StringUtil;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sakilaStoreApp')
+angular.module('booleStoreApp')
     .controller('storeCustomersController', ['$scope', '$state', '$stateParams', '$filter', 'storeFactory', 'DTOptionsBuilder', 'DTColumnBuilder',
         function ($scope, $state, $stateParams, $filter, storeFactory, DTOptionsBuilder, DTColumnBuilder) {
             var storeId = $stateParams.storeId;
@@ -21,7 +21,7 @@ angular.module('sakilaStoreApp')
 
             $scope
                 .dtOptions = DTOptionsBuilder
-                .fromSource('/sakila/api/stores/' + storeId + '/customers')
+                .fromSource('/boole/api/stores/' + storeId + '/customers')
                 .withPaginationType('full_numbers')
                 .withLanguage({
                     "sLengthMenu": "Display _MENU_ items per page",

@@ -95,7 +95,7 @@ JestClientFactory factory = new JestClientFactory();
                 .build());
         JestClient client = factory.getObject();
 
-        //client.execute(new CreateIndex.Builder("sakila").build());
+        //client.execute(new CreateIndex.Builder("boole").build());
 /*
         String source = jsonBuilder()
                 .startObject()
@@ -114,7 +114,7 @@ JestClientFactory factory = new JestClientFactory();
         Bulk.Builder bulkIndexBuilder = new Bulk.Builder();
         for (Quote quote : quotes) {
             System.out.println(quote);
-            bulkIndexBuilder.addAction(new Index.Builder(quote).index("sakila").type("quote").build());
+            bulkIndexBuilder.addAction(new Index.Builder(quote).index("boole").type("quote").build());
 
         }
         client.execute(bulkIndexBuilder.build());

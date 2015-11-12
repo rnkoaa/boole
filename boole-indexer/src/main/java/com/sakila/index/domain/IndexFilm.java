@@ -1,8 +1,8 @@
-package com.sakila.index.domain;
+package com.boole.index.domain;
 
-import com.sakila.domain.Film;
-import com.sakila.domain.FilmActor;
-import com.sakila.domain.FilmCategory;
+import com.boole.domain.Film;
+import com.boole.domain.FilmActor;
+import com.boole.domain.FilmCategory;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
