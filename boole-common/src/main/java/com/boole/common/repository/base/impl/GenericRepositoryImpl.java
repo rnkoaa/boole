@@ -1,6 +1,6 @@
-package com.boole.common.repository.impl;
+package com.boole.common.repository.base.impl;
 
-import com.boole.common.repository.GenericRepository;
+import com.boole.common.repository.base.GenericRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;

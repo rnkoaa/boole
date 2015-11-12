@@ -85,4 +85,14 @@ public class Crew implements java.io.Serializable {
 		this.roles = roles;
 	}
 
+    @Override
+    public String toString() {
+        return "Crew{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+               // ", roles=" + roles +
+                '}';
+    }
 }

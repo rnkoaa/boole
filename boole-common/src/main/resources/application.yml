@@ -29,6 +29,10 @@ spring:
         database-platform: com.boole.common.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
         show_sql: true
+
+        hibernate:
+          ddl-auto: none
+
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false

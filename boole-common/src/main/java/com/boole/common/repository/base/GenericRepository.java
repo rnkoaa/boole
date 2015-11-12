@@ -1,4 +1,4 @@
-package com.boole.common.repository;
+package com.boole.common.repository.base;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;

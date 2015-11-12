@@ -1,5 +1,6 @@
 package com.boole.common.config;
 
+import com.boole.common.repository.base.impl.GenericRepositoryFactoryBean;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -23,7 +24,8 @@ import java.util.Arrays;
  * Created on 11/12/2015.
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "com.boole.common.repository")
+@EnableJpaRepositories(basePackages = "com.boole.common.repository",
+        repositoryFactoryBeanClass = GenericRepositoryFactoryBean.class)
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"com.boole.common.domain"})
 @EnableTransactionManagement

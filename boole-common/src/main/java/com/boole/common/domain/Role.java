@@ -96,4 +96,13 @@ public class Role implements java.io.Serializable {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", job='" + job + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

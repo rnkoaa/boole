@@ -2,6 +2,7 @@ package com.boole.common.domain;
 // Generated Nov 10, 2015 11:08:57 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "movies", schema = "public")
-public class Movie implements java.io.Serializable {
+public class Movie implements Serializable {
 
     private Long id;
     private String name;
@@ -28,7 +29,6 @@ public class Movie implements java.io.Serializable {
     private Set<Role> roles = new HashSet<>(0);
     private Set<Genre> genres = new HashSet<>(0);
 
-    //@ManyToMany(mappedBy="movies")
     @ManyToMany
     @JoinTable(name = "genres_movies",
             schema = "public",
@@ -171,7 +171,6 @@ public class Movie implements java.io.Serializable {
         this.language = language;
     }
 
-    //@Temporal(TemporalType.DATE)
     @Column(name = "release_date", length = 13)
     public LocalDateTime getReleaseDate() {
         return this.releaseDate;
