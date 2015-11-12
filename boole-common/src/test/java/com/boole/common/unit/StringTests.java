@@ -1,4 +1,4 @@
-package com.boole.unit;
+package com.boole.common.unit;
 
 import com.boole.common.util.StringUtil;
 import org.junit.Test;

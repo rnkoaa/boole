@@ -15,13 +15,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Created on 11/5/2015.
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.boole.domain",
-        "com.boole.repository",
+@ComponentScan(basePackages = {
+        "com.boole.common.config",
+        "com.boole.common.domain",
+        "com.boole.common.repository",
         "com.boole.common.service"})
-@EntityScan(basePackages = {"com.boole.domain"})
-@EnableJpaRepositories(basePackages = {"com.boole.repository"})
 public class BooleCommonApplicationConfig {
-    @Bean
+   /* @Bean
     @Primary
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -29,9 +29,9 @@ public class BooleCommonApplicationConfig {
                 false);
         objectMapper.registerModule(new JodaModule());
         return objectMapper;
-    }
+    }*/
 
     public static void main(String[] args) {
-        SpringApplication.run(booleCommonApplicationConfig.class, args);
+        SpringApplication.run(BooleCommonApplicationConfig.class, args);
     }
 }

@@ -1,10 +1,24 @@
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
+        mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url 'http://repo.spring.io/milestone' }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
 
     }
+}
+
+repositories {
+    maven { url 'http://repo.spring.io/milestone' }
+    maven { url 'http://repo.spring.io/snapshot' }
+    maven { url 'https://repository.jboss.org/nexus/content/repositories/releases' }
+    maven { url 'https://oss.sonatype.org/content/repositories/releases' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'http://repo.maven.apache.org/maven2' }
 }
 
 dependencies{
@@ -21,9 +35,11 @@ dependencies{
     compile "com.fasterxml.jackson.core:jackson-core"
     compile "com.fasterxml.jackson.core:jackson-annotations"
     compile "com.fasterxml.jackson.core:jackson-databind"
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:${jackson_version}")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.0")
 
+    compile("com.zaxxer:HikariCP:${HikariCP_version}")
     compile("org.postgresql:postgresql:${postgresql_version}")
     testCompile("com.h2database:h2")
 
