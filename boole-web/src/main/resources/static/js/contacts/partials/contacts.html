@@ -1,0 +1,16 @@
+<div class="jumbotron">
+	<h2>Contacts</h2>
+	<p>These are the names of the developers that have have worked with over the last 3 months.</p>
+	<div class="list-group col-md-4 pull-left">
+		<a class="list-group-item" ng-repeat="c in contacts"
+		   ui-sref-active="active"
+           ui-sref=".contactCard({contactId:c.contactId})">{{c.name}}</a>
+	</div>
+	<div class="col-md-6 pull-left" ui-view autoscroll="true"></div>
+	<div class="clearfix"></div>
+	<p>
+		<a class="btn btn-lg btn-primary pull-right"
+		   role="button"
+           ui-sref="contactCard({contactId:$stateParams.contactId})">Print Contact Card &raquo;</a>
+	</p>
+</div>

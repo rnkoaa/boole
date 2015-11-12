@@ -1,0 +1,12 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div id="wrapper">
+
+        <div th:include="layouts/partials/navbar :: navbar_fragment"
+             th:remove="tag"></div>
+        <!-- Page Content -->
+        <div ui-view=""></div>
+
+
+    </div>
+    <!-- /#wrapper -->
+</th:block>

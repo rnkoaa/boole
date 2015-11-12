@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layouts/baseLayout">
+<head>
+    <base href="/sakila" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Artifact Migration Tool</title>
+</head>
+<body>
+<section layout:fragment="content" th:remove="tag">
+    <section th:replace="/partials/blank"></section>
+</section>
+</body>
+</html>

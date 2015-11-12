@@ -1,0 +1,44 @@
+springBoot.mainClass = 'sakila.IndexerMain'
+
+/*
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/main/test'
+            srcDir 'src/intTest/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}
+*/
+
+/*
+sourceSets {
+    integTest {
+        java.srcDir 'src/it/java'
+        resources.srcDir 'src/it/resources'
+    }
+}
+*/
+
+dependencies {
+    compile project(':boole-common')
+
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    //compile "org.springframework.boot:spring-boot-starter-security"
+
+    compile 'org.elasticsearch:elasticsearch:1.7.3'
+    compile 'io.searchbox:jest:0.1.7'
+    compile 'commons-codec:commons-codec' // needed by Jest's HTTP client?
+    // for use in mocking http interactions
+    testCompile "org.springframework:spring-test"
+
+
+
+    // pick up common test utility classes
+    //testCompile project(':sagan-common').sourceSets.testUtil.output
+}

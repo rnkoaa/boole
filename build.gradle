@@ -1,0 +1,87 @@
+def vJavaLang = '1.8'
+def javaProjects = [project(':boole-web'), project(':boole-indexer'), project(':boole-common')]
+def bootProjects = javaProjects //- project(':sakila-common')
+def gradleDir = "${rootProject.rootDir}/gradle"
+
+wrapper.gradleVersion = '2.8'
+
+buildscript {
+    ext {
+        springBootVersion = '1.2.7.RELEASE'
+        springRepo = 'http://repo.spring.io/libs-release'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url springRepo }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+        classpath 'org.springframework:springloaded:1.2.4.RELEASE'
+        classpath 'io.spring.gradle:dependency-management-plugin:0.5.3.RELEASE'
+    }
+}
+
+configure(allprojects) {
+    apply plugin: 'idea'
+}
+
+configure(javaProjects) {
+    apply plugin: 'java'
+
+    targetCompatibility = vJavaLang
+    sourceCompatibility = vJavaLang
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url springRepo }
+    }
+
+    // Override Spring IO Platform versions
+    ext['elasticsearch.version'] = '1.7.3' // see io.searchbox:jest
+
+    dependencies {
+        compile 'org.slf4j:slf4j-api'
+        compile "ch.qos.logback:logback-classic:1.1.3"
+        compile "org.slf4j:jcl-over-slf4j:1.7.12"
+        testCompile 'junit:junit:4.12'
+        testCompile('org.assertj:assertj-core:3.2.0')
+    }
+
+    configurations {
+        // replaced with jcl-over-slf4j
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+        // replaced with log4j-over-slf4j
+        all*.exclude group: 'log4j', module: 'log4j'
+        all*.exclude module: "spring-boot-starter-tomcat"
+        all*.exclude module: "spring-boot-starter-logging"
+    }
+
+    clean {
+        delete "target"
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '2.8'
+    }
+}
+
+configure(bootProjects) {
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: 'spring-boot'
+
+    springBoot.backupSource = false
+    //bootRun.dependsOn writeGitPropertiesFile
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter")
+
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springbootStarterVersion}") {
+            exclude module: "junit"
+        }
+    }
+
+}

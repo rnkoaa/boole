@@ -1,0 +1,45 @@
+This vagrant box contains
+    1. Java
+    2. Elastic Search
+    3. MySQL
+        Sakila database schema
+        Sakila database data
+    4. Other tools for managing an ubuntu box
+        - htop
+        - tree
+        - curl
+        - vim
+        - git
+
+
+
+UI Theme from:
+http://start-angular.github.io/sb-admin-angular/preview/
+
+
+http://ironsummitmedia.github.io/startbootstrap-sb-admin-2/pages/index.html
+http://startbootstrap.com/template-overviews/sb-admin/
+http://www.bootply.com/render/hJ6U0WphRy#
+http://shapebootstrap.net/item/1524915-adminlte-dashboard-and-control-panel/live-demo
+
+ui
+http://www.bootstrapzero.com/bootstrap-template/corlate
+http://www.bootply.com/render/130150
+http://shape.themeturn.com/html/cyprass/
+
+//clone with --recursive
+git clone git@github.com:rnkoaa/sakila.git --recursive
+
+
+***Logging configuration***
+http://gordondickens.com/wordpress/2012/07/03/enterprise-spring-best-practices-part-1-project-config/#logging
+
+***pagination***
+http://www.javaenthusiasm.com/rest-pagination-with-spring-boot/
+
+http://www.stefanalexandru.com/java/spring-boot-with-thymeleaf-and-maven-first-impressions
+
+
+git always use https: instead of git
+
+git config --global url."https://".insteadOf git://

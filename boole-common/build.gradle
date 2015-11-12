@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+
+    }
+}
+
+dependencies{
+
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.hibernate:hibernate-validator:5.2.2.Final')
+
+    compile "joda-time:joda-time:${jodaVersion}"
+
+    compile('javax.el:javax.el-api:3.0.0')
+
+    //jackson modules
+    compile "com.fasterxml.jackson.core:jackson-core"
+    compile "com.fasterxml.jackson.core:jackson-annotations"
+    compile "com.fasterxml.jackson.core:jackson-databind"
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.0")
+
+    runtime('mysql:mysql-connector-java')
+    // jackson, for JSON and XML serialization
+    /*compile "com.fasterxml.jackson.core:jackson-core"
+    compile "com.fasterxml.jackson.core:jackson-annotations"
+    compile "com.fasterxml.jackson.core:jackson-databind"
+    compile 'joda-time:joda-time'
+    compile 'org.hibernate:hibernate-validator'
+
+    // for use of spring-test's MatcherAssertionErrors.*
+    testCompile "org.springframework:spring-test"
+    testCompile "junit:junit:4.12"*/
+}
