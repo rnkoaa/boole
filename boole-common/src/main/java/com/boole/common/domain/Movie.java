@@ -29,19 +29,6 @@ public class Movie implements Serializable {
     private Set<Role> roles = new HashSet<>(0);
     private Set<Genre> genres = new HashSet<>(0);
 
-    @ManyToMany
-    @JoinTable(name = "genres_movies",
-            schema = "public",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    public Set<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
-    }
-
     public Movie() {
     }
 
@@ -66,6 +53,19 @@ public class Movie implements Serializable {
         this.language = language;
         this.releaseDate = releaseDate;
         this.roles = roles;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "genres_movies",
+            schema = "public",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 
     @Id
