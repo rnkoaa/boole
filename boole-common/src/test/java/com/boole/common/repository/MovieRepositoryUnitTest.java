@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.boole.common.repository.specifications.MovieSpecifications.movieWithRoles;
+import static com.boole.common.repository.specifications.MovieSpecifications.*;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
@@ -27,16 +27,39 @@ public class MovieRepositoryUnitTest extends AbstractBooleCommonTest {
 
     @Test
     public void testFindRolesOnMovie() {
-       /* List<Role> roles = movieRepository.find
-        assertThat(roles).isNotNull();
-        assertThat(roles.size()).isGreaterThan(1);
-        System.out.println("There are " + roles.size() + " roles associated with the movie");*/
-        List<Movie> movies = movieRepository.findBySpecification(movieWithRoles(1L));
+        List<Movie> movies = movieRepository.findBySpecification(movieWithRolesById(6L));
         assertThat(movies).isNotEmpty();
         assertThat(movies.size()).isEqualTo(1);
         System.out.println("Retrieved: " + movies.size() + " Movies");
 
         Movie movie = movies.get(0);
         assertThat(movie.getRoles().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getRoles().size() + " Roles associated with it");
+    }
+
+    @Test
+    public void testFindGenresOnMovie() {
+        List<Movie> movies = movieRepository.findBySpecification(movieWithGenresById(6L));
+        assertThat(movies).isNotEmpty();
+        assertThat(movies.size()).isEqualTo(1);
+        System.out.println("Retrieved: " + movies.size() + " Movies");
+
+        Movie movie = movies.get(0);
+        assertThat(movie.getGenres().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getGenres().size() + " Genres associated with it");
+    }
+
+    @Test
+    public void testFindDetailsOnMovie() {
+        List<Movie> movies = movieRepository.findBySpecification(movieWithGenresAndRolesById(6L));
+        assertThat(movies).isNotEmpty();
+        assertThat(movies.size()).isEqualTo(1);
+        System.out.println("Retrieved: " + movies.size() + " Movies");
+
+        Movie movie = movies.get(0);
+        assertThat(movie.getGenres().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getGenres().size() + " Genres associated with it");
+        assertThat(movie.getRoles().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getRoles().size() + " Roles associated with it");
     }
 }

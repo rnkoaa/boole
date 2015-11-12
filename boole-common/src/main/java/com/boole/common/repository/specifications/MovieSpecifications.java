@@ -10,11 +10,26 @@ import javax.persistence.criteria.JoinType;
  */
 public class MovieSpecifications {
 
-    public static Specification<Movie> movieWithRoles(Long movieId) {
+    public static Specification<Movie> movieWithRolesById(Long movieId) {
         return (root, query, cb) -> {
             query.distinct(true);
-            root.fetch("roles", JoinType.LEFT);
-            root.fetch("genres", JoinType.LEFT);
+            root.fetch("roles", JoinType.INNER);
+            return cb.equal(root.get("id"), movieId);
+        };
+    }
+
+    public static Specification<Movie> movieWithGenresById(Long movieId) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            root.fetch("genres", JoinType.INNER);
+            return cb.equal(root.get("id"), movieId);
+        };
+    }
+    public static Specification<Movie> movieWithGenresAndRolesById(Long movieId) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            root.fetch("genres", JoinType.INNER);
+            root.fetch("roles", JoinType.INNER);
             return cb.equal(root.get("id"), movieId);
         };
     }
