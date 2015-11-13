@@ -4,17 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Created on 11/3/2015.
  */
 @MappedSuperclass
-public abstract class AbstractBaseEntity  implements Serializable {
+public abstract class AbstractBaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime updatedAt;
 
 
     @Id
@@ -28,23 +28,21 @@ public abstract class AbstractBaseEntity  implements Serializable {
     }
 
 
-    //@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, length = 29)
-    public LocalDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return this.createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    //@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false, length = 29)
-    public LocalDateTime getUpdatedAt() {
+    public ZonedDateTime getUpdatedAt() {
         return this.updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

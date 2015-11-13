@@ -2,7 +2,9 @@ package com.boole.common.domain;
 // Generated Nov 10, 2015 11:08:57 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,44 +16,44 @@ import java.util.Set;
 public class Crew extends AbstractBaseEntity {
 
 
-    private String name;
-    private Set<Role> roles = new HashSet<>(0);
+	private String name;
+	private Set<Role> roles = new HashSet<>(0);
 
-    public Crew() {
-    }
+	public Crew() {
+	}
 
-    public Crew(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Crew(Long id, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+		setId(id);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
+	}
+
+	public Crew(Long id, String name, ZonedDateTime createdAt, ZonedDateTime updatedAt, Set<Role> roles) {
         setId(id);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
-    }
+		this.name = name;
+		this.roles = roles;
+	}
 
-    public Crew(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt, Set<Role> roles) {
-        setId(id);
-        setCreatedAt(createdAt);
-        setUpdatedAt(updatedAt);
-        this.name = name;
-        this.roles = roles;
-    }
+	@Column(name = "name")
+	public String getName() {
+		return this.name;
+	}
 
-    @Column(name = "name")
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "crew")
-    public Set<Role> getRoles() {
-        return this.roles;
-    }
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "crew")
+	public Set<Role> getRoles() {
+		return this.roles;
+	}
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
     @Override
     public String toString() {
@@ -60,7 +62,7 @@ public class Crew extends AbstractBaseEntity {
                 ", name='" + name + '\'' +
                 ", createdAt=" + getCreatedAt() +
                 ", updatedAt=" + getUpdatedAt() +
-                // ", roles=" + roles +
+               // ", roles=" + roles +
                 '}';
     }
 }

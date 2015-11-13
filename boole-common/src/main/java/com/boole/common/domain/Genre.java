@@ -1,11 +1,9 @@
 package com.boole.common.domain;
 // Generated Nov 10, 2015 11:08:57 PM by Hibernate Tools 4.3.1.Final
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,13 +23,13 @@ public class Genre extends AbstractBaseEntity {
     public Genre() {
     }
 
-    public Genre(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Genre(Long id, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         setId(id);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
     }
 
-    public Genre(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Genre(Long id, String name, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         setId(id);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);

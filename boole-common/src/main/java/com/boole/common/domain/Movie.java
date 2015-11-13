@@ -3,6 +3,7 @@ package com.boole.common.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,21 +22,21 @@ public class Movie extends AbstractBaseEntity {
     private String rating;
     private Integer runtime;
     private String language;
-    private LocalDateTime releaseDate;
+    private ZonedDateTime releaseDate;
     private Set<Role> roles = new HashSet<>(0);
     private Set<Genre> genres = new HashSet<>(0);
 
     public Movie() {
     }
 
-    public Movie(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Movie(Long id, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         setId(id);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
     }
 
-    public Movie(Long id, String name, String synopsis, LocalDateTime createdAt, LocalDateTime updatedAt, String country, Integer year,
-                 Double review, String rating, Integer runtime, String language, LocalDateTime releaseDate, Set<Role> roles) {
+    public Movie(Long id, String name, String synopsis, ZonedDateTime createdAt, ZonedDateTime updatedAt, String country, Integer year,
+                 Double review, String rating, Integer runtime, String language, ZonedDateTime releaseDate, Set<Role> roles) {
         setId(id);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
@@ -136,12 +137,13 @@ public class Movie extends AbstractBaseEntity {
         this.language = language;
     }
 
+
     @Column(name = "release_date", length = 13)
-    public LocalDateTime getReleaseDate() {
+    public ZonedDateTime getReleaseDate() {
         return this.releaseDate;
     }
 
-    public void setReleaseDate(LocalDateTime releaseDate) {
+    public void setReleaseDate(ZonedDateTime releaseDate) {
         this.releaseDate = releaseDate;
     }
 
