@@ -21,6 +21,7 @@ public class MovieServiceUnitTest extends AbstractBooleCommonTest {
     public void testFindOneMovie() {
         Movie movie = movieService.findOne(1L);
         assertThat(movie).isNotNull();
+        assertThat(movie.getGenres()).isEmpty();
     }
 
     @Test

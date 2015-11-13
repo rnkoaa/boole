@@ -16,7 +16,7 @@ buildscript {
     }
 }
 
-apply from: 'mapstruct.gradle'
+//apply from: 'mapstruct.gradle'
 
 repositories {
     maven { url 'http://repo.spring.io/milestone' }
@@ -51,7 +51,7 @@ dependencies{
     compile("com.zaxxer:HikariCP:${HikariCP_version}")
     compile("org.postgresql:postgresql:${postgresql_version}")
 
-    compile("org.mapstruct:mapstruct-jdk8:${mapstruct_version}")
+    //compile("org.mapstruct:mapstruct-jdk8:${mapstruct_version}")
 
     testCompile("com.h2database:h2")
 
