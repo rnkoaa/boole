@@ -10,7 +10,13 @@ buildscript {
     dependencies {
 
     }
+    ext {
+        javaLanguageLevel = '1.8'
+        generatedMapperSourcesDir = "${buildDir}/generated-src/mapstruct/main"
+    }
 }
+
+apply from: 'mapstruct.gradle'
 
 repositories {
     maven { url 'http://repo.spring.io/milestone' }
@@ -19,10 +25,13 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/releases' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
+    maven { url 'https://oss.sonatype.org/content/groups/public'}
 }
 
 dependencies{
 
+    //compile("org.mapstruct:mapstruct-jdk8:1.0.0.CR2")
+    //mapstruct( 'org.mapstruct:mapstruct-processor:<VERSION>' )
 
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.hibernate:hibernate-validator:5.2.2.Final')
@@ -41,16 +50,11 @@ dependencies{
 
     compile("com.zaxxer:HikariCP:${HikariCP_version}")
     compile("org.postgresql:postgresql:${postgresql_version}")
+
+    compile("org.mapstruct:mapstruct-jdk8:${mapstruct_version}")
+
     testCompile("com.h2database:h2")
 
-    // jackson, for JSON and XML serialization
-    /*compile "com.fasterxml.jackson.core:jackson-core"
-    compile "com.fasterxml.jackson.core:jackson-annotations"
-    compile "com.fasterxml.jackson.core:jackson-databind"
-    compile 'joda-time:joda-time'
-    compile 'org.hibernate:hibernate-validator'
 
-    // for use of spring-test's MatcherAssertionErrors.*
-    testCompile "org.springframework:spring-test"
-    testCompile "junit:junit:4.12"*/
+    //apt 'org.mapstruct:mapstruct-processor:1.0.0.CR2'
 }

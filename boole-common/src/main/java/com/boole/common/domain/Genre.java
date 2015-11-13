@@ -16,7 +16,6 @@ public class Genre extends AbstractBaseEntity {
 
     private String name;
 
-
     @ManyToMany(mappedBy = "genres")
     private Set<Movie> movies = new HashSet<>(0);
 

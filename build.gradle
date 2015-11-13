@@ -7,6 +7,7 @@ wrapper.gradleVersion = '2.8'
 
 buildscript {
     ext {
+        javaLanguageLevel = '1.8'
         springBootVersion = '1.2.7.RELEASE'
         springRepo = 'http://repo.spring.io/libs-release'
     }

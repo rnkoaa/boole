@@ -1,4 +1,4 @@
-springBoot.mainClass = 'boole.IndexerMain'
+//springBoot.mainClass = 'boole.IndexerMain'
 
 /*
 sourceSets {
