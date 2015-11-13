@@ -2,7 +2,6 @@ package com.boole.common.domain;
 // Generated Nov 10, 2015 11:08:57 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,13 +11,10 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "movies", schema = "public")
-public class Movie implements Serializable {
+public class Movie extends AbstractBaseEntity {
 
-    private Long id;
     private String name;
     private String synopsis;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private String country;
     private Integer year;
     private Double review;
@@ -33,18 +29,18 @@ public class Movie implements Serializable {
     }
 
     public Movie(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        setId(id);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
     }
 
     public Movie(Long id, String name, String synopsis, LocalDateTime createdAt, LocalDateTime updatedAt, String country, Integer year,
                  Double review, String rating, Integer runtime, String language, LocalDateTime releaseDate, Set<Role> roles) {
-        this.id = id;
+        setId(id);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
         this.name = name;
         this.synopsis = synopsis;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.country = country;
         this.year = year;
         this.review = review;
@@ -68,17 +64,6 @@ public class Movie implements Serializable {
         this.genres = genres;
     }
 
-    @Id
-
-    @Column(name = "id", unique = true, nullable = false)
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Column(name = "name")
     public String getName() {
         return this.name;
@@ -95,26 +80,6 @@ public class Movie implements Serializable {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
-    }
-
-    //@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, length = 29)
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    //@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false, length = 29)
-    public LocalDateTime getUpdatedAt() {
-        return this.updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     @Column(name = "country")
