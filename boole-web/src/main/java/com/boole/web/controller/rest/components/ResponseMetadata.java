@@ -54,6 +54,7 @@ public class ResponseMetadata<T> {
     }
 
     public int getPage() {
+        page += 1; //convert to 1-index paging
         return page;
     }
 

@@ -19,7 +19,7 @@ import java.util.Map;
 public class AbstractRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractRestController.class);
-    public static final String PER_PAGE = "per_page";
+    public static final String PER_PAGE = "limit";
     public static final String PAGE_KEY = "page";
     private static final String SORT = "sort";
 
@@ -40,7 +40,7 @@ public class AbstractRestController {
 
         //paging is 0th based
         if (page > 0)
-            page--;
+            page = page - 1;
 
         return (StringUtil.isNullOrEmpty(sortField)) ?
                 new PageRequest(page, perPage) :
