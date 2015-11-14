@@ -1,6 +1,8 @@
 package com.boole.common.domain.dto;
 
+import com.boole.common.domain.util.JSR310DateSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -104,6 +106,8 @@ public class MovieDTO implements Serializable {
         this.language = language;
     }
 
+    //customize the format of this date
+    @JsonSerialize(using = JSR310DateSerializer.class)
     public ZonedDateTime getReleaseDate() {
         return releaseDate;
     }
