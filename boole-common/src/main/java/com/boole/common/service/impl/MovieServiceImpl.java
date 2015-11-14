@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import static com.boole.common.repository.specifications.MovieSpecifications.movieWithGenresAndRolesById;
+
 /**
  * Created using Intellij IDE
  * Created by rnkoaa on 11/12/15.
@@ -61,5 +63,12 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     @Override
     public Movie findOne(Specification<Movie> specification) {
         return null;
+    }
+
+    @Override
+    public Optional<Movie> findWithFullDetails(Long id) {
+        logger.debug("Finding Movies with Using Specification");
+        Movie movie = movieRepository.findOne(movieWithGenresAndRolesById(id));
+        return Optional.ofNullable(movie);
     }
 }

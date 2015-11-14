@@ -34,7 +34,8 @@ public class Role extends AbstractBaseEntity {
         this.job = job;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //always fetch the person associated with this role.
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "crew_id")
     public Crew getCrew() {
         return this.crew;

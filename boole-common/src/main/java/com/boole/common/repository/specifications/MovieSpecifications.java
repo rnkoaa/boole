@@ -25,11 +25,17 @@ public class MovieSpecifications {
             return cb.equal(root.get("id"), movieId);
         };
     }
+
+    /**
+     * This specification returns a movie and all other associated data.
+     * @param movieId
+     * @return
+     */
     public static Specification<Movie> movieWithGenresAndRolesById(Long movieId) {
         return (root, query, cb) -> {
             query.distinct(true);
-            root.fetch("genres", JoinType.INNER);
-            root.fetch("roles", JoinType.INNER);
+            root.fetch("genres", JoinType.LEFT);
+            root.fetch("roles", JoinType.LEFT);
             return cb.equal(root.get("id"), movieId);
         };
     }

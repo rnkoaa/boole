@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GenreMapperService {
 
-    public GenreDTO map(Genre genre) {
+    public GenreDTO mapGenre(Genre genre) {
         GenreDTO genreDTO = new GenreDTO();
         genreDTO.setId(genre.getId());
         genreDTO.setName(genre.getName());

@@ -15,6 +15,10 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class MovieDTO implements Serializable {
 
+    Set<CrewDTO> actors = new HashSet<>(0);
+    Set<CrewDTO> directors = new HashSet<>(0);
+    Set<CrewDTO> crews = new HashSet<>(0);
+    Set<CrewDTO> producers = new HashSet<>(0);
     private Long id;
     private String name;
     private String synopsis;
@@ -25,11 +29,8 @@ public class MovieDTO implements Serializable {
     private Integer runtime;
     private String language;
     private ZonedDateTime releaseDate;
-    Set<CrewDTO> actors = new HashSet<>(0);
-    Set<CrewDTO> directors = new HashSet<>(0);
-    Set<CrewDTO> crews = new HashSet<>(0);
-    Set<CrewDTO> producers = new HashSet<>(0);
     private Set<GenreDTO> genres = new HashSet<>(0);
+    private Set<CrewDTO> writers = new HashSet<>(0);
 
     public Long getId() {
         return id;
@@ -180,5 +181,13 @@ public class MovieDTO implements Serializable {
                 ", language='" + language + '\'' +
                 ", releaseDate=" + releaseDate +
                 '}';
+    }
+
+    public Set<CrewDTO> getWriters() {
+        return writers;
+    }
+
+    public void setWriters(Set<CrewDTO> writers) {
+        this.writers = writers;
     }
 }

@@ -44,12 +44,26 @@ public class MovieController extends AbstractRestController {
     @ResponseBody
     public RestResponse<MovieDTO> findFilmById(@PathVariable("id") Long id,
                                                @RequestParam Map<String, String> requestParams) {
-        Optional<Movie> movieOptional = movieService.findOne(id);
-        Movie movie = movieOptional
-                .orElseThrow(() ->
-                        new NotFoundException("Movie with Id: " + id + " Was not found"));
+        RestResponse<MovieDTO> restResponse = new RestResponse<>(null);
+        if (requestParams.containsKey("include")) {
+            String includes = requestParams.get("include");
+            if (includes.equalsIgnoreCase("details")) {
+                Optional<Movie> movieOptional = movieService.findWithFullDetails(id);
+                Movie movie = movieOptional
+                        .orElseThrow(() ->
+                                new NotFoundException("Movie with Id: " + id + " Was not found"));
 
-        return new RestResponse<>(movieMapperService.mapMovie(movie));
+                restResponse = new RestResponse<>(movieMapperService.mapMovie(movie, "details"));
+            }
+        } else {
+            Optional<Movie> movieOptional = movieService.findOne(id);
+            Movie movie = movieOptional
+                    .orElseThrow(() ->
+                            new NotFoundException("Movie with Id: " + id + " Was not found"));
+            restResponse = new RestResponse<>(movieMapperService.mapMovie(movie));
+        }
+
+        return restResponse;
     }
 /*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

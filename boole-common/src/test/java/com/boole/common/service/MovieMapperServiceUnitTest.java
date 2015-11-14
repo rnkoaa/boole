@@ -36,6 +36,23 @@ public class MovieMapperServiceUnitTest extends AbstractBooleCommonTest {
         assertThat(movieDTO).isNotNull();
         assertThat(movieDTO.getId()).isEqualTo(movie.getId());
         System.out.println(movieDTO);
-        //AssertionsForInterfaceTypes.assertThat(movie.getGenres()).isEmpty();
+    }
+
+    @Test
+    public void testFindDetailsOnMovie() {
+        Optional<Movie> movieOptional = movieService.findWithFullDetails(6L);
+        assertThat(movieOptional).isPresent();
+
+        Movie movie = movieOptional.get();
+        assertThat(movie.getGenres().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getGenres().size() + " Genres associated with it");
+        assertThat(movie.getRoles().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getRoles().size() + " Roles associated with it");
+
+        MovieDTO movieDTO = movieMapperService.mapMovie(movie, "details");
+
+        assertThat(movieDTO).isNotNull();
+        assertThat(movieDTO.getGenres().size()).isGreaterThan(1);
+        assertThat(movieDTO.getActors().size()).isGreaterThan(1);
     }
 }

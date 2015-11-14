@@ -5,6 +5,7 @@ import com.boole.common.domain.Movie;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -26,7 +27,6 @@ public class MovieServiceUnitTest extends AbstractBooleCommonTest {
         assertThat(movieOptional).isPresent();
         Movie movie = movieOptional.get();
         assertThat(movie).isNotNull();
-        assertThat(movie.getGenres()).isEmpty();
     }
 
     @Test
@@ -37,5 +37,17 @@ public class MovieServiceUnitTest extends AbstractBooleCommonTest {
         System.out.println("Number of Pages: " + itemsPage.getTotalPages());
         System.out.println("Number of Total Elements: " + itemsPage.getTotalElements());
         System.out.println("Number of Elements: " + itemsPage.getNumberOfElements());
+    }
+
+    @Test
+    public void testFindDetailsOnMovie() {
+        Optional<Movie> movieOptional = movieService.findWithFullDetails(6L);
+        assertThat(movieOptional).isPresent();
+
+        Movie movie = movieOptional.get();
+        assertThat(movie.getGenres().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getGenres().size() + " Genres associated with it");
+        assertThat(movie.getRoles().size()).isGreaterThan(1);
+        System.out.println("Movie has " + movie.getRoles().size() + " Roles associated with it");
     }
 }
