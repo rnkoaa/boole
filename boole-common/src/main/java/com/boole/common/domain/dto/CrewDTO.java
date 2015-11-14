@@ -1,4 +1,4 @@
-package com.boole.web.controller.rest.dto;
+package com.boole.common.domain.dto;
 
 import java.util.Objects;
 

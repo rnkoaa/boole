@@ -1,7 +1,10 @@
 package com.boole.web.controller.rest;
 
 import com.boole.common.domain.Movie;
+import com.boole.common.domain.dto.MovieDTO;
 import com.boole.common.service.MovieService;
+import com.boole.common.service.mapper.MovieMapperService;
+import com.boole.common.util.exceptions.NotFoundException;
 import com.boole.web.controller.rest.components.ResponseMetadata;
 import com.boole.web.controller.rest.components.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created using Intellij IDE
@@ -23,11 +27,29 @@ public class MovieController extends AbstractRestController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private MovieMapperService movieMapperService;
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public RestResponse<List<Movie>> findMovies(@RequestParam Map<String, String> requestParams) {
+    public RestResponse<List<MovieDTO>> findMovies(@RequestParam Map<String, String> requestParams) {
         Page<Movie> moviePage = movieService.findAll(0, 20);
-        return new RestResponse<>(moviePage.getContent(), new ResponseMetadata<>(moviePage));
+
+        return new RestResponse<>(movieMapperService.mapMovies(moviePage.getContent()),
+                new ResponseMetadata<>(moviePage));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public RestResponse<MovieDTO> findFilmById(@PathVariable("id") Long id,
+                                               @RequestParam Map<String, String> requestParams) {
+        Optional<Movie> movieOptional = movieService.findOne(id);
+        Movie movie = movieOptional
+                .orElseThrow(() ->
+                        new NotFoundException("Movie with Id: " + id + " Was not found"));
+
+        return new RestResponse<>(movieMapperService.mapMovie(movie));
     }
 /*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

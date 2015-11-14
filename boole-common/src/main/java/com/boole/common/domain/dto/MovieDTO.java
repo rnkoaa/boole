@@ -1,4 +1,6 @@
-package com.boole.web.controller.rest.dto;
+package com.boole.common.domain.dto;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -10,6 +12,7 @@ import java.util.Set;
  * Created using Intellij IDE
  * Created by rnkoaa on 11/13/15.
  */
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class MovieDTO implements Serializable {
 
     private Long id;

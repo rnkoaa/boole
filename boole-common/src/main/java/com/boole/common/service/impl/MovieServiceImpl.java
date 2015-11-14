@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created using Intellij IDE
@@ -32,9 +33,10 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     }
 
     @Override
-    public Movie findOne(Long id) {
+    public Optional<Movie> findOne(Long id) {
         logger.debug("Finding Movies with id: {}", id);
-        return movieRepository.findOne(id);
+        Movie movie = movieRepository.findOne(id);
+        return Optional.ofNullable(movie);
     }
 
     @Override

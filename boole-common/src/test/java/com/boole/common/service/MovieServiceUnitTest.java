@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
@@ -19,7 +21,10 @@ public class MovieServiceUnitTest extends AbstractBooleCommonTest {
 
     @Test
     public void testFindOneMovie() {
-        Movie movie = movieService.findOne(1L);
+        Optional<Movie> movieOptional = movieService.findOne(1L);
+
+        assertThat(movieOptional).isPresent();
+        Movie movie = movieOptional.get();
         assertThat(movie).isNotNull();
         assertThat(movie.getGenres()).isEmpty();
     }
