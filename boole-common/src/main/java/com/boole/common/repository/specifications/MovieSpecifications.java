@@ -13,7 +13,7 @@ public class MovieSpecifications {
     public static Specification<Movie> movieWithRolesById(Long movieId) {
         return (root, query, cb) -> {
             query.distinct(true);
-            root.fetch("roles", JoinType.INNER);
+            root.fetch("roles", JoinType.LEFT);
             return cb.equal(root.get("id"), movieId);
         };
     }
@@ -21,7 +21,7 @@ public class MovieSpecifications {
     public static Specification<Movie> movieWithGenresById(Long movieId) {
         return (root, query, cb) -> {
             query.distinct(true);
-            root.fetch("genres", JoinType.INNER);
+            root.fetch("genres", JoinType.LEFT);
             return cb.equal(root.get("id"), movieId);
         };
     }

@@ -1,8 +1,12 @@
 package com.boole.web.controller.rest;
 
+import com.boole.common.domain.Crew;
 import com.boole.common.domain.Movie;
+import com.boole.common.domain.Role;
+import com.boole.common.domain.dto.CrewDTO;
 import com.boole.common.domain.dto.MovieDTO;
 import com.boole.common.service.MovieService;
+import com.boole.common.service.mapper.CrewMapperService;
 import com.boole.common.service.mapper.MovieMapperService;
 import com.boole.common.util.exceptions.NotFoundException;
 import com.boole.web.controller.rest.components.ResponseMetadata;
@@ -30,6 +34,9 @@ public class MovieController extends AbstractRestController {
     @Autowired
     private MovieMapperService movieMapperService;
 
+    @Autowired
+    private CrewMapperService crewMapperService;
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<List<MovieDTO>> findMovies(@RequestParam Map<String, String> requestParams) {
@@ -42,8 +49,8 @@ public class MovieController extends AbstractRestController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public RestResponse<MovieDTO> findFilmById(@PathVariable("id") Long id,
-                                               @RequestParam Map<String, String> requestParams) {
+    public RestResponse<MovieDTO> findMovieById(@PathVariable("id") Long id,
+                                                @RequestParam Map<String, String> requestParams) {
         RestResponse<MovieDTO> restResponse = new RestResponse<>(null);
         if (requestParams.containsKey("include")) {
             String includes = requestParams.get("include");
@@ -65,28 +72,77 @@ public class MovieController extends AbstractRestController {
 
         return restResponse;
     }
-/*
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public RestResponse<FilmDto> findFilmById(@PathVariable("id") int id,
-                                              @RequestParam Map<String, String> requestParams) {
-        return new RestResponse<>(filmBuilderService.findFilm(id, requestParams));
-    }
 
     @RequestMapping(value = "/{id}/actors", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public RestResponse<Set<ActorDto>> findActorsForFilm(@PathVariable("id") int id) {
-        Set<ActorDto> response = filmBuilderService.findActors(id);
-        return new RestResponse<>(response, response.size(), 0, 0, null, null);
+    public RestResponse<List<CrewDTO>> findActorsForMovie(@PathVariable("id") Long id) {
+        List<Crew> actors = movieService.findActorsForMovie(id);
+
+        if (actors.size() == 0)
+            throw new NotFoundException("No actor was found associated with " +
+                    "Movie Using Movie Id: " + id);
+
+        return new RestResponse<>(crewMapperService.mapCrew(actors),
+                new ResponseMetadata(actors.size(), actors.size(), 0, 0));
     }
 
-    @RequestMapping(value = "/{id}/categories", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/{id}/writers", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public RestResponse<Set<String>> findCategoriesForFilm(@PathVariable("id") int id) {
-        Set<String> response = filmBuilderService.findCategories(id);
-        return new RestResponse<>(response, response.size(), 0, 0, null, null);
-    }*/
+    public RestResponse<List<CrewDTO>> findWritersForMovie(@PathVariable("id") Long id) {
+        List<Crew> writers = movieService.findWriters(id);
+
+        if (writers.size() == 0)
+            throw new NotFoundException("No writer was found associated with " +
+                    "Movie Using Movie Id: " + id);
+
+        return new RestResponse<>(crewMapperService.mapCrew(writers),
+                new ResponseMetadata(writers.size(), writers.size(), 0, 0));
+    }
+
+    @RequestMapping(value = "/{id}/producers", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public RestResponse<List<CrewDTO>> findProducersForMovie(@PathVariable("id") Long id) {
+        List<Crew> producers = movieService.findProducers(id);
+
+        if (producers.size() == 0)
+            throw new NotFoundException("No producer was found associated with " +
+                    "Movie Using Movie Id: " + id);
+
+        return new RestResponse<>(crewMapperService.mapCrew(producers),
+                new ResponseMetadata(producers.size(), producers.size(), 0, 0));
+    }
+
+
+    @RequestMapping(value = "/{id}/directors", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public RestResponse<List<CrewDTO>> findDirectorsForMovie(@PathVariable("id") Long id) {
+        List<Crew> directors = movieService.findDirectors(id);
+
+        if (directors.size() == 0)
+            throw new NotFoundException("No director was found associated with " +
+                    "Movie Using Movie Id: " + id);
+
+        return new RestResponse<>(crewMapperService.mapCrew(directors),
+                new ResponseMetadata(directors.size(), directors.size(), 0, 0));
+    }
+
+
+    @RequestMapping(value = "/{id}/crews", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public RestResponse<List<CrewDTO>> findCrewForMovie(@PathVariable("id") Long id) {
+        List<Role> roles = movieService.findRoles(id);
+
+        if (roles.size() == 0)
+            throw new NotFoundException("No crew was found associated with " +
+                    "Movie Using Movie Id: " + id);
+
+        return new RestResponse<>(crewMapperService.mapRoleToCrew(roles),
+                new ResponseMetadata(roles.size(), roles.size(), 0, 0));
+    }
 }
