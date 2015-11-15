@@ -15,7 +15,6 @@ import java.util.Set;
 @Table(name = "crews", schema = "public")
 public class Crew extends AbstractBaseEntity {
 
-
 	private String name;
 	private Set<Role> roles = new HashSet<>(0);
 

@@ -24,6 +24,15 @@ public class RoleSpecifications {
         };
     }
 
+    public static Specification<Role> crewWithRoles(String roleName) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            //root.fetch("crew", JoinType.LEFT);
+            //root.fetch("movie", JoinType.LEFT);
+            return cb.equal(root.get("job"), roleName);
+        };
+    }
+
     public static Specification<Role> rolesForMovie(Long movieId, String role) {
         return (root, query, cb) -> {
             query.distinct(true);
@@ -42,6 +51,16 @@ public class RoleSpecifications {
             Path<Movie> moviePath = root.get("movie");
             Path<Long> idPath = moviePath.get("id");
             return cb.equal(idPath, movieId);
+        };
+    }
+
+    public static Specification<Role> roleWithCrew(Long crewId) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            root.fetch("crew", JoinType.LEFT);
+            Path<Movie> moviePath = root.get("crew");
+            Path<Long> idPath = moviePath.get("id");
+            return cb.equal(idPath, crewId);
         };
     }
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.boole.common.repository.specifications.RoleSpecifications.actorRolesForMovie;
+import static com.boole.common.repository.specifications.RoleSpecifications.roleWithCrew;
 import static com.boole.common.repository.specifications.RoleSpecifications.rolesForMovie;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -66,5 +67,11 @@ public class RoleRepositoryUnitTest extends AbstractBooleCommonTest {
 
         assertThat(roles).isNotEmpty();
         assertThat(roles.size()).isGreaterThan(0).isEqualTo(6);
+    }
+
+    @Test
+    public void findCrewUsingRoles(){
+        List<Role> roles = roleRepository.findAll(roleWithCrew(9L));
+        assertThat(roles).isNotEmpty();
     }
 }

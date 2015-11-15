@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 public interface BaseService<T> {
 
-    Optional<Movie> findOne(Long id);
+    Optional<T> findOne(Long id);
 
     Page<T> findAll(Pageable pageable);
 

@@ -1,7 +1,10 @@
 package com.boole.common.domain.dto;
 
+import com.boole.common.domain.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,6 +16,8 @@ public class CrewDTO {
     private Long id;
     private String name;
     private String role;
+    private Movie movie;
+    private List<RoleDto> movieRoles = new ArrayList<>(0);
 
     @Override
     public String toString() {
@@ -56,5 +61,21 @@ public class CrewDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovieRoles(List<RoleDto> movieRoles) {
+        this.movieRoles = movieRoles;
+    }
+
+    public List<RoleDto> getMovieRoles() {
+        return movieRoles;
     }
 }
