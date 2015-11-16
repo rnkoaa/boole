@@ -14,8 +14,8 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/stores/**")
+  /*  @RequestMapping(value = "/stores*//**")
     public String redirect() {
         return "forward:/";
-    }
+    }*/
 }
