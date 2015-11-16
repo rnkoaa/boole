@@ -64,7 +64,7 @@ public class CrewServiceImpl extends BaseServiceImpl<Crew> implements CrewServic
     @Override
     public List<Crew> findAll(Specification<Crew> specification) {
         logger.debug("Finding Crews with Using Specification");
-        return crewRepository.findBySpecification(specification);
+        return crewRepository.findAll(specification);
     }
 
     @Override

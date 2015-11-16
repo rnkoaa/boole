@@ -27,7 +27,7 @@ public class MovieRepositoryUnitTest extends AbstractBooleCommonTest {
 
     @Test
     public void testFindRolesOnMovie() {
-        List<Movie> movies = movieRepository.findBySpecification(movieWithRolesById(6L));
+        List<Movie> movies = movieRepository.findAll(movieWithRolesById(6L));
         assertThat(movies).isNotEmpty();
         assertThat(movies.size()).isEqualTo(1);
         System.out.println("Retrieved: " + movies.size() + " Movies");
@@ -39,7 +39,7 @@ public class MovieRepositoryUnitTest extends AbstractBooleCommonTest {
 
     @Test
     public void testFindGenresOnMovie() {
-        List<Movie> movies = movieRepository.findBySpecification(movieWithGenresById(6L));
+        List<Movie> movies = movieRepository.findAll(movieWithGenresById(6L));
         assertThat(movies).isNotEmpty();
         assertThat(movies.size()).isEqualTo(1);
         System.out.println("Retrieved: " + movies.size() + " Movies");
@@ -51,7 +51,7 @@ public class MovieRepositoryUnitTest extends AbstractBooleCommonTest {
 
     @Test
     public void testFindDetailsOnMovie() {
-        List<Movie> movies = movieRepository.findBySpecification(movieWithGenresAndRolesById(6L));
+        List<Movie> movies = movieRepository.findAll(movieWithGenresAndRolesById(6L));
         assertThat(movies).isNotEmpty();
         assertThat(movies.size()).isEqualTo(1);
         System.out.println("Retrieved: " + movies.size() + " Movies");

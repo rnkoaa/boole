@@ -65,7 +65,7 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     @Override
     public List<Movie> findAll(Specification<Movie> specification) {
         logger.debug("Finding Movies with Using Specification");
-        return movieRepository.findBySpecification(specification);
+        return movieRepository.findAll(specification);
     }
 
     @Override

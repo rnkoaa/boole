@@ -28,23 +28,4 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends
         this.type = entityInformation.getJavaType();
     }
 
-    @Override
-    public List<T> findByExample(T example) {
-        //Specification<T> spec = ByEntityCriteriaHelper.byExample(this.entityManager, example);
-        //return findAll(spec);
-        return null;
-    }
-
-    @Override
-    public List<T> findByExample(T example, Sort sort) {
-        //Specification<T> spec = ByEntityCriteriaHelper.byExample(this.entityManager, example);
-        //return findAll(spec, sort);
-        return null;
-    }
-
-    @Override
-    public List<T> findBySpecification(Specification<T> specification) {
-        return findAll(specification);
-    }
-
 }

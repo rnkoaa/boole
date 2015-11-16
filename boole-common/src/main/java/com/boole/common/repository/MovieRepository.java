@@ -1,21 +1,19 @@
 package com.boole.common.repository;
 
 import com.boole.common.domain.Movie;
-import com.boole.common.domain.Role;
 import com.boole.common.repository.base.GenericRepository;
-import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Created on 11/12/2015.
  */
-public interface MovieRepository /*extends JpaRepository<Movie, Long>*/ extends GenericRepository<Movie, Long> {
-
-    // @Query("SELECT movie m JOIN FETCH role r on m.id = r.id JOIN FETCH genre g on g.id = m.id")
-    // Page<Movie> findMovieWithAllDetails(Long id, Pageable pageable);
-    //@Query("SELECT mov.roles FROM Movie mov WHERE mov.id = (:id)")
-    //List<Role> findActors(@Param("id") Long id);
+public interface MovieRepository extends GenericRepository<Movie, Long> {
+    /*@Query(value = "SELECT movie FROM Movie movie LEFT JOIN FETCH movie.genres genre" +
+            "LEFT JOIN FETCH movie.roles " +
+            "WHERE genre.name in (:genre)",
+            countQuery = "SELECT movie FROM Movie movie LEFT JOIN FETCH movie.genres" +
+                    "LEFT JOIN FETCH movie.roles " +
+                    "WHERE movie.genres.name like :genre")
+    Page<Movie> findMovieByGenrePaged(@Param("genre") String genre, Pageable pageable);*/
 
 }

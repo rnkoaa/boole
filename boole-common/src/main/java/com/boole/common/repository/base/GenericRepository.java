@@ -16,12 +16,4 @@ import java.util.List;
 public interface GenericRepository<T, ID extends Serializable> extends JpaRepository<T, ID>,
         JpaSpecificationExecutor<T> {
 
-    //Optional<T> findOne(ID id);
-
-    List<T> findByExample(T example);
-
-    List<T> findByExample(T example, Sort sort);
-
-    List<T> findBySpecification(Specification<T> specification);
-
 }
