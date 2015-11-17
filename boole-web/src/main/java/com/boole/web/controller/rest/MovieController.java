@@ -40,17 +40,10 @@ public class MovieController extends AbstractRestController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<List<MovieDTO>> findMovies(@RequestParam Map<String, String> requestParams) {
-        Page<Movie> moviePage = null;
-        if (requestParams.containsKey("include")) {
-            String includes = requestParams.get("include");
-            if (includes.equalsIgnoreCase("genres")) {
+        Page<Movie> moviePage = movieService.findAll(createPageable(requestParams, "name"), requestParams);
 
-            }
-        }
-        moviePage = movieService.findAll(createPageable(requestParams, "name"));
-
-        return new RestResponse<>(movieMapperService.mapMovies(moviePage.getContent()),
-                new ResponseMetadata<>(moviePage));
+       List<MovieDTO> movieDTOs =  movieMapperService.mapMovies(moviePage.getContent(), requestParams);
+        return new RestResponse<>(movieDTOs, new ResponseMetadata<>(moviePage));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

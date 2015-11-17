@@ -2,18 +2,22 @@ package com.boole.common.repository;
 
 import com.boole.common.domain.Movie;
 import com.boole.common.repository.base.GenericRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
  * Created on 11/12/2015.
  */
 public interface MovieRepository extends GenericRepository<Movie, Long> {
-    /*@Query(value = "SELECT movie FROM Movie movie LEFT JOIN FETCH movie.genres genre" +
-            "LEFT JOIN FETCH movie.roles " +
-            "WHERE genre.name in (:genre)",
-            countQuery = "SELECT movie FROM Movie movie LEFT JOIN FETCH movie.genres" +
-                    "LEFT JOIN FETCH movie.roles " +
-                    "WHERE movie.genres.name like :genre")
-    Page<Movie> findMovieByGenrePaged(@Param("genre") String genre, Pageable pageable);*/
+
+    //@EntityGraph(value = "movie.genres.graph", type = EntityGraph.EntityGraphType.FETCH)
+    @Query(value = "SELECT m FROM Movie m JOIN FETCH m.genres",
+            countQuery = "SELECT count(m) FROM Movie m")
+    @Transactional(readOnly = true)
+    Page<Movie> findMovieWithGenres(Pageable pageable);
 
 }

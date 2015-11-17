@@ -7,6 +7,7 @@ import com.boole.common.repository.MovieRepository;
 import com.boole.common.repository.RoleRepository;
 import com.boole.common.repository.specifications.RoleSpecifications;
 import com.boole.common.service.MovieService;
+import com.boole.common.util.exceptions.NotYetImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -78,6 +80,28 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
         logger.debug("Finding Movies with Using Specification");
         Movie movie = movieRepository.findOne(movieWithGenresAndRolesById(id));
         return Optional.ofNullable(movie);
+    }
+
+    @Override
+    public Page<Movie> findAll(Pageable pageable, Map<String, String> requestParams) {
+        Page<Movie> moviePage = null;
+        /*if (requestParams == null || requestParams.size() == 0)
+            return findAll(pageable);
+
+        if (requestParams.containsKey("include")) {
+            String includes = requestParams.get("include");
+            includes = includes.toLowerCase();
+            if (includes.contains("genres") && includes.contains("cast")) {
+                //skip this for now.
+                throw new NotYetImplementedException("This block of code is not yet Implemented");
+            } else if (includes.contains("genres")) {
+                moviePage = movieRepository.findMovieWithGenres(pageable);
+            } else if (includes.contains("cast")) {
+                throw new NotYetImplementedException("This block of code is not yet Implemented");
+            }
+        } else*/
+            moviePage = findAll(pageable);
+        return moviePage;
     }
 
     @Override

@@ -52,7 +52,7 @@ public class Movie extends AbstractBaseEntity {
         this.roles = roles;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "genres_movies",
             schema = "public",
             joinColumns = @JoinColumn(name = "movie_id"),
