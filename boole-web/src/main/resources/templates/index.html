@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-        ng-app="booleApp">
+      ng-app="booleApp">
 <head>
     <base href="/boole"/>
     <meta charset="UTF-8"/>
@@ -22,7 +22,7 @@
           type="text/css"/>
 
     <link th:href="@{/bower_components/bootstrap-material-design/dist/css/roboto.min.css}"
-          rel="stylesheet" />
+          rel="stylesheet"/>
     <link th:href="@{/bower_components/bootstrap-material-design/dist/css/material.css}"
           rel="stylesheet"/>
     <link th:href="@{/bower_components/bootstrap-material-design/dist/css/ripples.css}"
@@ -50,7 +50,9 @@
     <div th:include="layouts/partials/navbar :: navbar_fragment"
          th:remove="tag"></div>
     <!-- Page Content -->
-    <div ui-view=""></div>
+    <div class="container">
+        <div ui-view=""></div>
+    </div>
 
 
 </div>

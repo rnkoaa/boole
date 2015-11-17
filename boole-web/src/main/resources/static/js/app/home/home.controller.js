@@ -8,12 +8,12 @@ angular.module('booleApp')
             var itemsPerPage = 20;
             var defaultSort = 'name';
 
-            homeMovieService.findMovies(currentPage, itemsPerPage)
+            /*homeMovieService.findMovies(currentPage, itemsPerPage)
                 .then(function (response) {
                     console.log(response);
                 }, function (error) {
                     console.log(error);
-                });
+                });*/
 
             $scope.totalItems = 64;
             $scope.currentPage = 4;
