@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('booleStoreApp', ['ui.bootstrap', // for modal dialogs
+angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
     'ui.router', //for state management
     'datatables' //for dynamic tables
 ])
@@ -11,10 +11,10 @@ angular.module('booleStoreApp', ['ui.bootstrap', // for modal dialogs
 
         $stateProvider.state('home', {
             url: '/boole',
-            controller: 'storeController',
-            templateUrl: '/boole/js/app/main/main.html'
+            controller: 'homeController',
+            templateUrl: '/boole/js/app/home/home.html'
         });
-        $stateProvider.state('stores', {
+        /*$stateProvider.state('stores', {
             url: '/boole/stores/:storeId',
             controller: 'storeController',
             templateUrl: '/boole/js/app/main/main.html'
@@ -28,5 +28,5 @@ angular.module('booleStoreApp', ['ui.bootstrap', // for modal dialogs
             url: '/boole/stores/:storeId/inventory',
             controller: 'storeController',
             templateUrl: '/boole/js/app/main/inventory.html'
-        });
+        });*/
     });
