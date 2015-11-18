@@ -13,12 +13,11 @@
 spring:
     profiles:
         active: dev
-    #devtools:
-    #    restart:
-    #        enabled: true
-    #    livereload:
-    #        enabled: true # we use Grunt + BrowserSync for livereload
-
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: true # we use Grunt + BrowserSync for livereload
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
         url: jdbc:postgresql://localhost:5432/boole
@@ -40,11 +39,19 @@ spring:
             hibernate.generate_statistics: true
             hibernate.temp.use_jdbc_metadata_defaults: false #speeds up postgresql startup
             #hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    mail:
+        host: localhost
     messages:
         cache-seconds: 1
+    thymeleaf:
+        cache: false
 
 liquibase:
     contexts: dev
+
+server:
+    context-path: /boole
+    port: 8080
 
 # ===================================================================
 # JHipster specific properties

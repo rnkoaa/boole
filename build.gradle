@@ -7,7 +7,7 @@ wrapper.gradleVersion = '2.8'
 
 buildscript {
     ext {
-        javaLanguageLevel = '1.8'
+        //javaLanguageLevel = '1.8'
         springRepo = 'http://repo.spring.io/libs-release'
     }
 
@@ -41,7 +41,7 @@ configure(javaProjects) {
     }
 
     // Override Spring IO Platform versions
-    ext['elasticsearch.version'] = '1.7.3' // see io.searchbox:jest
+    ext['elasticsearch.version'] = "${elasticsearch_version}" // see io.searchbox:jest
 
     dependencies {
         compile 'org.slf4j:slf4j-api'

@@ -26,12 +26,12 @@ public class GenericRepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID 
             super(entityManager);
         }
 
-        @Override
+       /* @Override
         @SuppressWarnings({"unchecked", "rawtypes"})
         protected <T, ID extends Serializable> SimpleJpaRepository<?, ?> getTargetRepository(RepositoryMetadata metadata,
                                                                                              EntityManager entityManager) {
             return new GenericRepositoryImpl<>(getEntityInformation(metadata.getDomainType()), entityManager);
-        }
+        }*/
 
         @Override
         protected Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
