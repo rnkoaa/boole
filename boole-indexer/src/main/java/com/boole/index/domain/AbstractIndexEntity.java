@@ -1,7 +1,6 @@
 package com.boole.index.domain;
 
 import io.searchbox.annotations.JestId;
-import org.joda.time.DateTime;
 
 /**
  * Created using Intellij IDE
@@ -10,7 +9,7 @@ import org.joda.time.DateTime;
 public class AbstractIndexEntity {
     @JestId
     private int id;
-    private DateTime created;
+  /*  private DateTime created;
     private DateTime updated;
 
     public int getId() {
@@ -35,5 +34,5 @@ public class AbstractIndexEntity {
 
     public void setUpdated(DateTime updated) {
         this.updated = updated;
-    }
+    }*/
 }

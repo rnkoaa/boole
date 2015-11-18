@@ -1,18 +1,13 @@
 package com.boole.index.util;
 
-import com.google.gson.*;
-import org.joda.time.DateTime;
-import org.joda.time.Instant;
-
-import java.lang.reflect.Type;
-import java.util.Date;
+//import org.joda.time.DateTime;
 
 /**
  * Created using Intellij IDE
  * Created by rnkoaa on 11/5/15.
  */
-public class DateTimeTypeConverter implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
-    @Override
+public class DateTimeTypeConverter /*implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> */{
+   /* @Override
     public JsonElement serialize(DateTime src, Type srcType, JsonSerializationContext context) {
         return new JsonPrimitive(src.toString());
     }
@@ -41,5 +36,5 @@ public class DateTimeTypeConverter implements JsonSerializer<DateTime>, JsonDese
                 throws JsonParseException {
             return new Instant(json.getAsLong());
         }
-    }
+    }*/
 }

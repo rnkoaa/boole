@@ -34,9 +34,7 @@ dependencies{
     //mapstruct( 'org.mapstruct:mapstruct-processor:<VERSION>' )
 
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.hibernate:hibernate-validator:5.2.2.Final')
-
-    compile "joda-time:joda-time:${jodaVersion}"
+    compile("org.hibernate:hibernate-validator:${hibernate_validator_version}")
 
     compile('javax.el:javax.el-api:3.0.0')
 
@@ -46,7 +44,6 @@ dependencies{
     compile "com.fasterxml.jackson.core:jackson-databind"
     compile("com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:${jackson_version}")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}")
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.0")
 
     compile("com.zaxxer:HikariCP:${HikariCP_version}")
     compile("org.postgresql:postgresql:${postgresql_version}")

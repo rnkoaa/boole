@@ -8,7 +8,6 @@ import com.google.gson.GsonBuilder;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
 import io.searchbox.client.config.HttpClientConfig;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -132,7 +131,7 @@ class IndexerConfig implements CommandLineRunner {
     @Bean
     Gson gson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
+        //gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
         return gsonBuilder.create();
     }
 }
