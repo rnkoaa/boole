@@ -137,7 +137,83 @@ body {
     padding-left: 52px;
 }
 
+.movie-card {
+    display: block;
+}
+
+.movie-card .row {
+    margin-top: 4px;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.movie-card .movie_genres,
+.movie-card .movie_release_year{
+    color: #666;
+    font-size: 0.9em;
+}
+.pager {
+    margin: 0 0 !important;
+    padding-left: 75px;
+}
+
+.movie_sub_header {
+    margin-top: 6px;
+}
+
+.movie-card .movie_footer {
+    border-top: 1px solid #eee;
+    padding: 10px 0 4px 0;
+}
+
+.movie-card a {
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.movie-card .body-main {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.movie_item_menu {
+    padding: 0 !important;
+}
+
+.movie_title,
+.movie_sub_title {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.movie_main_header,
+.movie_sub_header,
+.movie_body {
+    display: block;
+}
+
+.movie_title h4 {
+    margin: 2px;
+}
+
+h3 {
+    margin-top: 8px;
+}
+
+.movie-results-pagination{
+    margin: 14px 0;
+}
+.movie-results-pagination .pager-left{
+    padding-top: 8px;
+}
+
 @media (min-width: 768px) {
+    .movie_title,
+    .movie_sub_title {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
     .sidebar {
         z-index: 1;
         position: absolute;
