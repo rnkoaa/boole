@@ -9,7 +9,7 @@ angular.module('booleApp')
 
             $http.get("/boole/api/movies?page=" + currentPage + "&limit=" + itemsPerPage)
                 .success(function (response) {
-                    console.log(response);
+                    //console.log(response);
                     defer.resolve(response);
                 }).error(function (err) {
                     console.log(response);
