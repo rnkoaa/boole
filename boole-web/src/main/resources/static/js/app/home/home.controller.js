@@ -2,15 +2,11 @@
 
 //NavBarController
 angular.module('booleApp')
-    .controller('homeController', ['$scope', '$log', 'homeMovieService',
-        function ($scope, $log, homeMovieService) {
+    .controller('homeController', ['$scope', '$log', 'movieService',
+        function ($scope, $log, movieService) {
             $scope.currentPage = 0;
             $scope.itemsPerPage = 21;
             var defaultSort = 'name';
-
-            /*$scope.maxSize = 5;
-            $scope.bigTotalItems = 175;
-            $scope.bigCurrentPage = 1;*/
 
             $scope.movies = [];
             $scope.totalItems = 0;
@@ -32,7 +28,7 @@ angular.module('booleApp')
             };
 
             function fetch() {
-                homeMovieService.findMovies($scope.currentPage, $scope.itemsPerPage)
+                movieService.findMovies($scope.currentPage, $scope.itemsPerPage)
                     .then(function (response) {
                         $scope.totalItems = response.meta.totalElements;
                         $scope.totalPages = response.meta.totalPages;

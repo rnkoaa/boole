@@ -41,9 +41,14 @@
             <div class="well">
                 <div class="row movie_main_header">
                     <div class="movie_title col-sm-9">
-                        <h4>{{movie.name}}</h4>
+                        <h4>
+                            <a ui-sref="movieDetail({ movieId: movie.id })"
+                               ng-attr-title="{{movie.name}}">
+                                {{movie.name | sanitizeTitle}}
+                            </a>
+                        </h4>
                     </div>
-                    <div class="movie_item_menu col-sm-3 text-right">
+                    <div ng-if="movie.review" class="movie_item_menu col-sm-3 text-right">
                         <span class="rating_text movie_item_sp">{{movie.review}} &nbsp; <i
                                 class="fa fa-star-half-o fa-fw"></i></span>
                     </div>
@@ -51,10 +56,10 @@
                 <div class="row movie_sub_header">
                     <div class="movie_sub_title col-sm-9">
                         <span class="movie_genres">
-                        Action, Drama...
+                       {{movie.genres | genresToString}}
                         </span>
                     </div>
-                    <div class="movie_item_menu col-sm-3 text-right">
+                    <div ng-if="movie.year" class="movie_item_menu col-sm-3 text-right">
                         <span class="movie_release_year movie_item_sp">{{movie.year}} &nbsp; <i
                                 class="fa fa-calendar fa-fw"></i></span>
                     </div>
@@ -64,8 +69,8 @@
                 </div>
                 <div class="row movie_footer">
                     <a id="movie_135397" class="movie-details"
-                       href="/boole/movies/6?include=details"
-                       title="Jurassic World" alt="Jurassic World">More Info...</a>
+                       ui-sref="movieDetail({ movieId: movie.id })"
+                       ng-attr-title="{{movie.name}}" ng-attr-alt="{{movie.name}}">More Info...</a>
                 </div>
             </div>
         </div>

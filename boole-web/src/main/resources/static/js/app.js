@@ -30,19 +30,10 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
                 }
             }
         });
-        /*$stateProvider.state('stores', {
-         url: '/boole/stores/:storeId',
-         controller: 'storeController',
-         templateUrl: '/boole/js/app/main/main.html'
-         });
-         $stateProvider.state('storeCustomers', {
-         url: '/boole/stores/:storeId/customers',
-         controller: 'storeCustomersController',
-         templateUrl: '/boole/js/app/store/customers/list.html'
-         });
-         $stateProvider.state('storeInventory', {
-         url: '/boole/stores/:storeId/inventory',
-         controller: 'storeController',
-         templateUrl: '/boole/js/app/main/inventory.html'
-         });*/
+        $stateProvider.state('movieDetail', {
+            url: '/boole/discover/movie/:movieId',
+            controller: 'movieDetailController',
+            controllerAs: 'movieDetailController',
+            templateUrl: '/boole/js/app/movies/details.html'
+        });
     });

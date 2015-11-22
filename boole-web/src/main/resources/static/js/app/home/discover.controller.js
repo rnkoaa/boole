@@ -3,9 +3,10 @@
 //NavBarController
 angular.module('booleApp')
     .controller('discoverController', ['$scope', '$log', '$state', '$stateParams', '$location',
-        'homeMovieService',
-        function ($scope, $log, $state, $stateParams, $location, homeMovieService) {
+        'movieService',
+        function ($scope, $log, $state, $stateParams, $location, movieService) {
             $scope.totalPages = 0;
+            $scope.cachedMovies = [];
             $scope.selectedPage = parseInt($stateParams.page, 10);
             $scope.itemsPerPage = parseInt($stateParams.limit, 10);
             $scope.ngDisabled = false;
@@ -32,11 +33,16 @@ angular.module('booleApp')
 
             function fetch() {
 
-                homeMovieService.findMovies($scope.selectedPage, $scope.itemsPerPage)
+                movieService.findMovies($scope.selectedPage, $scope.itemsPerPage)
                     .then(function (response) {
                         $scope.totalItems = response.meta.totalElements;
                         $scope.totalPages = response.meta.totalPages;
                         $scope.movies = response.data;
+
+                        //put it into the cache
+                      /*  _.each(response.data, function (item) {
+                            $scope.cachedMovies.push(item);
+                        });*/
                     }, function (error) {
                         console.log(error);
                     });
@@ -44,7 +50,24 @@ angular.module('booleApp')
 
             $scope.previousPage = function () {
                 $log.log("go to previous page");
-                $state.go('.', {page: $scope.selectedPage - 1});
+                /*//if there is data for already cached for the previous page
+                //use it, go back then
+                var prevPage = $scope.selectedPage - 1;
+                console.log("We have to go back to the previous page", prevPage);
+                var offset = ($scope.itemsPerPage) * ($scope.selectedPage - 1);
+
+                console.log("Offset Per Page = ", offset);
+                 var offset = ($scope.pageSize) * ($scope.currentPage - 1);
+
+                 $scope.getPage = function (currentPage) {
+                 // getting correct offset value based on page number
+                 var offset = ($scope.pageSize) * ($scope.currentPage - 1);
+
+                 // slicing the main data set to get the required subset
+                 $scope.currentPageItems = $scope.movies.slice(offset, $scope.pageSize + offset);
+                 }
+                */
+                $state.go('.', {page: prevPage});
             };
 
             $scope.nextPage = function () {
