@@ -14,19 +14,35 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             controller: 'homeController',
             templateUrl: '/boole/js/app/home/home.html'
         });
+        $stateProvider.state('discover', {
+            url: '/boole/discover?page&limit',
+            controller: 'discoverController',
+            controllerAs: 'discover',
+            templateUrl: '/boole/js/app/home/home.html',
+            params: {
+                page: {
+                    value: '0',
+                    squash: true
+                },
+                limit: {
+                    value: '21',
+                    squash: true
+                }
+            }
+        });
         /*$stateProvider.state('stores', {
-            url: '/boole/stores/:storeId',
-            controller: 'storeController',
-            templateUrl: '/boole/js/app/main/main.html'
-        });
-        $stateProvider.state('storeCustomers', {
-            url: '/boole/stores/:storeId/customers',
-            controller: 'storeCustomersController',
-            templateUrl: '/boole/js/app/store/customers/list.html'
-        });
-        $stateProvider.state('storeInventory', {
-            url: '/boole/stores/:storeId/inventory',
-            controller: 'storeController',
-            templateUrl: '/boole/js/app/main/inventory.html'
-        });*/
+         url: '/boole/stores/:storeId',
+         controller: 'storeController',
+         templateUrl: '/boole/js/app/main/main.html'
+         });
+         $stateProvider.state('storeCustomers', {
+         url: '/boole/stores/:storeId/customers',
+         controller: 'storeCustomersController',
+         templateUrl: '/boole/js/app/store/customers/list.html'
+         });
+         $stateProvider.state('storeInventory', {
+         url: '/boole/stores/:storeId/inventory',
+         controller: 'storeController',
+         templateUrl: '/boole/js/app/main/inventory.html'
+         });*/
     });

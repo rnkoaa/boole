@@ -152,6 +152,10 @@ body {
     color: #666;
     font-size: 0.9em;
 }
+
+.movie-card .movie_body{
+    min-height: 110px;
+}
 .pager {
     margin: 0 0 !important;
     padding-left: 75px;

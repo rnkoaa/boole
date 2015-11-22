@@ -14,8 +14,13 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping(value = "/discover", method = RequestMethod.GET)
+    public String discoverMovies() {
+        return "index";
+    }
+
   /*  @RequestMapping(value = "/stores*//**")
-    public String redirect() {
-        return "forward:/";
-    }*/
+     public String redirect() {
+     return "forward:/";
+     }*/
 }

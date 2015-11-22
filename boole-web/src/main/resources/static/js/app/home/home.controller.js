@@ -4,16 +4,16 @@
 angular.module('booleApp')
     .controller('homeController', ['$scope', '$log', 'homeMovieService',
         function ($scope, $log, homeMovieService) {
-            var currentPage = 0;
-            var itemsPerPage = 42;
+            $scope.currentPage = 0;
+            $scope.itemsPerPage = 21;
             var defaultSort = 'name';
 
-            $scope.maxSize = 5;
+            /*$scope.maxSize = 5;
             $scope.bigTotalItems = 175;
-            $scope.bigCurrentPage = 1;
+            $scope.bigCurrentPage = 1;*/
 
             $scope.movies = [];
-            //$scope.totalItems = 64;
+            $scope.totalItems = 0;
             $scope.currentPage = 1;
 
             $scope.setPage = function (pageNo) {
@@ -28,36 +28,28 @@ angular.module('booleApp')
                 if (pendingTask) {
                     clearTimeout(pendingTask);
                 }
-                pendingTask = setTimeout(fetch, 800);
+                pendingTask = setTimeout(fetch, 10);
             };
 
             function fetch() {
-                homeMovieService.findMovies(currentPage, itemsPerPage)
+                homeMovieService.findMovies($scope.currentPage, $scope.itemsPerPage)
                     .then(function (response) {
-                        //console.log(response);
-                        _.each(response.data, function (item) {
-                            console.log(item);
-                            $scope.movies.push(item);
-                        });
                         $scope.totalItems = response.meta.totalElements;
-                        console.log($scope.movies.length);
+                        $scope.totalPages = response.meta.totalPages;
+
+                        /* _.each(response.data, function (item) {
+                         $scope.movies.push(item);
+                         });*/
+                        $scope.movies = response.data;
+                        $scope.totalItems = response.meta.totalElements;
                     }, function (error) {
                         console.log(error);
                     });
             }
 
-            /*
-             $scope.update = function(movie){
-             $scope.search = movie.Title;
-             $scope.change();
-             };*/
-
             $scope.pageChanged = function () {
                 $log.log('Page changed to: ' + $scope.currentPage);
+                $scope.change();
             };
-
-
-            // $scope.apply();
-            // console.log($scope.movieData.length);
 
         }]);

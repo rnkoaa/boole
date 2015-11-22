@@ -1,6 +1,7 @@
 package com.boole.common.domain.dto;
 
 import com.boole.common.domain.util.JSR310DateSerializer;
+import com.boole.common.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -43,7 +44,15 @@ public class MovieDTO implements Serializable {
     }
 
     public String getName() {
-        return name;
+        if (!StringUtil.isNullOrEmpty(name)) {
+            if ((name.length() > 19)) {
+                name = StringUtil.cropWholeWords(name, 19);
+                name = name + "...";
+            }
+            name = StringUtil.capitalizeEachWord(name);
+            return name;
+        }
+        return null;
     }
 
     public void setName(String name) {
@@ -51,7 +60,12 @@ public class MovieDTO implements Serializable {
     }
 
     public String getSynopsis() {
-        return synopsis;
+        if (!StringUtil.isNullOrEmpty(synopsis)) {
+            synopsis = StringUtil.cropWholeWords(synopsis, 220);
+            synopsis = synopsis + " ...";
+            return synopsis;
+        }
+        return null;
     }
 
     public void setSynopsis(String synopsis) {

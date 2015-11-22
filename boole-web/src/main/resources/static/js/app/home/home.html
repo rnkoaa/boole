@@ -1,37 +1,3 @@
-<!--
-<div>
-    <h4>Default</h4>
-    <uib-pagination total-items="totalItems"
-                    ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
-    <uib-pagination
-            boundary-links="true"
-            total-items="totalItems"
-            ng-model="currentPage"
-            class="pagination-sm"
-            previous-text="&lsaquo;"
-            next-text="&rsaquo;"
-            first-text="&laquo;"
-            last-text="&raquo;"></uib-pagination>
-    <uib-pagination direction-links="false" boundary-links="true" total-items="totalItems"
-                    ng-model="currentPage"></uib-pagination>
-    <uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage"
-                    num-pages="smallnumPages"></uib-pagination>
-    <pre>The selected page no: {{currentPage}}</pre>
-    <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
-
-    <hr/>
-    <h4>Pager</h4>
-    <uib-pager total-items="totalItems" ng-model="currentPage"></uib-pager>
-
-    <hr/>
-    <h4>Limit the maximum visible buttons</h4>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
-                    class="pagination-sm" boundary-links="true"></uib-pagination>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
-                    class="pagination-sm" boundary-links="true" rotate="false"
-                    num-pages="numPages"></uib-pagination>
-    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
-</div>-->
 <div class="row">
     <h3 class="text-center">Discover Movies</h3>
 </div>
@@ -89,19 +55,16 @@
                         </span>
                     </div>
                     <div class="movie_item_menu col-sm-3 text-right">
-                        <span class="movie_release_year movie_item_sp">{{movie.year}} &nbsp; <i class="fa fa-calendar fa-fw"></i></span>
+                        <span class="movie_release_year movie_item_sp">{{movie.year}} &nbsp; <i
+                                class="fa fa-calendar fa-fw"></i></span>
                     </div>
                 </div>
                 <div class="row movie_body">
-                    <!--<span class="body_main">The year is 2029. John Connor, leader of the resistance
-                        continues the war against the machines. At the Los Angeles offensive, John's
-                        fears of
-                        the unknown future begin to emerge when TECOM spies reveal a new plot…
-                    </span>-->
-                   <span class="body_main">{{movie.synopsis}}</span>
+                    <span class="body_main">{{movie.synopsis}}</span>
                 </div>
                 <div class="row movie_footer">
-                    <a id="movie_135397" class="movie-details" href="/boole/movies/6?include=details"
+                    <a id="movie_135397" class="movie-details"
+                       href="/boole/movies/6?include=details"
                        title="Jurassic World" alt="Jurassic World">More Info...</a>
                 </div>
             </div>
@@ -111,19 +74,19 @@
 <div class="row movie-results-pagination">
     <div class="container">
         <div class="col-sm-9 pager-left">
-            <p class="text-left">Currently on page: 1 of 390 <span class="total_results grey">(7,790 results)</span></p>
+            <p class="text-left">Currently on page: {{selectedPage}} of {{totalPages}} <span
+                    class="total_results grey">({{totalItems}} results)</span></p>
         </div>
         <div class="col-sm-3">
-            <ul class="pager ng-isolate-scope ng-valid ng-dirty ng-valid-parse" total-items="totalItems"
-                ng-model="currentPage" style="">
-                <li ng-class="{disabled: noPrevious()||ngDisabled, previous: align}" class="previous"><a href=""
-                                                                                                         ng-click="selectPage(page - 1, $event)"
-                                                                                                         class="ng-binding">«
-                    Previous</a></li>
-                <li ng-class="{disabled: noNext()||ngDisabled, next: align}" class="next"><a href=""
-                                                                                             ng-click="selectPage(page + 1, $event)"
-                                                                                             class="ng-binding">Next
-                    »</a></li>
+            <ul class="pager">
+                <li ng-class="{disabled: noPrevious()||ngDisabled}">
+                    <a class="withripple" ng-click="previousPage()">&laquo; Previous
+                        <div class="ripple-wrapper"></div>
+                    </a>
+                </li>
+                <li ng-class="{disabled: noNext()||ngDisabled}">
+                    <a class="withripple" ng-click="nextPage()">Next &raquo;</a>
+                </li>
             </ul>
         </div>
     </div>
