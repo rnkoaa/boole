@@ -31,7 +31,7 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             }
         });
         $stateProvider.state('movieDetail', {
-            url: '/boole/discover/movie/:movieId',
+            url: '/boole/discover/movies/:movieId',
             controller: 'movieDetailController',
             controllerAs: 'movieDetailController',
             templateUrl: '/boole/js/app/movies/details.html'

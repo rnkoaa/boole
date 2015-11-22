@@ -16,6 +16,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.tuckey:urlrewritefilter:${tuckey_version}")
 
     compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.2.8")
 
