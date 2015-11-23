@@ -7,18 +7,18 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
     .config(function ($locationProvider, $urlRouterProvider, $stateProvider) {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/boole');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('home', {
-            url: '/boole',
+            url: '/',
             controller: 'homeController',
-            templateUrl: '/boole/js/app/home/home.html'
+            templateUrl: '/js/app/home/home.html'
         });
         $stateProvider.state('discover', {
-            url: '/boole/discover?page&limit',
+            url: '/discover?page&limit',
             controller: 'discoverController',
             controllerAs: 'discover',
-            templateUrl: '/boole/js/app/home/home.html',
+            templateUrl: '/js/app/home/home.html',
             params: {
                 page: {
                     value: '0',
@@ -31,9 +31,9 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             }
         });
         $stateProvider.state('movieDetail', {
-            url: '/boole/discover/movies/:movieId',
+            url: '/discover/movies/:movieId',
             controller: 'movieDetailController',
             controllerAs: 'movieDetailController',
-            templateUrl: '/boole/js/app/movies/details.html'
+            templateUrl: '/js/app/movies/details.html'
         });
     });

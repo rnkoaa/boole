@@ -50,7 +50,7 @@ liquibase:
     contexts: dev
 
 server:
-    context-path: /boole
+    context-path: /
     port: 8080
 
 # ===================================================================

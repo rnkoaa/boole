@@ -9,7 +9,7 @@ angular.module('booleApp')
             /**
              * Find all movies with paging associated
              */
-            $http.get("/boole/api/movies?page=" + currentPage + "&limit=" + itemsPerPage + "&include=genres")
+            $http.get("/api/movies?page=" + currentPage + "&limit=" + itemsPerPage + "&include=genres")
                 .success(function (response) {
                     defer.resolve(response);
                 }).error(function (err) {
@@ -27,7 +27,7 @@ angular.module('booleApp')
         movieService.findOneMovieWithDetails = function (movieId) {
             var defer = $q.defer();
 
-            $http.get("/boole/api/movies/" + movieId + "?include=details")
+            $http.get("/api/movies/" + movieId + "?include=details")
                 .success(function (response) {
                     defer.resolve(response);
                 }).error(function (err) {

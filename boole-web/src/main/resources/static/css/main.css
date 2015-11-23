@@ -211,6 +211,62 @@ h3 {
     padding-top: 8px;
 }
 
+.movie-detail-card{
+    padding-top: 12px;
+}
+
+.movie-detail-card .h4,
+.movie-detail-card h4,
+.movie-detail-card .h5,
+.movie-detail-card h5{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.movie-detail-card .row,
+.movie-detail-card .col-sm-9, .movie-detail-card .col-sm-3,
+.movie-detail-card .col-sm-4, .movie-detail-card .col-sm-8{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.movie-detail-card .col-sm-9, .movie-detail-card  .col-sm-3,
+.movie-detail-card  .col-sm-4, .movie-detail-card .col-sm-8{
+    padding-left: 0
+}
+
+.movie-detail-card .movie_facts h4{
+    line-height: 1.4em;
+    margin-bottom: 8px;
+}
+
+.movie-detail-card .movie_facts p{
+    margin-bottom: 2px;
+}
+.movie-detail-title{
+    padding: 8px 0;
+}
+
+.movie-detail-crew,
+.movie-detail-synopsis,
+.movie-detail-reviews,
+.movie-detail-genres{
+    padding: 8px 0;
+}
+
+.movie-detail-rating{
+    padding: 2px 0;
+}
+
+.movie-detail-title h4{
+    display: inline;
+}
+
+.movie-detail-crew-header,
+.movie-detail-reviews-header{
+    margin-bottom: 6px;
+}
+
 @media (min-width: 768px) {
     .movie_title,
     .movie_sub_title {
