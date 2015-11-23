@@ -115,3 +115,5 @@ bower_components
 boole-webn/src/main/resources/static/bower_components
 
 data/omdb/moviedb_development.dump
+
+scratch/node_workspace/node_modules

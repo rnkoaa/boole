@@ -1,0 +1,12 @@
+{
+  "name": "searchrecipes",
+  "private": true,
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "underscore": "^1.8.3"
+  }
+}
