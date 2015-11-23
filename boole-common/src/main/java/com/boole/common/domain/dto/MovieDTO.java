@@ -45,10 +45,6 @@ public class MovieDTO implements Serializable {
 
     public String getName() {
         if (!StringUtil.isNullOrEmpty(name)) {
-           /* if ((name.length() > 19)) {
-                name = StringUtil.cropWholeWords(name, 19);
-                name = name + "...";
-            }*/
             name = StringUtil.capitalizeEachWord(name);
             return name;
         }
@@ -60,12 +56,7 @@ public class MovieDTO implements Serializable {
     }
 
     public String getSynopsis() {
-        if (!StringUtil.isNullOrEmpty(synopsis)) {
-            synopsis = StringUtil.cropWholeWords(synopsis, 220);
-            synopsis = synopsis + " ...";
-            return synopsis;
-        }
-        return null;
+        return synopsis;
     }
 
     public void setSynopsis(String synopsis) {

@@ -7,80 +7,93 @@
                 Movie Facts
                 </span>
             </h4>
-            <p>
+
+            <p ng-if="movie.year">
                 <strong>Status:</strong>
                 Released
             </p>
-            <p>
+
+            <p ng-if="movie.releaseDate">
                 <strong>Released:</strong>
-                2015-11-18
+                {{movie.releaseDate}}
             </p>
-            <p>
+
+            <p ng-if="movie.language">
                 <strong>Original Language: </strong>
-                Mandarin
+                {{movie.language}}
             </p>
-            <p>
+
+            <p ng-if="movie.runtime">
                 <strong>Runtime:</strong>
-                136 mins
+                {{movie.runtime}} mins
+            </p>
+
+            <p ng-if="movie.country">
+                <strong>Country: </strong>
+                {{movie.country}}
             </p>
         </div>
     </div>
     <div class="col-md-9">
         <div class="row movie-detail-title">
-            <span>
-                <h4>Terminator 1: Rise of the Machines </h4>
-                (2005)
+            <h4>{{movie.name}} </h4>
+            <span ng-if="movie.year">
+                ({{movie.year}})
             </span>
         </div>
         <div class="row movie-detail-rating">
             <h5>
-                <span class="movie-rating">Rating</span>
-                <span> 7 (227 votes)</span>
+                <span class="movie-rating" ng-if="movie.reviews">Rating</span>
+                <span ng-if="movie.reviews"> {{movie.reviews}} </span>
+                <span ng-if="movie.votes">(227 votes)</span>
             </h5>
         </div>
-        <div class="row movie-detail-genres">
-            <a href="">Action</a>
+        <div class="row movie-detail-genres" ng-if="movie.genres">
+            {{movie.genres | genresToStringUrl}}
+           <!-- <a href="">Action</a>
             <a href="">Drama</a>
-            <a href="">Romance</a>
+            <a href="">Romance</a>-->
         </div>
-        <div class="movie-detail-synopsis">
+        <div ng-if="movie.synopsis" class="movie-detail-synopsis">
             <span>
-                In a dystopian future, the totalitarian nation of Panem is divided into 12 districts and the Capitol. Each year two young representatives from each district are selected by lottery to participate in The Hunger Games. Part entertainment, part brutal retribution for a past rebellion, the televised games are broadcast throughout Panem. The 24 participants are forced to eliminate their competitors while the citizens of Panem are required to watch. When 16-year-old Katniss' young sister, Prim, is selected as District 12's female representative, Katniss volunteers to take her place. She and her male counterpart, Peeta, are pitted against bigger, stronger representatives, some of whom have trained for this their whole lives.
+                {{movie.synopsis}}
             </span>
         </div>
         <div class="row movie-detail-crew">
-            <h5 class="movie-detail-crew-header">
+            <h5 class="movie-detail-crew-header"
+                ng-if="movie.directors || movie.producers || movie.writers">
                 Crew
             </h5>
-            <div class="movie-detail-director">
+
+            <div class="movie-detail-director" ng-if="movie.directors">
                 <div class="col-sm-4">Director(s)</div>
-                <div class="col-sm-8">Steven Spielberg</div>
+                <div class="col-sm-8">{{movie.directors | directorsToString}}</div>
             </div>
-            <div class="movie-detail-producer">
-                <div class="col-sm-4">Producer(s)</div>
-                <div class="col-sm-8">Jeff katenzberg</div>
+            <div class="movie-detail-producer" ng-if="movie.producers">
+                <div class="col-sm-4" >Producer(s)</div>
+                <div class="col-sm-8">{{movie.producers | producersToString}}</div>
             </div>
-            <div class="movie-detail-writer">
+            <div class="movie-detail-writer" ng-if="movie.writers">
                 <div class="col-sm-4">Writer(s)</div>
-                <div class="col-sm-8">Jeff katenzberg, Stephen Spielberg</div>
+                <div class="col-sm-8">{{movie.writers | producersToString}}</div>
             </div>
         </div>
         <div class="row movie-detail-crew">
-            <h5 class="movie-detail-crew-header">
+            <h5 class="movie-detail-crew-header" ng-if="movie.actors">
                 Cast
             </h5>
+
             <div class="movie-detail-director">
-                <div class="col-sm-4">Jennifer Lawrence</div>
-                <div class="col-sm-4">Steven Spielberg</div>
-                <div class="col-sm-4">Josh Hutcherson</div>
-                <div class="col-sm-4">Woody Harrelson</div>
-                <div class="col-sm-4">Liam Hemsworth</div>
+                <div class="col-sm-4" ng-repeat="cast in movie.actors">
+                    {{cast.name}}
+                </div>
             </div>
         </div>
         <div class="row movie-detail-reviews">
             <h5 class="movie-detail-reviews-header">
                 Reviews
             </h5>
+
             <div class="movie-reviews_body">
                 <p>There are no reviews for this movie</p>
             </div>
