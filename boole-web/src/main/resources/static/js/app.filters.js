@@ -13,6 +13,38 @@ angular.module('booleApp')
     .filter('normalize', function (firstName, lastName) {
         return $filter('capitalize')(firstName) + ' ' + $filter('capitalize')(lastName);
     })
+    .filter('genreLinkify', function () {
+
+        return function (genres) {
+            var genreString = '';
+            _.each(genres, function (item) {
+                genreString = genreString +
+                    "<a href='/discover/genres/" + item.id + "?include=movies'>" + item.name + "</a>" + ", ";
+            });
+            //remove any trailing , and space
+            if (genreString.length > 0) {
+                genreString = genreString.substr(0, genreString.length - 2);
+            }
+
+            return genreString;
+        };
+    })
+    .filter('personLinkify', function () {
+
+        return function (persons) {
+            var personString = '';
+            _.each(persons, function (item) {
+                personString = personString +
+                    "<a href='/discover/person/" + item.id + "?include=movies'>" + item.name + "</a>" + ", ";
+            });
+            //remove any trailing , and space
+            if (personString.length > 0) {
+                personString = personString.substr(0, personString.length - 2);
+            }
+
+            return personString;
+        };
+    })
     .filter('genresToString', function () {
         return function (genres) {
             var genreString = '';

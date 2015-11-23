@@ -49,11 +49,7 @@
             </h5>
         </div>
         <div class="row movie-detail-genres" ng-if="movie.genres">
-            {{movie.genres | genresToStringUrl}}
-            <div linkify-genres="somevalue"></div>
-           <!-- <a href="">Action</a>
-            <a href="">Drama</a>
-            <a href="">Romance</a>-->
+            <span ng-bind-html="movie.genres | genreLinkify"></span>
         </div>
         <div ng-if="movie.synopsis" class="movie-detail-synopsis">
             <span>
@@ -68,15 +64,21 @@
 
             <div class="movie-detail-director" ng-if="movie.directors">
                 <div class="col-sm-4">Director(s)</div>
-                <div class="col-sm-8">{{movie.directors | directorsToString}}</div>
+                <div class="col-sm-8">
+                    <span ng-bind-html="movie.directors | personLinkify"></span>
+                </div>
             </div>
             <div class="movie-detail-producer" ng-if="movie.producers">
-                <div class="col-sm-4" >Producer(s)</div>
-                <div class="col-sm-8">{{movie.producers | producersToString}}</div>
+                <div class="col-sm-4">Producer(s)</div>
+                <div class="col-sm-8">
+                    <span ng-bind-html="movie.producers | personLinkify"></span>
+                </div>
             </div>
             <div class="movie-detail-writer" ng-if="movie.writers">
                 <div class="col-sm-4">Writer(s)</div>
-                <div class="col-sm-8">{{movie.writers | producersToString}}</div>
+                <div class="col-sm-8">
+                    <span ng-bind-html="movie.writers | personLinkify"></span>
+                </div>
             </div>
         </div>
         <div class="row movie-detail-crew">
@@ -86,7 +88,10 @@
 
             <div class="movie-detail-director">
                 <div class="col-sm-4" ng-repeat="cast in movie.actors">
-                    {{cast.name}}
+                    <a ui-sref="personDetails({ personId: cast.id })"
+                       ng-attr-title="{{cast.name}}" ng-attr-alt="{{cast.name}}">
+                        {{cast.name}}
+                    </a>
                 </div>
             </div>
         </div>

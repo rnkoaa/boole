@@ -44,6 +44,7 @@
     "bootstrap-social": "~4.8.0",
     "flot.tooltip": "~0.8.4",
     "angular-datatables": "~0.5.1",
-    "bootstrap-material-design": "~0.3.0"
+    "bootstrap-material-design": "~0.3.0",
+    "angular-sanitize": "~1.4.7"
   }
 }

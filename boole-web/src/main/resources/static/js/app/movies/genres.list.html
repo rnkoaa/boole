@@ -1,0 +1,7 @@
+<span ng-repeat="genre in movie.genres">
+<!--<a ui-sref="genreMovies({ genreId: genre.id })"
+   ng-attr-title="{{genre.name}}"
+   ng-attr-alt="{{genre.name}}">{{genre.name}}</a>-->
+
+    <span ng-bind-html="{{genre | genreLinkify}}"></span>
+</span>

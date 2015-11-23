@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
-    'ui.router', //for state management
-    'datatables' //for dynamic tables
-])
+        'ui.router', //for state management,
+        'ngSanitize',
+        'datatables' //for dynamic tables
+    ])
     .config(function ($locationProvider, $urlRouterProvider, $stateProvider) {
         $locationProvider.html5Mode(true);
 
@@ -35,5 +36,29 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             controller: 'movieDetailController',
             controllerAs: 'movieDetailController',
             templateUrl: '/js/app/movies/details.html'
+        });
+        $stateProvider.state('genreMovies', {
+            url: '/discover/genres/:genreId?include',
+            controller: 'movieDetailController',
+            controllerAs: 'movieDetailController',
+            templateUrl: '/js/app/movies/details.html',
+            params: {
+                include: {
+                    value: 'movies',
+                    squash: true
+                }
+            }
+        });
+        $stateProvider.state('personDetails', {
+            url: '/discover/person/:personId?include',
+            controller: 'movieDetailController',
+            controllerAs: 'movieDetailController',
+            templateUrl: '/js/app/movies/details.html',
+            params: {
+                include: {
+                    value: 'movies',
+                    squash: true
+                }
+            }
         });
     });
