@@ -6,7 +6,7 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
         'datatables' //for dynamic tables
     ])
     .config(function ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
-        $httpProvider.interceptors.push('LoadingInterceptor');
+        $httpProvider.interceptors.push('loadingInterceptor');
 
         $locationProvider.html5Mode(true);
 

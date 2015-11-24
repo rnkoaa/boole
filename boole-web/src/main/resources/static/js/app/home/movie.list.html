@@ -47,8 +47,7 @@
         </h4>
 
         <p class="cert runtime-genre"ng-if="movie.genres">
-            <time itemprop="duration" datetime="PT103M">103 min</time>
-            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <time itemprop="duration" ng-if="movie.runtime" ng-attr-datetime="PT{{movie.runtime}}M">{{movie.runtime}} min &nbsp;&nbsp;-&nbsp;&nbsp;</time>
             <span ng ng-bind-html="movie.genres | genreLinkifyWithPipes"></span>
         </p>
         <div class="rating-text">
@@ -70,26 +69,6 @@
                     {{cast.name}}
                 </a>
             </span>
-                    <!--<span class="item_prop">
-                        <a href="/name/nm1349376/?ref_=inth_ov_nm" itemprop="url">Jennifer
-                            Lawrence,</a>
-                    </span>
-                    <span class="item_prop">
-                        <a href="/name/nm1349376/?ref_=inth_ov_nm" itemprop="url">Josh
-                            Hutcherson, </a>
-                    </span>
-                    <span class="item_prop">
-                        <a href="/name/nm1349376/?ref_=inth_ov_nm" itemprop="url">Liam
-                            Hemsworth, </a>
-                    </span>
-                    <span class="item_prop">
-                        <a href="/name/nm1349376/?ref_=inth_ov_nm" itemprop="url">Woody
-                            Harrelson, </a>
-                    </span>
-                    <span class="item_prop">
-                        <a href="/name/nm1349376/?ref_=inth_ov_nm" itemprop="url">Elizabeth
-                            Banks</a>
-                    </span>-->
         </div>
     </div>
 </div>
