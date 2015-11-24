@@ -1,0 +1,86 @@
+DELETE /boole/movies
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"must": [
+{ "match": { "name":   "Miles"        }}
+]
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"must": [
+{ "match": { "synopsis":   "Small"        }}
+]
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"must": [
+{ "match": {"country": "usa"}
+}
+]
+}
+}
+}
+
+{
+"query": {
+"query_string" : {
+"default_field" : "name",
+"query" : "Arabian"
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"query_string" : {
+"fields" : ["name", "country"],
+"query" : "Arabian"
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"query_string" : {
+"fields" : ["name", "country"],
+"query" : "Arabian OR USA"
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"must": [
+{ "match": {"country": "usa"}
+}
+]
+}
+}
+}
+
+GET /boole/movies/_search
+{
+"query": {
+"query_string" : {
+"fields" : ["name", "country"],
+"query" : "Arabian OR USA"
+}
+}
+}

@@ -1,0 +1,396 @@
+https://www.airpair.com/elasticsearch/posts/elasticsearch-robust-search-functionality
+
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+@Timed 
+public Response get(@Context UriInfo uriInfo, @Context HttpServletRequest request) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Received parameters:\n");
+    MultivaluedMap<String, String> qp = uriInfo.getQueryParameters();
+    String sort = qp.getFirst("sort");
+
+    SearchRequestBuilder searchRequestBuilder = esClient.prepareSearch("products")
+            .setTypes("product")
+            .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+            .setSize(20);
+
+    SearchResponse response = searchRequestBuilder.execute().actionGet();
+    SearchHits hits = response.getHits();
+
+    ArrayList<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+    for (SearchHit hit : hits) {
+        Map<String,Object> result = hit.getSource();
+        list.add(result);
+    }
+    try {
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(list);
+        return Response.ok(json, MediaType.APPLICATION_JSON_TYPE).build();
+    }catch(JsonProcessingException ex){
+        //log the error
+       LOG.error(String.format("Could not process the returned doc: %s. %s", ex.getMessage(), getStackTrace(ex)));
+    }
+    return Response.serverError().build();
+}
+
+@Override
+public void initialize(Bootstrap<TutorialConfiguration> bootstrap) {
+    bootstrap.addBundle(new RedirectBundle(
+            new UriRedirect("/favicon.ico", "/assets/app/favicon.ico"),
+            new UriRedirect("/",  "/app/"),
+            new UriRedirect("/index.html",  "/app/index.html")
+    ));
+    bootstrap.addBundle(new AssetsBundle("/assets/app/", "/app"));
+    bootstrap.addBundle(hibernateBundle);
+    mapper = bootstrap.getObjectMapper();
+    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    //this.esNode = nodeBuilder().client(true).node();
+    this.esClient = new TransportClient().addTransportAddress(new InetSocketTransportAddress("localhost", 9300));
+}
+
+private void configureCors(Environment environment) {
+    Dynamic filter = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+    filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+    filter.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,PUT,POST,DELETE,OPTIONS");
+    filter.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
+    filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
+    filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
+    filter.setInitParameter("allowCredentials", "true");
+}
+
+@Override
+public void run(TutorialConfiguration configuration,
+                Environment environment) throws Exception {
+    // Register the route. Without this, the route will not recognized by the framework
+    environment.jersey().register(new SearchResource(configuration,  esClient, mapper));
+    configureCors(environment);
+
+}
+
+private  HashMap<String,Object> getResultsMap(String index, String kws){
+
+    ArrayList<Map<String,Object>> list = getResultsList(index, kws);
+    HashMap<String,Object> map = new HashMap<>();
+    map.put("index", index);
+    map.put("results", list);
+    return map;
+}
+private  ArrayList<Map<String, Object>> getResultsList(String index, String kws){
+    SearchRequestBuilder searchRequestBuilder = esClient.prepareSearch(index)
+            //.setTypes("product", "collection", "user")
+            .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+            .setQuery(QueryBuilders.matchQuery("_all", kws).operator(MatchQueryBuilder.Operator.AND))
+            .setHighlighterRequireFieldMatch(true)
+            .setSize(5);
+    if(index.equals("collections")){
+        FilterBuilder filterBuilder = FilterBuilders.rangeFilter("count").gt(1);
+        searchRequestBuilder.setPostFilter(filterBuilder);
+    }
+    SearchResponse response = searchRequestBuilder.execute().actionGet();
+    SearchHits hits = response.getHits();
+
+    ArrayList<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+    for (SearchHit hit : hits) {
+        Map<String,Object> result = hit.getSource();
+        if(!result.containsKey("_id")){
+            result.put("_id", hit.getId());
+        }
+        if(index.equals("users")){
+            ArrayList<String> pics = (ArrayList<String>)result.get("pics");
+            if(pics.size() == 0){
+                pics.add("http://www.gravatar.com/avatar/00000000");
+            }
+
+        }
+        list.add(result);
+    }
+    return list;
+}
+
+
+curl -XPUT "http://localhost:9200/products " -d'
+{
+   "settings": {
+      "analysis": {
+         "filter": {
+            "edgeNGram_filter": {
+               "type": "edgeNGram",
+               "min_gram": 2,
+               "max_gram": 20,
+               "side" : "front"
+            }
+         },
+         "analyzer": {
+            "edge_nGram_analyzer": {
+               "type": "custom",
+               "tokenizer": "edge_ngram_tokenizer",
+               "filter": [
+                  "lowercase",
+                  "asciifolding",
+                  "edgeNGram_filter"
+               ]
+            },
+            "whitespace_analyzer": {
+               "type": "custom",
+               "tokenizer": "whitespace",
+               "filter": [
+                  "lowercase",
+                  "asciifolding"
+               ]
+            }
+         },
+          "tokenizer" : {
+              "edge_ngram_tokenizer" : {
+                  "type" : "edgeNGram",
+                  "min_gram" : "2",
+                  "max_gram" : "5",
+                  "token_chars": [ "letter", "digit" ]
+              }
+          }
+      }
+   },
+   "mappings": {
+      ...
+   }
+}'
+
+
+ curl -XPOST http://localhost:9200/products/_mapping -d '
+  {
+    "products": {
+        "settings": {
+            "analysis": {
+                "filter": {
+                    "edgeNGram_filter": {
+                        "type": "edgeNGram",
+                        "min_gram": 2,
+                        "max_gram": 20,
+                        "side": "front"
+                    }
+                },
+                "analyzer": {
+                    "edge_nGram_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "edge_ngram_tokenizer",
+                        "filter": [
+                            "lowercase",
+                            "asciifolding",
+                            "edgeNGram_filter"
+                        ]
+                    },
+                    "whitespace_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "whitespace",
+                        "filter": [
+                            "lowercase",
+                            "asciifolding"
+                        ]
+                    }
+                },
+                "tokenizer": {
+                    "edge_ngram_tokenizer": {
+                        "type": "edgeNGram",
+                        "min_gram": "2",
+                        "max_gram": "5",
+                        "token_chars": [
+                            "letter",
+                            "digit"
+                        ]
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "product": {
+                "_all": {
+                    "index_analyzer": "nGram_analyzer",
+                    "search_analyzer": "whitespace_analyzer"
+                },
+                "properties": {
+                    "average_rating": {
+                        "type": "double",
+                        "index": "not_analyzed"
+                    },
+                    "bid": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "brand_id": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "category": {
+                        "type": "string",
+                        "include_in_all": true
+                    },
+                    "collection_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "comments_count": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "country": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "dateOptionalTime",
+                        "include_in_all": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "include_in_all": true
+                    },
+                    "featured": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "hashtags": {
+                        "properties": {
+                            "hashtag": {
+                                "type": "string",
+                                "include_in_all": true
+                            },
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "image_attrs": {
+                        "properties": {
+                            "height": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "width": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "image_s3_id": {
+                        "type": "string",
+                        "index" : no    
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "likes": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "mentions": {
+                        "properties": {
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "screen_name": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "original": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "pid": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "price": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "product_id": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "rating": {
+                        "properties": {
+                            "1": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "2": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "3": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "4": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "5": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "ratings_count": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "resavers": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "resaves": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "root_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "source": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "dateOptionalTime",
+                        "include_in_all": false
+                    },
+                    "urls": {
+                        "properties": {
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "url": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "user": {
+                        "properties": {
+                            "fb_id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "name": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}'

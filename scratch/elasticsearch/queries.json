@@ -1,0 +1,203 @@
+GET _search
+{
+    "query": {
+        "match_all": {}
+    }
+}
+
+GET /boole/movies/_mapping
+
+GET /boole/movies/_search
+{
+"query": {
+"match_all": {}
+}
+}
+
+GET /boole/movies/27626
+PUT /boole/movies/27626
+{
+"actors" : [{
+"id" : 63670,
+"name" : "John Hutchison"
+}, {
+"id" : 63669,
+"name" : "Charlie Lewis"
+}, {
+"id" : 63667,
+"name" : "Hans Frank"
+}, {
+"id" : 63668,
+"name" : "Michelle Murrey"
+}
+],
+"directors" : [{
+"id" : 63666,
+"name" : "Igor Kovacevich"
+}
+],
+"producers" : [{
+"id" : 63666,
+"name" : "Igor Kovacevich"
+}
+],
+"id" : 27626,
+"name" : "1000 Miles From Nowhere",
+"synopsis" : "In a small, rural town in the foothills of the Appalachian mountains, Razz and Jezebel dream of escaping to a better life. Jezebel has a past she cannot outrun, Razz has a temper he cannot control. It seems the only thing they are good at is getting into trouble with the local kingfish, J.J. Razz and Jezebel are up against the corrupt politics of a small town ruled by J.J., who has his hands in everybody's pockets.",
+"country" : "USA",
+"year" : 1998,
+"review" : 2.9,
+"runtime" : 75,
+"language" : "English",
+"genres" : [{
+"id" : 3,
+"name" : "Drama"
+}
+],
+"writers" : [{
+"id" : 63667,
+"name" : "Hans Frank"
+}
+]
+}
+
+
+
+
+GET /boole/movies/133183
+PUT /boole/movies/133183
+{
+"actors" : [{
+"id" : 207171,
+"name" : "Edward Brophy"
+}, {
+"id" : 205182,
+"name" : "Leila Hyams"
+}, {
+"id" : 29529,
+"name" : "Sterling Holloway"
+}, {
+"id" : 207557,
+"name" : "Roger Pryor"
+}
+],
+"directors" : [{
+"id" : 207672,
+"name" : "Aubrey Scotto"
+}
+],
+"producers" : [{
+"id" : 207672,
+"name" : "Aubrey Scotto"
+}
+],
+"id" : 133183,
+"name" : "1,000 Dollars A Minute",
+"synopsis" : "A down-on-his luck newspaperman finds himself the center of an experiment being conducted by two daffy millionaires--to see if someone can spend $1000 a minute, every minute, for 12 solid hours. If he can do it, he gets $10,000. If he can't do it, he gets nothing.",
+"country" : "USA",
+"year" : 1935,
+"review" : 6.6,
+"runtime" : 70,
+"language" : "English",
+"releaseDate" : "Oct 22, 1935",
+"genres" : [{
+"id" : 6,
+"name" : "Comedy"
+}
+],
+"writers" : [{
+"id" : 65897,
+"name" : "Joseph Fields"
+}, {
+"id" : 210994,
+"name" : "Everett Freeman"
+}, {
+"id" : 210996,
+"name" : "Everett Freeman (screen story)"
+}, {
+"id" : 210995,
+"name" : "Claire Church"
+}, {
+"id" : 116645,
+"name" : "Jack Natteford"
+}
+]
+}
+
+GET /boole/movies/152931
+PUT /boole/movies/152931
+{
+"actors" : [{
+"id" : 34250,
+"name" : "Hans Conried"
+}, {
+"id" : 8043,
+"name" : "Kathryn Grant"
+}, {
+"id" : 186860,
+"name" : "Dwayne Hickman"
+}, {
+"id" : 17093,
+"name" : "Jim Backus"
+}
+],
+"directors" : [{
+"id" : 212201,
+"name" : "Jack Kinney"
+}
+],
+"producers" : [{
+"id" : 212201,
+"name" : "Jack Kinney"
+}
+],
+"id" : 152931,
+"name" : "1001 Arabian Nights",
+"synopsis" : "Mr. Magoo's ancestor, Abdul Aziz Magoo, is the uncle of Aladdin, and falls in love with a princess.",
+"country" : "USA",
+"year" : 1959,
+"review" : 6.2,
+"runtime" : 75,
+"language" : "English",
+"releaseDate" : "Dec 01, 1959",
+"genres" : [{
+"id" : 13,
+"name" : "Fantasy"
+}, {
+"id" : 4,
+"name" : "Animation"
+}
+],
+"writers" : [{
+"id" : 231219,
+"name" : "Margaret Schneider"
+}, {
+"id" : 56149,
+"name" : "Paul Schneider"
+}, {
+"id" : 225433,
+"name" : "Pete Burness"
+}, {
+"id" : 195642,
+"name" : "Leo Salkin"
+}, {
+"id" : 231218,
+"name" : "Lew Keller"
+}, {
+"id" : 17091,
+"name" : "Ed Nofziger"
+}, {
+"id" : 219288,
+"name" : "Dick Shaw"
+}, {
+"id" : 159835,
+"name" : "Ted Allen"
+}, {
+"id" : 220200,
+"name" : "Dick Kinney"
+}, {
+"id" : 231021,
+"name" : "Czenzi Ormonde"
+}
+]
+}

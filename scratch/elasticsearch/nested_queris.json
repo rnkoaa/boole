@@ -1,0 +1,95 @@
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"must": [
+{
+"nested": {
+"path": "directors",
+"query": {
+"bool": {
+"must": [
+{ "match": { "directors.name": "Scotto" }}
+]
+}}}}
+]
+}}}
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"should": [
+{
+"nested": {
+"path": "directors",
+"query": {
+"bool": {
+"must": [
+{ "match": { "directors.name": "Scotto" }}
+]
+}}}},
+{
+"nested": {
+"path": "writers",
+"query": {
+"bool": {
+"must": [
+{ "match": { "writers.name": "Schneider" }}
+]
+}}}},
+{
+"nested": {
+"path": "producers",
+"query": {
+"bool": {
+"must": [
+{ "match": { "producers.name": "Kovacevich" }}
+]
+}}}}
+]
+}}}
+
+
+GET /boole/movies/_search
+{
+"query": {
+"bool": {
+"should": [
+{
+"nested": {
+"path": "directors",
+"query": {
+"bool": {
+"must": [
+{ "match": { "directors.name": "Scotto" }}
+]
+}}}}, {
+"nested": {
+"path": "actors",
+"query": {
+"bool": {
+"must": [
+{ "match": { "actors.name": "Sterling" }}
+]
+}}}},
+{
+"nested": {
+"path": "writers",
+"query": {
+"bool": {
+"must": [
+{ "match": { "writers.name": "Schneider" }}
+]
+}}}},
+{
+"nested": {
+"path": "producers",
+"query": {
+"bool": {
+"must": [
+{ "match": { "producers.name": "Kovacevich" }}
+]
+}}}}
+]
+}}}
