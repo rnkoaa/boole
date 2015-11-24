@@ -32,10 +32,20 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             }
         });
         $stateProvider.state('discoverList', {
-            url: '/discover/list',
+            url: '/discover/list?page&limit',
             controller: 'discoverController',
             controllerAs: 'discover',
-            templateUrl: '/js/app/home/movie.list.html'
+            templateUrl: '/js/app/home/movie.list.html',
+            params: {
+                page: {
+                    value: '0',
+                    squash: true
+                },
+                limit: {
+                    value: '21',
+                    squash: true
+                }
+            }
         });
         $stateProvider.state('movieDetail', {
             url: '/discover/movies/:movieId',
