@@ -28,6 +28,21 @@ angular.module('booleApp')
 
             return genreString;
         };
+    }).filter('genreLinkifyWithPipes', function () {
+
+        return function (genres) {
+            var genreString = '';
+            _.each(genres, function (item) {
+                genreString = genreString +
+                    "<a href='/discover/genres/" + item.id + "?include=movies'>" + item.name + "</a>" + " | ";
+            });
+            //remove any trailing , and space
+            if (genreString.length > 0) {
+                genreString = genreString.substr(0, genreString.length - 2);
+            }
+
+            return genreString;
+        };
     })
     .filter('personLinkify', function () {
 

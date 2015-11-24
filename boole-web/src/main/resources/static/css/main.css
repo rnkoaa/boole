@@ -204,6 +204,11 @@ h3 {
     margin-top: 8px;
 }
 
+#spinner{
+    margin: 20px auto;
+    display: block;
+}
+
 .movie-results-pagination{
     margin: 14px 0;
 }

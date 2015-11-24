@@ -5,7 +5,9 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
         'ngSanitize',
         'datatables' //for dynamic tables
     ])
-    .config(function ($locationProvider, $urlRouterProvider, $stateProvider) {
+    .config(function ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
+        $httpProvider.interceptors.push('LoadingInterceptor');
+
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider.otherwise('/');
