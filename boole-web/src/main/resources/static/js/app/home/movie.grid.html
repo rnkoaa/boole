@@ -1,0 +1,98 @@
+<div class="row">
+    <h3 class="text-center">Discover Movies</h3>
+</div>
+<div class="row">
+    <form>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="movieReleaseYear">Released Year</label>
+                <input type="text" class="form-control" id="movieReleaseYear"
+                       placeholder="Jane Doe">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="movieGenre">Genre</label>
+                <input type="text" class="form-control" id="movieGenre" placeholder="Jane Doe">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="sortBy">Sort By</label>
+                <input type="text" class="form-control" id="sortBy"
+                       placeholder="jane.doe@example.com">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="movieKeyword">Keywords</label>
+                <input type="text" class="form-control" id="movieKeyword"
+                       placeholder="jane.doe@example.com">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+</div>
+<div class="row discover_results">
+    <div class="col-lg-4 movie-card" ng-repeat="movie in movies">
+        <div class="bs-component">
+            <div class="well">
+                <div class="row movie_main_header">
+                    <div class="movie_title col-sm-9">
+                        <h4>
+                            <a ui-sref="movieDetail({ movieId: movie.id })"
+                               ng-attr-title="{{movie.name}}">
+                                {{movie.name | sanitizeTitle}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div ng-if="movie.review" class="movie_item_menu col-sm-3 text-right">
+                        <span class="rating_text movie_item_sp">{{movie.review}} &nbsp; <i
+                                class="fa fa-star-half-o fa-fw"></i></span>
+                    </div>
+                </div>
+                <div class="row movie_sub_header">
+                    <div class="movie_sub_title col-sm-9">
+                        <span class="movie_genres">
+                       {{movie.genres | genresToString}}
+                        </span>
+                    </div>
+                    <div ng-if="movie.year" class="movie_item_menu col-sm-3 text-right">
+                        <span class="movie_release_year movie_item_sp">{{movie.year}} &nbsp; <i
+                                class="fa fa-calendar fa-fw"></i></span>
+                    </div>
+                </div>
+                <div class="row movie_body">
+                    <span class="body_main">{{movie.synopsis | cropWords}}</span>
+                </div>
+                <div class="row movie_footer">
+                    <a id="movie_135397" class="movie-details"
+                       ui-sref="movieDetail({ movieId: movie.id })"
+                       ng-attr-title="{{movie.name}}" ng-attr-alt="{{movie.name}}">More Info...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row movie-results-pagination">
+    <div class="container">
+        <div class="col-sm-9 pager-left">
+            <p class="text-left">Currently on page: {{selectedPage}} of {{totalPages}} <span
+                    class="total_results grey">({{totalItems}} results)</span></p>
+        </div>
+        <div class="col-sm-3">
+            <ul class="pager">
+                <li ng-class="{disabled: noPrevious()||ngDisabled}">
+                    <a class="withripple" ng-click="previousPage()">&laquo; Previous
+                        <div class="ripple-wrapper"></div>
+                    </a>
+                </li>
+                <li ng-class="{disabled: noNext()||ngDisabled}">
+                    <a class="withripple" ng-click="nextPage()">Next &raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,12 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
                 }
             }
         });
+        $stateProvider.state('discoverList', {
+            url: '/discover/list',
+            controller: 'discoverController',
+            controllerAs: 'discover',
+            templateUrl: '/js/app/home/movie.list.html'
+        });
         $stateProvider.state('movieDetail', {
             url: '/discover/movies/:movieId',
             controller: 'movieDetailController',

@@ -11,6 +11,12 @@ angular.module('booleApp')
             $scope.itemsPerPage = parseInt($stateParams.limit, 10);
             $scope.ngDisabled = false;
 
+            if ($scope.selectedPage == undefined || isNaN($scope.selectedPage)) {
+                $scope.selectedPage = 1;
+            }
+            if ($scope.itemsPerPage == undefined || isNaN($scope.itemsPerPage)) {
+                $scope.itemsPerPage = 21;
+            }
             if ($scope.selectedPage === 0) {
                 $scope.selectedPage = $scope.selectedPage + 1;
             }
@@ -40,9 +46,9 @@ angular.module('booleApp')
                         $scope.movies = response.data;
 
                         //put it into the cache
-                      /*  _.each(response.data, function (item) {
-                            $scope.cachedMovies.push(item);
-                        });*/
+                        /*  _.each(response.data, function (item) {
+                         $scope.cachedMovies.push(item);
+                         });*/
                     }, function (error) {
                         console.log(error);
                     });
@@ -51,12 +57,12 @@ angular.module('booleApp')
             $scope.previousPage = function () {
                 $log.log("go to previous page");
                 /*//if there is data for already cached for the previous page
-                //use it, go back then
-                var prevPage = $scope.selectedPage - 1;
-                console.log("We have to go back to the previous page", prevPage);
-                var offset = ($scope.itemsPerPage) * ($scope.selectedPage - 1);
+                 //use it, go back then
+                 var prevPage = $scope.selectedPage - 1;
+                 console.log("We have to go back to the previous page", prevPage);
+                 var offset = ($scope.itemsPerPage) * ($scope.selectedPage - 1);
 
-                console.log("Offset Per Page = ", offset);
+                 console.log("Offset Per Page = ", offset);
                  var offset = ($scope.pageSize) * ($scope.currentPage - 1);
 
                  $scope.getPage = function (currentPage) {
@@ -66,7 +72,7 @@ angular.module('booleApp')
                  // slicing the main data set to get the required subset
                  $scope.currentPageItems = $scope.movies.slice(offset, $scope.pageSize + offset);
                  }
-                */
+                 */
                 $state.go('.', {page: prevPage});
             };
 

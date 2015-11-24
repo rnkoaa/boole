@@ -14,7 +14,19 @@
         <from>^/discover/movies/([0-9]+)$</from>
         <to >/</to>
     </rule>
-
+    <rule enabled="true">
+        <from>^/discover/list/([0-9]+)$</from>
+        <to >/</to>
+    </rule>
+   <rule enabled="true">
+        <from>^/discover/list</from>
+        <to >/</to>
+    </rule>
+    <rule enabled="true">
+        <name>Remove trailing slash</name>
+        <from>^/discover/list/([^/]+)$</from>
+        <to >/</to>
+    </rule>
     <rule enabled="true">
         <from>^/discover/$</from>
         <to >/</to>
