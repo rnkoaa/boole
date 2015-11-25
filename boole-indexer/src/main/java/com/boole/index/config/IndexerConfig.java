@@ -1,8 +1,7 @@
 package com.boole.index.config;
 
-import com.boole.index.service.IndexService;
-import com.boole.index.util.DateTimeTypeConverter;
 import com.boole.common.BooleCommonApplicationConfig;
+import com.boole.index.service.IndexService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.searchbox.client.JestClient;
@@ -31,14 +30,18 @@ import java.util.concurrent.Executors;
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages = {"com.boole.common.service",
-        "com.boole.index",
-        "com.boole.config"})
+@ComponentScan(basePackages = {
+        "com.boole.index.config",
+        "com.boole.common.service",
+        "com.boole.index.listener",
+        "com.boole.index.processor",
+        "com.boole.index.reader",
+        "com.boole.index.writer"})
 @Import({BooleCommonApplicationConfig.class})
-class IndexerConfig implements CommandLineRunner {
+public class IndexerConfig implements CommandLineRunner {
 
-    @Autowired
-    IndexService indexService;
+   /* @Autowired
+    IndexService indexService;*/
 
    /* @Autowired
     Indexer<IndexFilm> filmIndexer;*/

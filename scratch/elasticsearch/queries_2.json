@@ -53,15 +53,6 @@ GET /boole/movies/_search
 }
 }
 
-GET /boole/movies/_search
-{
-"query": {
-"query_string" : {
-"fields" : ["name", "country"],
-"query" : "Arabian OR USA"
-}
-}
-}
 
 GET /boole/movies/_search
 {

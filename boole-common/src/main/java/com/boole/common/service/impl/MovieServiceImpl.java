@@ -139,6 +139,11 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
         return roleRepository.findAll(RoleSpecifications.rolesForMovie(id));
     }
 
+    @Override
+    public long findTotalMovieCount() {
+        return movieRepository.count();
+    }
+
     private List<Crew> getCrews(List<Role> roles) {
         return roles.stream()
                 .map(Role::getCrew)

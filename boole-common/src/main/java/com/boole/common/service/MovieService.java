@@ -27,4 +27,6 @@ public interface MovieService extends BaseService<Movie> {
     List<Crew> findDirectors(Long id);
 
     List<Role> findRoles(Long id);
+
+    long findTotalMovieCount();
 }
