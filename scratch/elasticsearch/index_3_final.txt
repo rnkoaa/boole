@@ -1,0 +1,144 @@
+PUT /boole
+{
+   "settings": {
+      "analysis": {
+         "filter": {
+            "autocomplete_filter": {
+               "type": "edge_ngram",
+               "min_gram": 2,
+               "max_gram": 20
+            }
+         },
+         "analyzer": {
+            "autocomplete": {
+               "type": "custom",
+               "tokenizer": "standard",
+               "filter": [
+                  "lowercase",
+                  "autocomplete_filter"
+               ]
+            }
+         }
+      }
+   },
+   "mappings": {
+      "movies": {
+      "_all": {
+                   "index_analyzer": "autocomplete",
+                   "search_analyzer": "autocomplete"
+              },
+         "properties": {
+            "actors": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "autocomplete",
+                     "include_in_all": true
+                  }
+               }
+            },
+            "country": {
+               "type": "string"
+            },
+            "directors": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "autocomplete",
+                     "include_in_all": true
+                  }
+               }
+            },
+            "genres": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "autocomplete"
+                  }
+               }
+            },
+            "id": {
+               "type": "long",
+               "index": "not_analyzed"
+            },
+            "language": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "name": {
+               "type": "string",
+                "analyzer": "autocomplete",
+                "search_analyzer": "autocomplete",
+                "include_in_all": true
+            },
+            "producers": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "autocomplete",
+                     "include_in_all": true
+                  }
+               }
+            },
+            "releaseDate": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "review": {
+               "type": "double",
+               "index": "not_analyzed"
+            },
+            "runtime": {
+               "type": "long",
+               "index": "not_analyzed"
+            },
+            "synopsis": {
+               "type": "string"
+            },
+            "writers": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "autocomplete",
+                     "include_in_all": true
+                  }
+               }
+            },
+            "year": {
+               "type": "long",
+               "index": "not_analyzed"
+            }
+         }
+      }
+   }
+}

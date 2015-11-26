@@ -46,4 +46,4 @@ git config --global url."https://".insteadOf git://
 
 https://github.com/ns/java-imdb-db-parser
 
- pg_restore --verbose --clean --no-acl --no-owner -h localhost -U boole_user -d boole /vagrant/data/omdb/moviedb_development.dump
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U boole_user -d boole /vagrant/data/omdb/moviedb_development.dump

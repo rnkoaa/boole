@@ -1,0 +1,132 @@
+PUT /boole
+{
+   "settings": {
+      "analysis": {
+         "filter": {
+            "autocomplete_filter": {
+               "type": "edge_ngram",
+               "min_gram": 2,
+               "max_gram": 20
+            }
+         },
+         "analyzer": {
+            "autocomplete": {
+               "type": "custom",
+               "tokenizer": "standard",
+               "filter": [
+                  "lowercase",
+                  "autocomplete_filter"
+               ]
+            }
+         }
+      }
+   },
+   "mappings": {
+      "movies": {
+         "properties": {
+            "actors": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "standard"
+                  }
+               }
+            },
+            "country": {
+               "type": "string"
+            },
+            "directors": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "standard"
+                  }
+               }
+            },
+            "genres": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "standard"
+                  }
+               }
+            },
+            "id": {
+               "type": "long",
+               "index": "not_analyzed"
+            },
+            "language": {
+               "type": "string"
+            },
+            "name": {
+               "type": "string"
+            },
+            "producers": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "standard"
+                  }
+               }
+            },
+            "releaseDate": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "review": {
+               "type": "double",
+               "index": "not_analyzed"
+            },
+            "runtime": {
+               "type": "long",
+               "index": "not_analyzed"
+            },
+            "synopsis": {
+               "type": "string"
+            },
+            "writers": {
+               "type": "nested",
+               "properties": {
+                  "id": {
+                     "type": "long",
+                     "index": "not_analyzed"
+                  },
+                  "name": {
+                     "type": "string",
+                     "analyzer": "autocomplete",
+                     "search_analyzer": "standard"
+                  }
+               }
+            },
+            "year": {
+               "type": "long",
+               "index": "not_analyzed"
+            }
+         }
+      }
+   }
+}

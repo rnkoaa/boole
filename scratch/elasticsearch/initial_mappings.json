@@ -1,0 +1,90 @@
+{
+  "mappings": {
+    "movies": {
+      "properties": {
+        "actors": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "country": {
+          "type": "string"
+        },
+        "directors": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "genres": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "id": {
+          "type": "long"
+        },
+        "language": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "producers": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "releaseDate": {
+          "type": "string"
+        },
+        "review": {
+          "type": "double"
+        },
+        "runtime": {
+          "type": "long"
+        },
+        "synopsis": {
+          "type": "string"
+        },
+        "writers": {
+          "type": "nested",
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "year": {
+          "type": "long"
+        }
+      }
+    }
+  }
+}

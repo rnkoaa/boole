@@ -1,0 +1,8 @@
+GET /boole/movies/_search
+{
+   "query": {
+      "match": {
+         "_all": "hans"
+      }
+   }
+}

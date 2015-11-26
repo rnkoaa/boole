@@ -5,6 +5,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/precise32"
 
   config.vm.network "forwarded_port", guest: 9200, host: 9200
+  config.vm.network "forwarded_port", guest: 9300, host: 9300
+  config.vm.network "forwarded_port", guest: 9301, host: 9301
   config.vm.network "forwarded_port", guest: 5432, host: 5432
   config.vm.network "private_network", ip: "192.168.33.10"
 

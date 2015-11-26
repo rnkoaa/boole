@@ -33,6 +33,8 @@ public class ElapsedTimeJobListener implements JobExecutionListener {
         logger.debug("Called afterJob().");
 
         stopWatch.stop();
+        logger.info("=============== Elapsed Time ========================");
         logger.info("Elapsed time : " + DurationFormatUtils.formatDurationHMS(stopWatch.getTotalTimeMillis()));
+        logger.info("=============== Elapsed Time ========================");
     }
 }

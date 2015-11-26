@@ -22,7 +22,6 @@ import java.util.Optional;
  * Created by rnkoaa on 11/25/15.
  */
 @Component
-//@Scope("step")
 public class MovieItemReader implements ItemReader<Movie> {
 
     private final MovieService movieService;
@@ -37,8 +36,8 @@ public class MovieItemReader implements ItemReader<Movie> {
 
     @BeforeStep
     public void saveStepExecution(StepExecution stepExecution) {
-        System.out.println("Before Step Listener called");
         totalMovieCount = movieService.findTotalMovieCount();
+        //totalMovieCount = 300;
         logger.debug("There are {} movies to be read", totalMovieCount);
     }
 
@@ -51,10 +50,10 @@ public class MovieItemReader implements ItemReader<Movie> {
     @Override
     public Movie read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
         if (count < totalMovieCount) {
-            logger.debug("Select Movie With: {}", count);
-            Optional<Movie> movieOptional = movieService.findWithFullDetails(++count);
+            long movieId = ++count;
+            logger.debug("Select Movie With: {}", movieId);
+            Optional<Movie> movieOptional = movieService.findWithFullDetails(movieId);
             return movieOptional.orElse(null);
-            //return movieService.findWithFullDetails(count++);
         } else {
             return null;
         }

@@ -2,6 +2,7 @@ package com.boole.index.config;
 
 import com.boole.common.BooleCommonApplicationConfig;
 import com.boole.common.domain.Movie;
+import com.boole.common.domain.dto.MovieDTO;
 import com.boole.index.listener.ElapsedTimeJobListener;
 import com.boole.index.listener.MovieChunkListener;
 import com.boole.index.processor.MovieItemProcessor;
@@ -40,7 +41,7 @@ public class BatchConfig {
                       MovieItemWriter movieItemWriter, MovieItemProcessor movieItemProcessor,
                       MovieChunkListener chunkListener) {
         return stepBuilderFactory.get("step1")
-                .<Movie, Byte[]>chunk(1)
+                .<Movie, MovieDTO>chunk(200)
                 .reader(movieItemReader)
                 .processor(movieItemProcessor)
                 .writer(movieItemWriter)

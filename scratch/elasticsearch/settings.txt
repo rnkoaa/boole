@@ -1,0 +1,45 @@
+PUT /boole
+{
+    "settings": {
+        "analysis": {
+            "filter": {
+                "edgeNGram_filter": {
+                    "type": "edgeNGram",
+                    "min_gram": 2,
+                    "max_gram": 20,
+                    "side": "front"
+                }
+            },
+            "analyzer": {
+                "edge_nGram_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "edge_ngram_tokenizer",
+                    "filter": [
+                        "lowercase",
+                        "asciifolding",
+                        "edgeNGram_filter"
+                    ]
+                },
+                "whitespace_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "whitespace",
+                    "filter": [
+                        "lowercase",
+                        "asciifolding"
+                    ]
+                }
+            },
+            "tokenizer": {
+                "edge_ngram_tokenizer": {
+                    "type": "edgeNGram",
+                    "min_gram": "2",
+                    "max_gram": "5",
+                    "token_chars": [
+                        "letter",
+                        "digit"
+                    ]
+                }
+            }
+        }
+    }
+}
