@@ -30,6 +30,7 @@ public class BooleCommonApplicationConfig {
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         JavaTimeModule module = new JavaTimeModule();
         module.addSerializer(OffsetDateTime.class, JSR310DateTimeSerializer.INSTANCE);
         module.addSerializer(ZonedDateTime.class, JSR310DateTimeSerializer.INSTANCE);

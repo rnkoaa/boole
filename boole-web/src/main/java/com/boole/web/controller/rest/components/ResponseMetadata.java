@@ -8,16 +8,17 @@ import org.springframework.data.domain.Page;
  */
 
 public class ResponseMetadata<T> {
-    private int size;
+    private long size;
     private long totalElements;
-    private int totalPages;
+    private long totalPages;
     private int page;
+    private String requestTimeTotal;
 
     public ResponseMetadata() {
         this(0, 0, 0, 0);
     }
 
-    public ResponseMetadata(int size, long totalElements, int totalPages, int page) {
+    public ResponseMetadata(long size, long totalElements, long totalPages, int page) {
         this.size = size;
         this.totalElements = totalElements;
         this.totalPages = totalPages;
@@ -29,7 +30,7 @@ public class ResponseMetadata<T> {
                 actorPage.getTotalPages(), actorPage.getNumber());
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
@@ -45,7 +46,7 @@ public class ResponseMetadata<T> {
         this.totalElements = totalElements;
     }
 
-    public int getTotalPages() {
+    public long getTotalPages() {
         return totalPages;
     }
 
@@ -60,5 +61,13 @@ public class ResponseMetadata<T> {
 
     public void setPage(int page) {
         this.page = page;
+    }
+
+    public String getRequestTimeTotal() {
+        return requestTimeTotal;
+    }
+
+    public void setRequestTimeTotal(String requestTimeTotal) {
+        this.requestTimeTotal = requestTimeTotal;
     }
 }

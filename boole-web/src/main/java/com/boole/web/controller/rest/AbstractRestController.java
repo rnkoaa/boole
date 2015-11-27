@@ -29,7 +29,7 @@ public class AbstractRestController {
             page = Integer.parseInt(requestParams.get(PAGE_KEY));
         }
 
-        int perPage = 20;
+        int perPage = 25;
         if (requestParams.containsKey(PER_PAGE))
             perPage = Integer.parseInt(requestParams.get(PER_PAGE));
 

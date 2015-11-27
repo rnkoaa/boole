@@ -19,15 +19,15 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
  * Created by rnkoaa on 11/7/15.
  */
 public class SearchQueryTest extends IndexerTestConfig {
-    @Autowired
+   /* @Autowired
     JestClient jestClient;
 
     @Autowired
-    Gson gson;
+    Gson gson;*/
 
     @Test
     public void testSearchQueryBuilder() throws IOException {
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+       /* SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders
                 .queryStringQuery("boring")
                 .field("title", 20)
@@ -49,7 +49,7 @@ public class SearchQueryTest extends IndexerTestConfig {
         assertThat(search).isNotNull();
         System.out.println(search.getData(gson));
         JestResult result = jestClient.execute(search);
-        System.out.println(result.getJsonString());
+        System.out.println(result.getJsonString());*/
         //assertThat(jestClient).isNotNull();
     }
 }

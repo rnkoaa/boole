@@ -1,6 +1,7 @@
 package com.boole.web.config;
 
 import com.boole.common.BooleCommonApplicationConfig;
+import com.boole.index.config.ElasticSearchConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
@@ -16,7 +17,7 @@ import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
         "com.boole.common.service",
         "com.boole.web.controller"
 })
-@Import({BooleCommonApplicationConfig.class})
+@Import({BooleCommonApplicationConfig.class, ElasticSearchConfig.class})
 public class BooleApplication {
 
     public static final String REWRITE_FILTER_NAME = "rewriteFilter";

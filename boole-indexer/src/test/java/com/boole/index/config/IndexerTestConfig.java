@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created on 11/5/2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = IndexerConfig.class)
+@SpringApplicationConfiguration(classes = ElasticSearchConfig.class)
 public abstract class IndexerTestConfig {
 
 }

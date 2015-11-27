@@ -8,13 +8,19 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * Created using Intellij IDE
  * Created by rnkoaa on 11/26/15.
  */
 @Configuration
+@ComponentScan(basePackages = {
+        "com.boole.index.service"
+})
+@Import({BeanConfig.class})
 public class ElasticSearchConfig implements InitializingBean, DisposableBean {
     private Client client;
 
