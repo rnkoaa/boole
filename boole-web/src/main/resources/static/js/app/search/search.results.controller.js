@@ -2,50 +2,42 @@
 
 //NavBarController
 angular.module('booleApp')
-    .controller('discoverController', ['$scope', '$log', '$state', '$stateParams', '$location',
-        'movieService',
-        function ($scope, $log, $state, $stateParams, $location, movieService) {
+    .controller('searchResultsController', ['$scope', '$log', 'searchService', '$state', '$stateParams',
+        function ($scope, $log, searchService, $state, $stateParams) {
             $scope.totalPages = 0;
-            $scope.cachedMovies = [];
+            $scope.hasSearched = false;
+            $scope.searchResults = null;
             $scope.selectedPage = parseInt($stateParams.page, 10);
             $scope.itemsPerPage = parseInt($stateParams.limit, 10);
-            $scope.ngDisabled = false;
+            $scope.searchTerms = $stateParams.q || '';
 
             if ($scope.selectedPage == undefined || isNaN($scope.selectedPage)) {
                 $scope.selectedPage = 1;
             }
             if ($scope.itemsPerPage == undefined || isNaN($scope.itemsPerPage)) {
-                $scope.itemsPerPage = 21;
+                $scope.itemsPerPage = 25;
             }
             if ($scope.selectedPage === 0) {
                 $scope.selectedPage = $scope.selectedPage + 1;
             }
-            var defaultSort = 'name';
 
+            $log.log("Search Terms: ", $scope.searchTerms);
 
-            $scope.movies = [];
-            $scope.totalItems = 0;
+            search($scope);
 
-            fetch();
+            function search($scope) {
+                $scope.hasSearched = true;
+                console.log("search called: ", $scope.searchTerms);
 
-            var pendingTask;
-
-            $scope.change = function () {
-                if (pendingTask) {
-                    clearTimeout(pendingTask);
-                }
-                pendingTask = setTimeout(fetch, 10);
-            };
-
-            function fetch() {
-
-                movieService.findMovies($scope.selectedPage, $scope.itemsPerPage)
+                searchService.search($scope.searchTerms, $scope.selectedPage, $scope.itemsPerPage)
                     .then(function (response) {
-                        $scope.totalItems = response.meta.totalElements;
+                        //return response;
+                        $log.log(response);
+                        $scope.searchResults = response;
                         $scope.totalPages = response.meta.totalPages;
-                        $scope.movies = response.data;
+                        $scope.totalItems = response.meta.size;
                     }, function (error) {
-                        console.log(error);
+                        //return error;
                     });
             }
 

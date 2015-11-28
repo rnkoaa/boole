@@ -3,7 +3,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top"
          role="navigation"
-         style="margin-bottom: 0">
+         style="margin-bottom: 0"
+            ng-controller="navBarController">
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target=".navbar-collapse">
@@ -17,9 +19,9 @@
         <!-- /.navbar-header -->
 
         <div class="col-sm-6 col-md-6">
-            <form class="navbar-form" role="search">
+            <form class="navbar-form" role="search" ng-submit="search(queryStr)">
                 <div class="input-group col-sm-12 col-md-12">
-                    <input type="text" class="form-control" placeholder="Search" name="q"/>
+                    <input type="text" class="form-control" ng-model="queryStr" placeholder="Search" name="q"/>
 
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit">

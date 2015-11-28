@@ -1,14 +1,30 @@
 'use strict';
 
 angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
-        'ui.router', //for state management,
-        'ngSanitize',
-        'datatables' //for dynamic tables
-    ])
+    'ui.router', //for state management,
+    'ngSanitize',
+    'datatables' //for dynamic tables
+])
     .config(function ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
         $httpProvider.interceptors.push('loadingInterceptor');
 
         $locationProvider.html5Mode(true);
+
+        //redirect any trailing slash back to non trailing slash
+        $urlRouterProvider.rule(function ($injector, $location) {
+            var path = $location.url();
+
+            // check to see if the path has a trailing slash
+            if ('/' === path[path.length - 1]) {
+                return path.replace(/\/$/, '');
+            }
+
+            if (path.indexOf('/?') > -1) {
+                return path.replace('/?', '?');
+            }
+
+            return false;
+        });
 
         $urlRouterProvider.otherwise('/');
 
@@ -75,6 +91,26 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             params: {
                 include: {
                     value: 'movies',
+                    squash: true
+                }
+            }
+        });
+
+        $stateProvider.state('searchResults', {
+            url: '/search?q&page&limit',
+            controller: 'searchResultsController',
+            templateUrl: '/js/app/search/search-results.html',
+            params: {
+                q: {
+                    value: '',
+                    squash: true
+                },
+                page: {
+                    value: '0',
+                    squash: true
+                },
+                limit: {
+                    value: '21',
                     squash: true
                 }
             }

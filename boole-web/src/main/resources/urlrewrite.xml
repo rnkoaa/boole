@@ -40,6 +40,14 @@
         <from>^/discover/$1</from>
         <to>/</to>
     </rule>
+    <rule>
+        <from>^/search</from>
+        <to>/</to>
+    </rule>
+    <rule>
+        <from>^/search/$1</from>
+        <to>/</to>
+    </rule>
     <!--
      <rule>
          <name>Support renamed mongodb GS guide</name>
