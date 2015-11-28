@@ -1,10 +1,9 @@
 'use strict';
 
 //navBarController
-//NavBarController
 angular.module('booleApp')
-    .controller('navBarController', ['$scope', '$log', 'searchService', '$state', '$stateParams',
-        function ($scope, $log, searchService, $state, $stateParams) {
+    .controller('navBarController', ['$scope', '$log', 'searchService', '$state',
+        function ($scope, $log, searchService, $state) {
 
             $scope.search = function (queryStr) {
                 console.log("search called: ", queryStr);

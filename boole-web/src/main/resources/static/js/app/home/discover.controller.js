@@ -38,7 +38,6 @@ angular.module('booleApp')
             };
 
             function fetch() {
-
                 movieService.findMovies($scope.selectedPage, $scope.itemsPerPage)
                     .then(function (response) {
                         $scope.totalItems = response.meta.totalElements;

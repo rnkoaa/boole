@@ -21,13 +21,11 @@ angular.module('booleApp')
                 $scope.selectedPage = $scope.selectedPage + 1;
             }
 
-            $log.log("Search Terms: ", $scope.searchTerms);
-
+            //do a search based on the user's request
             search($scope);
 
             function search($scope) {
                 $scope.hasSearched = true;
-                console.log("search called: ", $scope.searchTerms);
 
                 searchService.search($scope.searchTerms, $scope.selectedPage, $scope.itemsPerPage)
                     .then(function (response) {
@@ -42,12 +40,10 @@ angular.module('booleApp')
             }
 
             $scope.previousPage = function () {
-                $log.log("go to previous page");
                 $state.go('.', {page: prevPage});
             };
 
             $scope.nextPage = function () {
-                $log.log("go to NextPage page");
                 $state.go('.', {page: $scope.selectedPage + 1});
             };
 
