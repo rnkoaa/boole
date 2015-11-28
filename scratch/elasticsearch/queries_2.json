@@ -75,3 +75,12 @@ GET /boole/movies/_search
 }
 }
 }
+
+{
+"query": {
+"filtered": {
+"query":    { "match_all": {}},
+"filter":   { "term": { "folder": "inbox" }}
+}
+}
+}

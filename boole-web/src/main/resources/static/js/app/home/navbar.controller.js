@@ -6,7 +6,6 @@ angular.module('booleApp')
         function ($scope, $log, searchService, $state) {
 
             $scope.search = function (queryStr) {
-                console.log("search called: ", queryStr);
                 $scope.searchTerms = queryStr;
                 $state.go('searchResults',
                     {

@@ -2,8 +2,8 @@
 
 //NavBarController
 angular.module('booleApp')
-    .controller('discoverController', ['$scope', '$log', '$state', '$stateParams', '$location',
-        'movieService',
+    .controller('discoverController',
+    ['$scope', '$log', '$state', '$stateParams', '$location', 'movieService',
         function ($scope, $log, $state, $stateParams, $location, movieService) {
             $scope.totalPages = 0;
             $scope.cachedMovies = [];
@@ -49,12 +49,10 @@ angular.module('booleApp')
             }
 
             $scope.previousPage = function () {
-                $log.log("go to previous page");
                 $state.go('.', {page: prevPage});
             };
 
             $scope.nextPage = function () {
-                $log.log("go to NextPage page");
                 $state.go('.', {page: $scope.selectedPage + 1});
             };
 
