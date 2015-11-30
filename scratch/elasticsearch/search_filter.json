@@ -1,0 +1,31 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "match": {
+          "_all": "terminator"
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": {
+            "nested": {
+              "path": "directors",
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "term": {
+                        "directors.name": "cameron"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,104 +1,83 @@
-<div class="row">
-    <h3 class="text-center">Search Results for {{searchTerms}}</h3>
-</div>
-<div class="row">
-    <form>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="movieReleaseYear">Released Year</label>
-                <input type="text" class="form-control" id="movieReleaseYear"
-                       placeholder="Jane Doe">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="movieGenre">Genre</label>
-                <input type="text" class="form-control" id="movieGenre" placeholder="Jane Doe">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="sortBy">Sort By</label>
-                <input type="text" class="form-control" id="sortBy"
-                       placeholder="jane.doe@example.com">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="movieKeyword">Keywords</label>
-                <input type="text" class="form-control" id="movieKeyword"
-                       placeholder="jane.doe@example.com">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">Filter</button>
-        </div>
-    </form>
-</div>
-<div class="row discover_results movie-list-results">
-    <img id="spinner" ng-src="/img/spin.gif" data-ng-if="loading"/>
+<div class="container">
 
-    <div class="movie-search-no-result" ng-if="!searchResults && !hasSearched">
-        <h3>Please Provide a search Term for results </h3>
-        <span>{{hasSearched}}</span>
-    </div>
-    <div class="movie-search-no-result" ng-if="searchResults && searchResults.meta.size == 0">
-        <h3>No Results Found for your Search </h3>
-    </div>
-    <div class="movie-list-card" ng-show="searchResults && searchResults.meta.size > 0"
-         ng-repeat="searchResult in searchResults.data">
-        <h4>
-            <a ui-sref="movieDetail({ movieId: searchResult.source.id })"
-               ng-attr-title="{{searchResult.source.name}}">
-                {{searchResult.source.name }}
-            </a>
-        </h4>
+    <div class="col-md-8">
+        <div class="row">
+            <h3 class="text-center">Search Results for {{searchTerms}}</h3>
+        </div>
+        <div class="row discover_results movie-list-results">
+            <img id="spinner" ng-src="/img/spin.gif" data-ng-if="loading"/>
 
-        <p class="cert runtime-genre" ng-if="searchResult.source.genres">
-            <time itemprop="duration" ng-if="searchResult.source.runtime"
-                  ng-attr-datetime="PT{{searchResult.source.runtime}}M">
-                {{searchResult.source.runtime}} min &nbsp;&nbsp;-&nbsp;&nbsp;</time>
-            <span ng ng-bind-html="searchResult.source.genres | genreLinkifyWithPipes"></span>
-        </p>
-        <div class="rating-text">
-            <span class="stars"></span>
-            <span>Metascore: 46/(100) (23 reviews)</span>
-        </div>
-        <div class="outline-text">
-            <span class="body_main">{{searchResult.source.synopsis | cropWords}}</span>
-        </div>
-        <div class="crew-txt-block" ng-if="searchResult.source.directors">
-            <h5 class="inline">Director: </h5>
-            <span class="item_prop" ng-bind-html="searchResult.source.directors | personLinkify"></span>
-        </div>
-        <div class="crew-txt-block" ng-if="searchResult.source.actors">
-            <h5 class="inline">Cast: </h5>
+            <div class="movie-search-no-result" ng-if="!searchResults && !hasSearched">
+                <h3>Please Provide a search Term for results </h3>
+                <span>{{hasSearched}}</span>
+            </div>
+            <div class="movie-search-no-result"
+                 ng-if="searchResults && searchResults.meta.size == 0">
+                <h3>No Results Found for your Search </h3>
+            </div>
+            <div class="movie-list-card" ng-show="searchResults && searchResults.meta.size > 0"
+                 ng-repeat="searchResult in searchResults.data">
+                <h4>
+                    <a ui-sref="movieDetail({ movieId: searchResult.source.id })"
+                       ng-attr-title="{{searchResult.source.name}}">
+                        {{searchResult.source.name }}
+                    </a>
+                </h4>
+
+                <p class="cert runtime-genre" ng-if="searchResult.source.genres">
+                    <time itemprop="duration" ng-if="searchResult.source.runtime"
+                          ng-attr-datetime="PT{{searchResult.source.runtime}}M">
+                        {{searchResult.source.runtime}} min &nbsp;&nbsp;-&nbsp;&nbsp;</time>
+                    <span ng
+                          ng-bind-html="searchResult.source.genres | genreLinkifyWithPipes"></span>
+                </p>
+                <div class="rating-text">
+                    <span class="stars"></span>
+                    <span>Metascore: 46/(100) (23 reviews)</span>
+                </div>
+                <div class="outline-text">
+                    <span class="body_main">{{searchResult.source.synopsis | cropWords}}</span>
+                </div>
+                <div class="crew-txt-block" ng-if="searchResult.source.directors">
+                    <h5 class="inline">Director: </h5>
+                <span class="item_prop"
+                      ng-bind-html="searchResult.source.directors | personLinkify"></span>
+                </div>
+                <div class="crew-txt-block" ng-if="searchResult.source.actors">
+                    <h5 class="inline">Cast: </h5>
             <span class="item_prop" ng-repeat="cast in searchResult.source.actors">
                 <a ui-sref="personDetails({ personId: cast.id })"
                    ng-attr-title="{{cast.name}}" ng-attr-alt="{{cast.name}}">
                     {{cast.name}}
                 </a>
             </span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="row movie-results-pagination">
-    <div class="container">
-        <div class="col-sm-9 pager-left">
-            <p class="text-left">Currently on page: {{selectedPage}} of {{totalPages}} <span
-                    class="total_results grey">({{totalItems}} results)</span></p>
+    <div class="col-md-4 col-results-filter">
+        <div class="filters-results">
+            <h4>Filter Results</h4>
         </div>
-        <div class="col-sm-3">
-            <ul class="pager">
-                <li ng-class="{disabled: noPrevious()||ngDisabled}">
-                    <a class="withripple" ng-click="previousPage()">&laquo; Previous
-                        <div class="ripple-wrapper"></div>
-                    </a>
-                </li>
-                <li ng-class="{disabled: noNext()||ngDisabled}">
-                    <a class="withripple" ng-click="nextPage()">Next &raquo;</a>
-                </li>
-            </ul>
+    </div>
+    <div class="row movie-results-pagination">
+        <div class="container">
+            <div class="col-sm-9 pager-left">
+                <p class="text-left">Currently on page: {{selectedPage}} of {{totalPages}} <span
+                        class="total_results grey">({{totalItems}} results)</span></p>
+            </div>
+            <div class="col-sm-3">
+                <ul class="pager">
+                    <li ng-class="{disabled: noPrevious()||ngDisabled}">
+                        <a class="withripple" ng-click="previousPage()">&laquo; Previous
+                            <div class="ripple-wrapper"></div>
+                        </a>
+                    </li>
+                    <li ng-class="{disabled: noNext()||ngDisabled}">
+                        <a class="withripple" ng-click="nextPage()">Next &raquo;</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

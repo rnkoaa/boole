@@ -1,10 +1,8 @@
 package com.boole.index.service;
 
-import com.boole.index.service.Indexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutorService;
@@ -15,14 +13,14 @@ import java.util.concurrent.ExecutorService;
 @Service
 public class IndexService {
     private final ExecutorService executorService;
-    private final CounterService countersService;
+    //private final CounterService countersService;
 
     private static final Logger logger = LoggerFactory.getLogger(IndexService.class);
 
     @Autowired
-    public IndexService(ExecutorService executorService, CounterService countersService) {
+    public IndexService(ExecutorService executorService/*, CounterService countersService*/) {
         this.executorService = executorService;
-        this.countersService = countersService;
+       // this.countersService = countersService;
     }
 
     public <T> void index(final Indexer<T> indexer) {
@@ -31,7 +29,7 @@ public class IndexService {
             executorService.submit(() -> {
                 try {
                     indexer.indexItem(indexable);
-                    countersService.increment("search.indexes." + indexer.counterName() + ".processed");
+                    //countersService.increment("search.indexes." + indexer.counterName() + ".processed");
                 } catch (Exception e) {
                     String message =
                             String.format("Unable to index an entry of '%s' with id: '%s' -> (%s, %s)", indexer
@@ -39,10 +37,10 @@ public class IndexService {
                                     .getMessage());
 
                     logger.warn(message);
-                    countersService.increment("search.indexes." + indexer.counterName() + ".errors.count");
+                    //countersService.increment("search.indexes." + indexer.counterName() + ".errors.count");
                 }
             });
         }
-        countersService.increment("search.indexes." + indexer.counterName() + ".refresh.count");
+        //countersService.increment("search.indexes." + indexer.counterName() + ".refresh.count");
     }
 }

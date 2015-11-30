@@ -550,3 +550,13 @@ table.dataTable thead .sorting:after {
 .address-line {
     display: block;
 }
+
+.col-results-filter{
+    margin-top: 12px;
+    padding: 0 8px;
+}
+
+.fm-results-filter{
+    display: block;
+    width: 100%;
+}
