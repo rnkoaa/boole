@@ -6,8 +6,11 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +48,11 @@ public class AggregatorSearchTests extends IndexerTestConfig {
                 .terms("director.name")
                 .field("")*/
 
-        logger.debug("Request Sample: {}", builder.toString());
-        System.out.println("Checkout changes");
+        /*AggregationBuilder aggregationBuilder = AggregationBuilders.terms("script").script(buildScriptStr("director"));
+        System.out.println("Aggregation: " + aggregationBuilder.());*/
+
+        //logger.debug("Request Sample: {}", builder.toString());
+        //System.out.println("Checkout changes");
 
         return builder.execute().actionGet();
     }
@@ -59,7 +65,7 @@ public class AggregatorSearchTests extends IndexerTestConfig {
     public void testFind() throws IOException {
 
         SearchResponse searchResponse = doSearch("terminator");
-        System.out.println(searchResponse.toString());
+      //  System.out.println(searchResponse.toString());
         assertThat(true).isTrue();
     }
 
