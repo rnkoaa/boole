@@ -239,6 +239,9 @@ h3 {
     margin-top: 4px;
 }
 
+.movie-list-results{
+    padding-right: 8px;
+}
 .movie-list-results div.movie-list-card
 {
     padding-bottom: 8px;
@@ -553,7 +556,7 @@ table.dataTable thead .sorting:after {
 
 .col-results-filter{
     margin-top: 12px;
-    padding: 0 8px;
+    padding: 0 18px;
 }
 
 .fm-results-filter{
