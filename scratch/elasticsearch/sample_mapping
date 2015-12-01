@@ -1,0 +1,239 @@
+curl -XPOST http://localhost:9200/products/_mapping -d '
+  {
+    "products": {
+        "settings": {
+            "analysis": {
+                "filter": {
+                    "edgeNGram_filter": {
+                        "type": "edgeNGram",
+                        "min_gram": 2,
+                        "max_gram": 20,
+                        "side": "front"
+                    }
+                },
+                "analyzer": {
+                    "edge_nGram_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "edge_ngram_tokenizer",
+                        "filter": [
+                            "lowercase",
+                            "asciifolding",
+                            "edgeNGram_filter"
+                        ]
+                    },
+                    "whitespace_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "whitespace",
+                        "filter": [
+                            "lowercase",
+                            "asciifolding"
+                        ]
+                    }
+                },
+                "tokenizer": {
+                    "edge_ngram_tokenizer": {
+                        "type": "edgeNGram",
+                        "min_gram": "2",
+                        "max_gram": "5",
+                        "token_chars": [
+                            "letter",
+                            "digit"
+                        ]
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "product": {
+                "_all": {
+                    "index_analyzer": "nGram_analyzer",
+                    "search_analyzer": "whitespace_analyzer"
+                },
+                "properties": {
+                    "average_rating": {
+                        "type": "double",
+                        "index": "not_analyzed"
+                    },
+                    "bid": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "brand_id": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "category": {
+                        "type": "string",
+                        "include_in_all": true
+                    },
+                    "collection_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "comments_count": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "country": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "format": "dateOptionalTime",
+                        "include_in_all": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "include_in_all": true
+                    },
+                    "featured": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "hashtags": {
+                        "properties": {
+                            "hashtag": {
+                                "type": "string",
+                                "include_in_all": true
+                            },
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "image_attrs": {
+                        "properties": {
+                            "height": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "width": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "image_s3_id": {
+                        "type": "string",
+                        "index" : no
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "likes": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "mentions": {
+                        "properties": {
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "screen_name": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "original": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "pid": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "price": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "product_id": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "rating": {
+                        "properties": {
+                            "1": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "2": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "3": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "4": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "5": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "ratings_count": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "resavers": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "resaves": {
+                        "type": "long",
+                        "index": "not_analyzed"
+                    },
+                    "root_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "source": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "format": "dateOptionalTime",
+                        "include_in_all": false
+                    },
+                    "urls": {
+                        "properties": {
+                            "indices": {
+                                "type": "long",
+                                "index": "not_analyzed"
+                            },
+                            "url": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "user": {
+                        "properties": {
+                            "fb_id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "name": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}'

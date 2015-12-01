@@ -5,6 +5,7 @@ import com.boole.web.controller.rest.components.ResponseMetadata;
 import com.boole.web.controller.rest.components.RestResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.bucket.filters.Filters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -35,14 +37,28 @@ public class SearchController extends AbstractRestController {
         final Pageable pageable = createPageable(requestParams, null);
         DeferredResult<RestResponse<SearchHit[]>> deferredResult = new DeferredResult<>();
         CompletableFuture
-                .supplyAsync(() -> searchService.search(searchTerm, pageable))
-                .whenCompleteAsync((result, throwable) -> deferredResult.setResult(createPage(pageable, result)));
+                .supplyAsync(() -> {
+                     return searchService.search(searchTerm, pageable);
+                })
+                .whenCompleteAsync((result, throwable) ->
+                        deferredResult.setResult(createPage(pageable, result)));
 
         return deferredResult;
     }
 
     private RestResponse<SearchHit[]> createPage(Pageable pageable, SearchResponse result) {
         long totalResultsCount = result.getHits().getTotalHits();
+        //logger.debug(result.toString());
+        //logger.debug(result.getAggregations().toString());
+        // sr is here your SearchResponse object
+        /*Filters agg = result.getAggregations().get("aggs");
+
+// For each entry
+        for (Filters.Bucket entry : agg.getBuckets()) {
+            String key = entry.getKey();            // bucket key
+            long docCount = entry.getDocCount();            // Doc count
+            logger.info("key [{}], doc_count [{}]", key, docCount);
+        }*/
         int pageSize = pageable.getPageSize();
         long totalPages = (long) Math.ceil(totalResultsCount / pageSize) - 1;
         ResponseMetadata responseMetadata = new ResponseMetadata(totalResultsCount,

@@ -6,11 +6,8 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.aggregations.AggregationBuilder;
-import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +62,7 @@ public class AggregatorSearchTests extends IndexerTestConfig {
     public void testFind() throws IOException {
 
         SearchResponse searchResponse = doSearch("terminator");
-      //  System.out.println(searchResponse.toString());
+        //  System.out.println(searchResponse.toString());
         assertThat(true).isTrue();
     }
 
@@ -74,56 +71,28 @@ public class AggregatorSearchTests extends IndexerTestConfig {
                 " doc[\'" + bucketName + ".name.untouched\'].value";
     }
 
-    void buildAggregations(XContentBuilder builder) throws IOException {
+    void buildAggregations(XContentBuilder builder, boolean scripted) throws IOException {
         builder
                 .startObject("aggs");
 
-        buildBucket("directors", builder);
-        buildBucket("writers", builder);
-        buildBucket("producers", builder);
-        buildBucket("genres", builder);
-        buildBucket("actors", builder);
+        buildBucket("directors", builder, scripted);
+        buildBucket("writers", builder, scripted);
+        buildBucket("producers", builder, scripted);
+        buildBucket("genres", builder, scripted);
+        buildBucket("actors", builder, scripted);
 
         builder.endObject();
     }
 
-    void buildScriptedAggregations(XContentBuilder builder) throws IOException {
-        builder
-                .startObject("aggs");
-
-        buildScriptedBucket("directors", builder);
-        buildScriptedBucket("writers", builder);
-        buildScriptedBucket("producers", builder);
-        buildScriptedBucket("genres", builder);
-        buildScriptedBucket("actors", builder);
-
-        builder.endObject();
-    }
-
-    void buildBucket(String bucketName, XContentBuilder builder) throws IOException {
-        builder.startObject(bucketName)
+    XContentBuilder buildBucket(String bucketName, XContentBuilder builder, boolean scripted) throws IOException {
+        return builder.startObject(bucketName)
                 .startObject("nested")
                 .field("path", bucketName)
                 .endObject()
                 .startObject("aggs")
                 .startObject(bucketName + "_by_name_and_id")
                 .startObject("terms")
-                .field("field", bucketName + ".name.untouched")
-                .endObject()
-                .endObject()
-                .endObject()
-                .endObject(); //end bucket
-    }
-
-    void buildScriptedBucket(String bucketName, XContentBuilder builder) throws IOException {
-        builder.startObject(bucketName)
-                .startObject("nested")
-                .field("path", bucketName)
-                .endObject()
-                .startObject("aggs")
-                .startObject(bucketName + "_by_name_and_id")
-                .startObject("terms")
-                .field("script", buildScriptStr(bucketName))
+                .field("field", (scripted) ? buildScriptStr(bucketName) : bucketName + ".name.untouched")
                 .endObject()
                 .endObject()
                 .endObject()
@@ -148,7 +117,7 @@ public class AggregatorSearchTests extends IndexerTestConfig {
         buildQuery(queryItem, builder);
 
         //create the aggregations object
-        buildAggregations(builder);
+        buildAggregations(builder, false);
         builder.endObject();
         System.out.println(builder.string());
     }
@@ -160,7 +129,7 @@ public class AggregatorSearchTests extends IndexerTestConfig {
         buildQuery(queryItem, builder);
 
         //create the aggregations object
-        buildScriptedAggregations(builder);
+        buildAggregations(builder, true);
         builder.endObject();
         return builder;
     }

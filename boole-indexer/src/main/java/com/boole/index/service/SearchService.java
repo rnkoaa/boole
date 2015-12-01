@@ -3,6 +3,8 @@ package com.boole.index.service;
 import org.elasticsearch.action.search.SearchResponse;
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
+
 /**
  * Created using Intellij IDE
  * Created by rnkoaa on 11/27/15.

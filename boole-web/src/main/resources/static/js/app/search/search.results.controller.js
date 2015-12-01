@@ -19,7 +19,7 @@ angular.module('booleApp')
 
             $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
-            $scope.addItem = function() {
+            $scope.addItem = function () {
                 var newItemNo = $scope.items.length + 1;
                 $scope.items.push('Item ' + newItemNo);
             };
@@ -56,6 +56,7 @@ angular.module('booleApp')
                 searchService.search($scope.searchTerms, $scope.selectedPage, $scope.itemsPerPage)
                     .then(function (response) {
                         //return response;
+
                         $log.log(response);
                         $scope.searchResults = response;
                         $scope.totalPages = response.meta.totalPages;
