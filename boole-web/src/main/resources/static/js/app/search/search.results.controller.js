@@ -61,6 +61,8 @@ angular.module('booleApp')
                         $scope.searchResults = response;
                         $scope.totalPages = response.meta.totalPages;
                         $scope.totalItems = response.meta.size;
+
+                        $log.log($scope.searchResults);
                     }, function (error) {
                         //return error;
                     });

@@ -7,6 +7,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.nested.Nested;
@@ -61,15 +62,8 @@ public class SearchServiceImpl implements SearchService {
 
 
         logger.debug("Request Sample: {}", builder.toString());
-        SearchResponse searchResponse = builder.execute().actionGet();
 
-        Nested nestedAgg = searchResponse.getAggregations().get("directors_aggs");
-        // Collection<Nested> buckets = nested.getBuckets();
-        Terms termsAggs = nestedAgg.getAggregations().get("directors_by_name_and_id");
-        termsAggs.getBuckets().forEach(termsAgg ->
-                System.out.println(termsAgg.getDocCount()));
-        System.out.println(searchResponse.toString());
-        return searchResponse;
+        return builder.execute().actionGet();
     }
 
     private void addAggregations(SearchRequestBuilder builder) {

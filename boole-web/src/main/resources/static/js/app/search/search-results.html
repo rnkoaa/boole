@@ -16,7 +16,7 @@
                 <h3>No Results Found for your Search </h3>
             </div>
             <div class="movie-list-card" ng-show="searchResults && searchResults.meta.size > 0"
-                 ng-repeat="searchResult in searchResults.data">
+                 ng-repeat="searchResult in searchResults.data.hits">
                 <h4>
                     <a ui-sref="movieDetail({ movieId: searchResult.source.id })"
                        ng-attr-title="{{searchResult.source.name}}">
