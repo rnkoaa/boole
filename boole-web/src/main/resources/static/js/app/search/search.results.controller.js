@@ -5,29 +5,32 @@ angular.module('booleApp')
     .controller('searchResultsController', ['$scope', '$log', 'searchService', '$state', '$stateParams',
         function ($scope, $log, searchService, $state, $stateParams) {
             $scope.oneAtATime = false;
+            $scope.aggregations = [];
 
-            $scope.groups = [
-                {
-                    title: 'Dynamic Group Header - 1',
-                    content: 'Dynamic Group Body - 1'
-                },
-                {
-                    title: 'Dynamic Group Header - 2',
-                    content: 'Dynamic Group Body - 2'
-                }
-            ];
-
-            $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-            $scope.addItem = function () {
-                var newItemNo = $scope.items.length + 1;
-                $scope.items.push('Item ' + newItemNo);
-            };
+            $scope.groups = [{
+                groupTitle: "Genres",
+                templateUrl: "file1.html"
+            }, {
+                groupTitle: "Directors",
+                templateUrl: "file1.html"
+            }, {
+                groupTitle: "Actors",
+                templateUrl: "file2.html"
+            }, {
+                groupTitle: "Writers",
+                templateUrl: "file3.html"
+            }, {
+                groupTitle: "Producers",
+                templateUrl: "file3.html"
+            }];
 
             $scope.status = {
-                isFirstOpen: true,
-                isFirstDisabled: false
+                isOpen: new Array($scope.groups.length)
             };
+
+            for (var i = 0; i < $scope.status.isOpen.length; i++) {
+                $scope.status.isOpen[i] = (i === 0);
+            }
 
 
             $scope.totalPages = 0;
@@ -62,10 +65,29 @@ angular.module('booleApp')
                         $scope.totalPages = response.meta.totalPages;
                         $scope.totalItems = response.meta.size;
 
-                        $log.log($scope.searchResults);
+                        //var keys = [];
+
+                        _.each(response.data.aggregations, function (val, key) {
+                            if (val) {
+                                $scope.aggregations.push({
+                                    title: getGroupTitle(key),
+                                    items: val
+                                });
+                            }
+                        });
+
+                       // $log.log(keys);
+                        console.log($scope.aggregations);
+                        //$log.log($scope.searchResults);
                     }, function (error) {
                         //return error;
                     });
+            }
+
+            //retrieve the group name from the aggregate.
+            function getGroupTitle(item) {
+                var _pos = item.indexOf('_');
+                return item.substr(0, _pos);
             }
 
             $scope.previousPage = function () {

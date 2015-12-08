@@ -58,64 +58,31 @@
     <div class="col-md-4 col-results-filter">
         <div class="filters-results">
             <h4>Filter Results</h4>
-            <script type="text/ng-template" id="group-template.html">
-                <div class="panel {{panelClass || 'panel-default'}}">
-                    <div class="panel-heading">
-                        <h4 class="panel-title" style="color:#fa39c3">
-                            <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()"
-                               uib-accordion-transclude="heading"><span
-                                    ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
-                        </h4>
-                    </div>
-                    <div class="panel-collapse collapse" uib-collapse="!isOpen">
-                        <div class="panel-body" style="text-align: right" ng-transclude></div>
-                    </div>
-                </div>
-            </script>
+            <uib-accordion class="accordion" close-others="oneAtATime">
+                <uib-accordion-group ng-repeat="aggregation in aggregations"
+                                     is-open="status.isOpen[$index]">
+                    <uib-accordion-heading>
+                        {{aggregation.title}} <i class="fa chevron-icon"
+                                                 ng-class="{'fa-chevron-down': status.isOpen[$index], 'fa-chevron-right': !status.isOpen[$index]}"></i>
+                    </uib-accordion-heading>
+                    <uib-accordion-body>
+                        <div class="checkbox" ng-repeat="aggregationItem in aggregation.items">
+                            <label>
+                                <input type="checkbox">
+                                <span class="checkbox-material">
+                                <span class="check"></span>
+                                </span>
+                                <span>
+                                {{aggregationItem.key | retrieveBody}}
+                                </span>
 
-            <uib-accordion close-others="oneAtATime">
-                <uib-accordion-group heading="Static Header, initially expanded"
-                                     is-open="status.isFirstOpen"
-                                     is-disabled="status.isFirstDisabled">
-                    This content is straight in the template.
-                </uib-accordion-group>
-                <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-                    {{group.content}}
-                </uib-accordion-group>
-                <uib-accordion-group heading="Dynamic Body Content">
-                    <p>The body of the uib-accordion group grows to fit the contents</p>
-                    <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add
-                        Item
-                    </button>
-                    <div ng-repeat="item in items">{{item}}</div>
-                </uib-accordion-group>
-                <uib-accordion-group is-open="status.open">
-                    <uib-accordion-heading>
-                        I can have markup, too! <i class="pull-right glyphicon"
-                                                   ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </uib-accordion-heading>
-                    This is just some content to illustrate fancy headings.
-                </uib-accordion-group>
-                <uib-accordion-group is-open="status.open">
-                    <uib-accordion-heading>
-                        I can have markup, too! <i class="pull-right glyphicon"
-                                                   ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </uib-accordion-heading>
-                    This is just some content to illustrate fancy headings.
-                </uib-accordion-group>
-                <uib-accordion-group is-open="status.open">
-                    <uib-accordion-heading>
-                        I can have markup, too! <i class="pull-right glyphicon"
-                                                   ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </uib-accordion-heading>
-                    This is just some content to illustrate fancy headings.
-                </uib-accordion-group>
-                <uib-accordion-group is-open="status.open">
-                    <uib-accordion-heading>
-                        I can have markup, too! <i class="pull-right glyphicon"
-                                                   ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </uib-accordion-heading>
-                    This is just some content to illustrate fancy headings.
+                                <span ng-attr-id="{{aggregationItem.key}}">
+                                    ({{aggregationItem.docCount}})
+                                </span>
+                            </label>
+                        </div>
+                    </uib-accordion-body>
+                    <!--<div ng-include="group.templateUrl"></div>-->
                 </uib-accordion-group>
             </uib-accordion>
         </div>

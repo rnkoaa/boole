@@ -211,4 +211,15 @@ angular.module('booleApp')
             }
             return title;
         };
+    })
+    .filter('retrieveBody', function () {
+        return function (key) {
+            return key.substr(key.indexOf('|') + 1, key.length);
+        };
+    })
+    .filter('retrieveKeyId', function () {
+        return function (key) {
+            var pipePos = key.indexOf('|');
+            return key.substr(0, pipePos);
+        }
     });
