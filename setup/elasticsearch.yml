@@ -1,0 +1,18 @@
+cluster:
+  name: boole-cluster
+http:
+  cors:
+    allow-origin: "*"
+    enabled: true
+  enabled: true
+network:
+  host: 0.0.0.0
+node:
+  name: vagrant-ubuntu-precise-32-es-01
+path:
+  data: /usr/share/elasticsearch/data/es-01
+
+script.inline: on
+script.indexed: on
+script.engine.groovy.inline.aggs: on
+#script.groovy.sandbox.enabled: false
