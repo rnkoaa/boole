@@ -4,7 +4,7 @@
       "filter": {
         "edgeNGram_filter": {
           "type": "edgeNGram",
-          "min_gram": 2,
+          "min_gram": 3,
           "max_gram": 20,
           "side": "front"
         }
@@ -80,7 +80,13 @@
               "type": "string",
               "include_in_all": true,
               "analyzer": "edge_nGram_analyzer",
-              "search_analyzer": "whitespace_analyzer"
+              "search_analyzer": "whitespace_analyzer",
+                "fields": {
+                    "untouched": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
             }
           }
         },
@@ -95,7 +101,13 @@
               "type": "string",
               "include_in_all": true,
               "analyzer": "edge_nGram_analyzer",
-              "search_analyzer": "whitespace_analyzer"
+              "search_analyzer": "whitespace_analyzer",
+                "fields": {
+                    "untouched": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
             }
           }
         },
@@ -107,13 +119,25 @@
           "type": "string",
           "include_in_all": true,
           "analyzer": "edge_nGram_analyzer",
-          "search_analyzer": "whitespace_analyzer"
+          "search_analyzer": "whitespace_analyzer",
+            "fields": {
+                "untouched": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
         },
         "name": {
           "type": "string",
           "include_in_all": true,
           "analyzer": "edge_nGram_analyzer",
-          "search_analyzer": "whitespace_analyzer"
+          "search_analyzer": "whitespace_analyzer",
+            "fields": {
+                "untouched": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
         },
         "producers": {
           "type": "nested",
@@ -126,7 +150,13 @@
               "type": "string",
               "include_in_all": true,
               "analyzer": "edge_nGram_analyzer",
-              "search_analyzer": "whitespace_analyzer"
+              "search_analyzer": "whitespace_analyzer",
+                "fields": {
+                    "untouched": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
             }
           }
         },
@@ -159,7 +189,13 @@
               "type": "string",
               "include_in_all": true,
               "analyzer": "edge_nGram_analyzer",
-              "search_analyzer": "whitespace_analyzer"
+              "search_analyzer": "whitespace_analyzer",
+                "fields": {
+                    "untouched": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
             }
           }
         },
