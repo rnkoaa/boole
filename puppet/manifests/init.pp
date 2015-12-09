@@ -42,6 +42,11 @@ class { 'elasticsearch':
     'network'                => {
       'host' => '0.0.0.0',
     },
+    'script'                 =>{  #allow scripting to be performed on the server
+      'inline' => 'on',
+      'indexed' => 'on',
+      'engine.groovy.inline.aggs' => 'on',
+    },
   },
   init_defaults => { }, # Init defaults hash
 }
