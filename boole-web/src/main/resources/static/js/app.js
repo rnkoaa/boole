@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
-    'ui.router', //for state management,
-    'ngSanitize',
-    'datatables' //for dynamic tables
-])
+        'ui.router', //for state management,
+        'ngSanitize',
+        'datatables', //for dynamic tables
+        'underscore'
+    ])
     .config(function ($httpProvider, $locationProvider, $urlRouterProvider, $stateProvider) {
         $httpProvider.interceptors.push('loadingInterceptor');
 
@@ -71,6 +72,7 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
             controllerAs: 'movieDetailController',
             templateUrl: '/js/app/movies/details.html'
         });
+
         $stateProvider.state('genreMovies', {
             url: '/discover/genres/:genreId?include',
             controller: 'movieDetailController',
@@ -99,6 +101,7 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
         $stateProvider.state('searchResults', {
             url: '/search?q&page&limit',
             controller: 'searchResultsController',
+            controllerAs: 'searchResultsCtrl',
             templateUrl: '/js/app/search/search-results.html',
             params: {
                 q: {

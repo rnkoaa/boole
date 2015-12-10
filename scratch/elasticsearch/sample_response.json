@@ -1,245 +1,298 @@
 {
-	"data" : {
-		"hits" : [{
-				"score" : 0.41262686,
-				"id" : "152931",
-				"type" : "movies",
-				"version" : -1,
-				"source" : {
-					"country" : "USA",
-					"year" : 1959,
-					"releaseDate" : "1959-12-01",
-					"directors" : [{
-							"name" : "Jack Kinney",
-							"id" : 212201
-						}
-					],
-					"runtime" : 75,
-					"language" : "English",
-					"synopsis" : "Mr. Magoo's ancestor, Abdul Aziz Magoo, is the uncle of Aladdin, and falls in love with a princess.",
-					"writers" : [{
-							"name" : "Margaret Schneider",
-							"id" : 231219
-						}, {
-							"name" : "Paul Schneider",
-							"id" : 56149
-						}, {
-							"name" : "Pete Burness",
-							"id" : 225433
-						}, {
-							"name" : "Leo Salkin",
-							"id" : 195642
-						}, {
-							"name" : "Lew Keller",
-							"id" : 231218
-						}, {
-							"name" : "Ed Nofziger",
-							"id" : 17091
-						}, {
-							"name" : "Dick Shaw",
-							"id" : 219288
-						}, {
-							"name" : "Ted Allen",
-							"id" : 159835
-						}, {
-							"name" : "Dick Kinney",
-							"id" : 220200
-						}, {
-							"name" : "Czenzi Ormonde",
-							"id" : 231021
-						}
-					],
-					"producers" : [{
-							"name" : "Jack Kinney",
-							"id" : 212201
-						}
-					],
-					"actors" : [{
-							"name" : "Hans Conried",
-							"id" : 34250
-						}, {
-							"name" : "Kathryn Grant",
-							"id" : 8043
-						}, {
-							"name" : "Dwayne Hickman",
-							"id" : 186860
-						}, {
-							"name" : "Jim Backus",
-							"id" : 17093
-						}
-					],
-					"review" : 6.2,
-					"genres" : [{
-							"name" : "Fantasy",
-							"id" : 13
-						}, {
-							"name" : "Animation",
-							"id" : 4
-						}
-					],
-					"name" : "1001 Arabian Nights",
-					"id" : 152931
-				},
-				"shard" : {
-					"nodeId" : "9moQtYUhToGhvSmlGurADQ",
-					"index" : "boole",
-					"shardId" : 1
-				},
-				"index" : "boole",
-				"sourceAsString" : "{\n   \"actors\": [\n      {\n         \"id\": 34250,\n         \"name\": \"Hans Conried\"\n      },\n      {\n         \"id\": 8043,\n         \"name\": \"Kathryn Grant\"\n      },\n      {\n         \"id\": 186860,\n         \"name\": \"Dwayne Hickman\"\n      },\n      {\n         \"id\": 17093,\n         \"name\": \"Jim Backus\"\n      }\n   ],\n   \"directors\": [\n      {\n         \"id\": 212201,\n         \"name\": \"Jack Kinney\"\n      }\n   ],\n   \"producers\": [\n      {\n         \"id\": 212201,\n         \"name\": \"Jack Kinney\"\n      }\n   ],\n   \"id\": 152931,\n   \"name\": \"1001 Arabian Nights\",\n   \"synopsis\": \"Mr. Magoo's ancestor, Abdul Aziz Magoo, is the uncle of Aladdin, and falls in love with a princess.\",\n   \"country\": \"USA\",\n   \"year\": 1959,\n   \"review\": 6.2,\n   \"runtime\": 75,\n   \"language\": \"English\",\n   \"releaseDate\": \"1959-12-01\",\n   \"genres\": [\n      {\n         \"id\": 13,\n         \"name\": \"Fantasy\"\n      },\n      {\n         \"id\": 4,\n         \"name\": \"Animation\"\n      }\n   ],\n   \"writers\": [\n      {\n         \"id\": 231219,\n         \"name\": \"Margaret Schneider\"\n      },\n      {\n         \"id\": 56149,\n         \"name\": \"Paul Schneider\"\n      },\n      {\n         \"id\": 225433,\n         \"name\": \"Pete Burness\"\n      },\n      {\n         \"id\": 195642,\n         \"name\": \"Leo Salkin\"\n      },\n      {\n         \"id\": 231218,\n         \"name\": \"Lew Keller\"\n      },\n      {\n         \"id\": 17091,\n         \"name\": \"Ed Nofziger\"\n      },\n      {\n         \"id\": 219288,\n         \"name\": \"Dick Shaw\"\n      },\n      {\n         \"id\": 159835,\n         \"name\": \"Ted Allen\"\n      },\n      {\n         \"id\": 220200,\n         \"name\": \"Dick Kinney\"\n      },\n      {\n         \"id\": 231021,\n         \"name\": \"Czenzi Ormonde\"\n      }\n   ]\n}\n",
-				"sourceEmpty" : false
-			}, {
-				"score" : 0.33199692,
-				"id" : "27626",
-				"type" : "movies",
-				"version" : -1,
-				"source" : {
-					"country" : "USA",
-					"year" : 1998,
-					"directors" : [{
-							"name" : "Igor Kovacevich",
-							"id" : 63666
-						}
-					],
-					"runtime" : 75,
-					"language" : "English",
-					"synopsis" : "In a small, rural town in the foothills of the Appalachian mountains, Razz and Jezebel dream of escaping to a better life. Jezebel has a past she cannot outrun, Razz has a temper he cannot control. It seems the only thing they are good at is getting into trouble with the local kingfish, J.J. Razz and Jezebel are up against the corrupt politics of a small town ruled by J.J., who has his hands in everybody's pockets.",
-					"writers" : [{
-							"name" : "Hans Frank",
-							"id" : 63667
-						}
-					],
-					"producers" : [{
-							"name" : "Igor Kovacevich",
-							"id" : 63666
-						}
-					],
-					"actors" : [{
-							"name" : "John Hutchison",
-							"id" : 63670
-						}, {
-							"name" : "Charlie Lewis",
-							"id" : 63669
-						}, {
-							"name" : "Hans Frank",
-							"id" : 63667
-						}, {
-							"name" : "Michelle Murrey",
-							"id" : 63668
-						}
-					],
-					"review" : 2.9,
-					"genres" : [{
-							"name" : "Drama",
-							"id" : 3
-						}
-					],
-					"name" : "1000 Miles From Nowhere",
-					"id" : 27626
-				},
-				"shard" : {
-					"nodeId" : "9moQtYUhToGhvSmlGurADQ",
-					"index" : "boole",
-					"shardId" : 4
-				},
-				"index" : "boole",
-				"sourceAsString" : "{\n\"actors\" : [{\n\"id\" : 63670,\n\"name\" : \"John Hutchison\"\n}, {\n\"id\" : 63669,\n\"name\" : \"Charlie Lewis\"\n}, {\n\"id\" : 63667,\n\"name\" : \"Hans Frank\"\n}, {\n\"id\" : 63668,\n\"name\" : \"Michelle Murrey\"\n}\n],\n\"directors\" : [{\n\"id\" : 63666,\n\"name\" : \"Igor Kovacevich\"\n}\n],\n\"producers\" : [{\n\"id\" : 63666,\n\"name\" : \"Igor Kovacevich\"\n}\n],\n\"id\" : 27626,\n\"name\" : \"1000 Miles From Nowhere\",\n\"synopsis\" : \"In a small, rural town in the foothills of the Appalachian mountains, Razz and Jezebel dream of escaping to a better life. Jezebel has a past she cannot outrun, Razz has a temper he cannot control. It seems the only thing they are good at is getting into trouble with the local kingfish, J.J. Razz and Jezebel are up against the corrupt politics of a small town ruled by J.J., who has his hands in everybody's pockets.\",\n\"country\" : \"USA\",\n\"year\" : 1998,\n\"review\" : 2.9,\n\"runtime\" : 75,\n\"language\" : \"English\",\n\"genres\" : [{\n\"id\" : 3,\n\"name\" : \"Drama\"\n}\n],\n\"writers\" : [{\n\"id\" : 63667,\n\"name\" : \"Hans Frank\"\n}\n]\n}\n",
-				"sourceEmpty" : false
-			}
-		],
-		"aggregations" : {
-			"directors_aggs" : [{
-					"key" : "212201|Jack Kinney",
-					"docCount" : 1
-				}, {
-					"key" : "63666|Igor Kovacevich",
-					"docCount" : 1
-				}
-			],
-			"genres_aggs" : [{
-					"key" : "13|Fantasy",
-					"docCount" : 1
-				}, {
-					"key" : "3|Drama",
-					"docCount" : 1
-				}, {
-					"key" : "4|Animation",
-					"docCount" : 1
-				}
-			],
-			"producers_aggs" : [{
-					"key" : "212201|Jack Kinney",
-					"docCount" : 1
-				}, {
-					"key" : "63666|Igor Kovacevich",
-					"docCount" : 1
-				}
-			],
-			"actors_aggs" : [{
-					"key" : "17093|Jim Backus",
-					"docCount" : 1
-				}, {
-					"key" : "186860|Dwayne Hickman",
-					"docCount" : 1
-				}, {
-					"key" : "34250|Hans Conried",
-					"docCount" : 1
-				}, {
-					"key" : "63667|Hans Frank",
-					"docCount" : 1
-				}, {
-					"key" : "63668|Michelle Murrey",
-					"docCount" : 1
-				}, {
-					"key" : "63669|Charlie Lewis",
-					"docCount" : 1
-				}, {
-					"key" : "63670|John Hutchison",
-					"docCount" : 1
-				}, {
-					"key" : "8043|Kathryn Grant",
-					"docCount" : 1
-				}
-			],
-			"writers_aggs" : [{
-					"key" : "159835|Ted Allen",
-					"docCount" : 1
-				}, {
-					"key" : "17091|Ed Nofziger",
-					"docCount" : 1
-				}, {
-					"key" : "195642|Leo Salkin",
-					"docCount" : 1
-				}, {
-					"key" : "219288|Dick Shaw",
-					"docCount" : 1
-				}, {
-					"key" : "220200|Dick Kinney",
-					"docCount" : 1
-				}, {
-					"key" : "225433|Pete Burness",
-					"docCount" : 1
-				}, {
-					"key" : "231021|Czenzi Ormonde",
-					"docCount" : 1
-				}, {
-					"key" : "231218|Lew Keller",
-					"docCount" : 1
-				}, {
-					"key" : "231219|Margaret Schneider",
-					"docCount" : 1
-				}, {
-					"key" : "56149|Paul Schneider",
-					"docCount" : 1
-				}
-			]
-		}
-	},
-	"meta" : {
-		"size" : 2,
-		"totalElements" : 25,
-		"totalPages" : 1,
-		"page" : 1,
-		"requestTimeTotal" : "18ms"
-	}
+  "data": {
+    "hits": [
+      {
+        "score": 0.41262686,
+        "id": "152931",
+        "type": "movies",
+        "version": -1,
+        "source": {
+          "country": "USA",
+          "year": 1959,
+          "releaseDate": "1959-12-01",
+          "directors": [
+            {
+              "name": "Jack Kinney",
+              "id": 212201
+            }
+          ],
+          "runtime": 75,
+          "language": "English",
+          "synopsis": "Mr. Magoo's ancestor, Abdul Aziz Magoo, is the uncle of Aladdin, and falls in love with a princess.",
+          "writers": [
+            {
+              "name": "Margaret Schneider",
+              "id": 231219
+            },
+            {
+              "name": "Paul Schneider",
+              "id": 56149
+            },
+            {
+              "name": "Pete Burness",
+              "id": 225433
+            },
+            {
+              "name": "Leo Salkin",
+              "id": 195642
+            },
+            {
+              "name": "Lew Keller",
+              "id": 231218
+            },
+            {
+              "name": "Ed Nofziger",
+              "id": 17091
+            },
+            {
+              "name": "Dick Shaw",
+              "id": 219288
+            },
+            {
+              "name": "Ted Allen",
+              "id": 159835
+            },
+            {
+              "name": "Dick Kinney",
+              "id": 220200
+            },
+            {
+              "name": "Czenzi Ormonde",
+              "id": 231021
+            }
+          ],
+          "producers": [
+            {
+              "name": "Jack Kinney",
+              "id": 212201
+            }
+          ],
+          "actors": [
+            {
+              "name": "Hans Conried",
+              "id": 34250
+            },
+            {
+              "name": "Kathryn Grant",
+              "id": 8043
+            },
+            {
+              "name": "Dwayne Hickman",
+              "id": 186860
+            },
+            {
+              "name": "Jim Backus",
+              "id": 17093
+            }
+          ],
+          "review": 6.2,
+          "genres": [
+            {
+              "name": "Fantasy",
+              "id": 13
+            },
+            {
+              "name": "Animation",
+              "id": 4
+            }
+          ],
+          "name": "1001 Arabian Nights",
+          "id": 152931
+        },
+        "shard": {
+          "nodeId": "9moQtYUhToGhvSmlGurADQ",
+          "index": "boole",
+          "shardId": 1
+        },
+        "index": "boole",
+        "sourceAsString": "{\n   \"actors\": [\n      {\n         \"id\": 34250,\n         \"name\": \"Hans Conried\"\n      },\n      {\n         \"id\": 8043,\n         \"name\": \"Kathryn Grant\"\n      },\n      {\n         \"id\": 186860,\n         \"name\": \"Dwayne Hickman\"\n      },\n      {\n         \"id\": 17093,\n         \"name\": \"Jim Backus\"\n      }\n   ],\n   \"directors\": [\n      {\n         \"id\": 212201,\n         \"name\": \"Jack Kinney\"\n      }\n   ],\n   \"producers\": [\n      {\n         \"id\": 212201,\n         \"name\": \"Jack Kinney\"\n      }\n   ],\n   \"id\": 152931,\n   \"name\": \"1001 Arabian Nights\",\n   \"synopsis\": \"Mr. Magoo's ancestor, Abdul Aziz Magoo, is the uncle of Aladdin, and falls in love with a princess.\",\n   \"country\": \"USA\",\n   \"year\": 1959,\n   \"review\": 6.2,\n   \"runtime\": 75,\n   \"language\": \"English\",\n   \"releaseDate\": \"1959-12-01\",\n   \"genres\": [\n      {\n         \"id\": 13,\n         \"name\": \"Fantasy\"\n      },\n      {\n         \"id\": 4,\n         \"name\": \"Animation\"\n      }\n   ],\n   \"writers\": [\n      {\n         \"id\": 231219,\n         \"name\": \"Margaret Schneider\"\n      },\n      {\n         \"id\": 56149,\n         \"name\": \"Paul Schneider\"\n      },\n      {\n         \"id\": 225433,\n         \"name\": \"Pete Burness\"\n      },\n      {\n         \"id\": 195642,\n         \"name\": \"Leo Salkin\"\n      },\n      {\n         \"id\": 231218,\n         \"name\": \"Lew Keller\"\n      },\n      {\n         \"id\": 17091,\n         \"name\": \"Ed Nofziger\"\n      },\n      {\n         \"id\": 219288,\n         \"name\": \"Dick Shaw\"\n      },\n      {\n         \"id\": 159835,\n         \"name\": \"Ted Allen\"\n      },\n      {\n         \"id\": 220200,\n         \"name\": \"Dick Kinney\"\n      },\n      {\n         \"id\": 231021,\n         \"name\": \"Czenzi Ormonde\"\n      }\n   ]\n}\n",
+        "sourceEmpty": false
+      },
+      {
+        "score": 0.33199692,
+        "id": "27626",
+        "type": "movies",
+        "version": -1,
+        "source": {
+          "country": "USA",
+          "year": 1998,
+          "directors": [
+            {
+              "name": "Igor Kovacevich",
+              "id": 63666
+            }
+          ],
+          "runtime": 75,
+          "language": "English",
+          "synopsis": "In a small, rural town in the foothills of the Appalachian mountains, Razz and Jezebel dream of escaping to a better life. Jezebel has a past she cannot outrun, Razz has a temper he cannot control. It seems the only thing they are good at is getting into trouble with the local kingfish, J.J. Razz and Jezebel are up against the corrupt politics of a small town ruled by J.J., who has his hands in everybody's pockets.",
+          "writers": [
+            {
+              "name": "Hans Frank",
+              "id": 63667
+            }
+          ],
+          "producers": [
+            {
+              "name": "Igor Kovacevich",
+              "id": 63666
+            }
+          ],
+          "actors": [
+            {
+              "name": "John Hutchison",
+              "id": 63670
+            },
+            {
+              "name": "Charlie Lewis",
+              "id": 63669
+            },
+            {
+              "name": "Hans Frank",
+              "id": 63667
+            },
+            {
+              "name": "Michelle Murrey",
+              "id": 63668
+            }
+          ],
+          "review": 2.9,
+          "genres": [
+            {
+              "name": "Drama",
+              "id": 3
+            }
+          ],
+          "name": "1000 Miles From Nowhere",
+          "id": 27626
+        },
+        "shard": {
+          "nodeId": "9moQtYUhToGhvSmlGurADQ",
+          "index": "boole",
+          "shardId": 4
+        },
+        "index": "boole",
+        "sourceAsString": "{\n\"actors\" : [{\n\"id\" : 63670,\n\"name\" : \"John Hutchison\"\n}, {\n\"id\" : 63669,\n\"name\" : \"Charlie Lewis\"\n}, {\n\"id\" : 63667,\n\"name\" : \"Hans Frank\"\n}, {\n\"id\" : 63668,\n\"name\" : \"Michelle Murrey\"\n}\n],\n\"directors\" : [{\n\"id\" : 63666,\n\"name\" : \"Igor Kovacevich\"\n}\n],\n\"producers\" : [{\n\"id\" : 63666,\n\"name\" : \"Igor Kovacevich\"\n}\n],\n\"id\" : 27626,\n\"name\" : \"1000 Miles From Nowhere\",\n\"synopsis\" : \"In a small, rural town in the foothills of the Appalachian mountains, Razz and Jezebel dream of escaping to a better life. Jezebel has a past she cannot outrun, Razz has a temper he cannot control. It seems the only thing they are good at is getting into trouble with the local kingfish, J.J. Razz and Jezebel are up against the corrupt politics of a small town ruled by J.J., who has his hands in everybody's pockets.\",\n\"country\" : \"USA\",\n\"year\" : 1998,\n\"review\" : 2.9,\n\"runtime\" : 75,\n\"language\" : \"English\",\n\"genres\" : [{\n\"id\" : 3,\n\"name\" : \"Drama\"\n}\n],\n\"writers\" : [{\n\"id\" : 63667,\n\"name\" : \"Hans Frank\"\n}\n]\n}\n",
+        "sourceEmpty": false
+      }
+    ],
+    "aggregations": {
+      "directors_aggs": [
+        {
+          "key": "212201|Jack Kinney",
+          "docCount": 1
+        },
+        {
+          "key": "63666|Igor Kovacevich",
+          "docCount": 1
+        }
+      ],
+      "genres_aggs": [
+        {
+          "key": "13|Fantasy",
+          "docCount": 1
+        },
+        {
+          "key": "3|Drama",
+          "docCount": 1
+        },
+        {
+          "key": "4|Animation",
+          "docCount": 1
+        }
+      ],
+      "producers_aggs": [
+        {
+          "key": "212201|Jack Kinney",
+          "docCount": 1
+        },
+        {
+          "key": "63666|Igor Kovacevich",
+          "docCount": 1
+        }
+      ],
+      "actors_aggs": [
+        {
+          "key": "17093|Jim Backus",
+          "docCount": 1
+        },
+        {
+          "key": "186860|Dwayne Hickman",
+          "docCount": 1
+        },
+        {
+          "key": "34250|Hans Conried",
+          "docCount": 1
+        },
+        {
+          "key": "63667|Hans Frank",
+          "docCount": 1
+        },
+        {
+          "key": "63668|Michelle Murrey",
+          "docCount": 1
+        },
+        {
+          "key": "63669|Charlie Lewis",
+          "docCount": 1
+        },
+        {
+          "key": "63670|John Hutchison",
+          "docCount": 1
+        },
+        {
+          "key": "8043|Kathryn Grant",
+          "docCount": 1
+        }
+      ],
+      "writers_aggs": [
+        {
+          "key": "159835|Ted Allen",
+          "docCount": 1
+        },
+        {
+          "key": "17091|Ed Nofziger",
+          "docCount": 1
+        },
+        {
+          "key": "195642|Leo Salkin",
+          "docCount": 1
+        },
+        {
+          "key": "219288|Dick Shaw",
+          "docCount": 1
+        },
+        {
+          "key": "220200|Dick Kinney",
+          "docCount": 1
+        },
+        {
+          "key": "225433|Pete Burness",
+          "docCount": 1
+        },
+        {
+          "key": "231021|Czenzi Ormonde",
+          "docCount": 1
+        },
+        {
+          "key": "231218|Lew Keller",
+          "docCount": 1
+        },
+        {
+          "key": "231219|Margaret Schneider",
+          "docCount": 1
+        },
+        {
+          "key": "56149|Paul Schneider",
+          "docCount": 1
+        }
+      ]
+    }
+  },
+  "meta": {
+    "size": 2,
+    "totalElements": 25,
+    "totalPages": 1,
+    "page": 1,
+    "requestTimeTotal": "18ms"
+  }
 }

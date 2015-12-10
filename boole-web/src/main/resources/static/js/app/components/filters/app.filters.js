@@ -219,7 +219,6 @@ angular.module('booleApp')
     })
     .filter('retrieveKeyId', function () {
         return function (key) {
-            var pipePos = key.indexOf('|');
-            return key.substr(0, pipePos);
+            return key.substr(0, key.indexOf('|'));
         }
     });
