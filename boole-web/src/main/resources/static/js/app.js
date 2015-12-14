@@ -99,7 +99,7 @@ angular.module('booleApp', ['ui.bootstrap', // for modal dialogs
         });
 
         $stateProvider.state('searchResults', {
-            url: '/search?q&page&limit',
+            url: '/search?q&page&limit&genres&directors&producers&actors&writers',
             controller: 'searchResultsController',
             controllerAs: 'searchResultsCtrl',
             templateUrl: '/js/app/search/search-results.html',

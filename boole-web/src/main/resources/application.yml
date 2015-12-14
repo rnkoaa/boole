@@ -31,12 +31,15 @@ spring:
         show_sql: true
 
         hibernate:
-          ddl-auto: none
+            ddl-auto: none
 
         properties:
+            hibernate.jdbc.batch_size: 10
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
+            hibernate.order_insert: true
+            hibernate.order_updates: true
             hibernate.temp.use_jdbc_metadata_defaults: false #speeds up postgresql startup
             #hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     mail:

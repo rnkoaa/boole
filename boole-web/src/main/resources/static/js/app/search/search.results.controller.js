@@ -3,13 +3,32 @@
 //NavBarController
 angular.module('booleApp')
     .controller('searchResultsController', ['$log', 'searchService', '$state', '$stateParams',
-        'aggsService',
-        function ($log, searchService, $state, $stateParams, aggsService) {
+        'aggsService', '$filter',
+        function ($log, searchService, $state, $stateParams, aggsService, $filter) {
             var searchResultsCtrl = this;
             searchResultsCtrl.oneAtATime = false;
             searchResultsCtrl.aggregations = [];
             searchResultsCtrl.selectedAggregations = [];
             searchResultsCtrl.requestParams = {};
+            searchResultsCtrl.requestParams.directors = $stateParams.directors || '';
+            searchResultsCtrl.requestParams.producers = $stateParams.producers || '';
+            searchResultsCtrl.requestParams.writers = $stateParams.writers || '';
+            searchResultsCtrl.requestParams.genres = $stateParams.genres || '';
+            searchResultsCtrl.requestParams.actors = $stateParams.actors || '';
+
+            //capture selected filters
+            var selectedFilters = [];
+            _.each(searchResultsCtrl.requestParams, function (val, objKey) {
+                if (val && val !== '') {
+                    var splitStr = val.split(',');
+                    var obj = {};
+                    obj.key = objKey;
+                    obj.value = splitStr;
+                    selectedFilters.push(obj);
+                }
+            });
+            console.log("Selected Filters: ", JSON.stringify(selectedFilters));
+
 
             searchResultsCtrl.status = {
                 isOpen: new Array(searchResultsCtrl.aggregations.length)
@@ -39,15 +58,29 @@ angular.module('booleApp')
             //do a search based on the user's request
             search(searchResultsCtrl);
 
-            searchResultsCtrl.selectItem = function (aggregations, aggregationItem) {
-                searchResultsCtrl.selectedAggregations =
-                    aggsService.selectItem(searchResultsCtrl.selectedAggregations, aggregationItem, aggregations);
+            //checks to see if the item has already been selected.
+            searchResultsCtrl.isSelected = function (aggregationTitle, aggregationItemKey) {
+                var found = _.findWhere(selectedFilters, {key: aggregationTitle});
+                if (found) {
+                    var aggregationItemName = $filter('retrieveBody')(aggregationItemKey);
+                    return found.value.indexOf(aggregationItemName) > -1;
+                }
+                return false;
+            };
 
-                console.log(searchResultsCtrl.selectedAggregations);
+            searchResultsCtrl.selectItem = function (availableAggs, selectedAgg) {
+                 selectedFilters = aggsService.selectItem(selectedFilters, selectedAgg, availableAggs);
 
-                var requestParams = aggsService.prepareRequestParams(searchResultsCtrl.selectedAggregations, {});
-                console.log(requestParams);
-
+                //console.log("selected filters: ", JSON.stringify(selectedFilters));
+                var requestParams = aggsService.prepareRequestParams(selectedFilters, searchResultsCtrl.requestParams);
+                //console.log("request params: ", JSON.stringify(requestParams));
+                /*_.each(requestParams, function (val, key) {
+                    if (val) {
+                        searchResultsCtrl.requestParams[key] = val;
+                    }
+                });*/
+                //$state.go('.', searchResultsCtrl.requestParams, {reload: false});
+               // console.log(JSON.stringify(selectedFilters));
             };
 
             searchResultsCtrl.previousPage = function () {
@@ -77,7 +110,7 @@ angular.module('booleApp')
                         searchResultsCtrl.totalPages = response.meta.totalPages;
                         searchResultsCtrl.totalItems = response.meta.size;
 
-                        searchResultsCtrl.aggregations =  aggsService.availableAggs(response);
+                        searchResultsCtrl.aggregations = aggsService.availableAggs(response);
 
                     }, function (error) {
                         //return error;

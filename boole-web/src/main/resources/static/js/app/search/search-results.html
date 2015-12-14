@@ -7,7 +7,8 @@
         <div class="row discover_results movie-list-results">
             <img id="spinner" ng-src="/img/spin.gif" data-ng-if="loading"/>
 
-            <div class="movie-search-no-result" ng-if="!searchResultsCtrl.searchResults && !searchResultsCtrl.hasSearched">
+            <div class="movie-search-no-result"
+                 ng-if="!searchResultsCtrl.searchResults && !searchResultsCtrl.hasSearched">
                 <h3>Please Provide a search Term for results </h3>
                 <span>{{searchResultsCtrl.hasSearched}}</span>
             </div>
@@ -15,7 +16,8 @@
                  ng-if="searchResultsCtrl.searchResults && searchResultsCtrl.searchResults.meta.size == 0">
                 <h3>No Results Found for your Search </h3>
             </div>
-            <div class="movie-list-card" ng-show="searchResultsCtrl.searchResults && searchResultsCtrl.searchResults.meta.size > 0"
+            <div class="movie-list-card"
+                 ng-show="searchResultsCtrl.searchResults && searchResultsCtrl.searchResults.meta.size > 0"
                  ng-repeat="searchResult in searchResultsCtrl.searchResults.data.hits">
                 <h4>
                     <a ui-sref="movieDetail({ movieId: searchResult.source.id })"
@@ -64,12 +66,14 @@
                     <uib-accordion-heading>
                         {{aggregation.title}}
                         <i class="fa chevron-icon"
-                                                 ng-class="{'fa-chevron-down': status.isOpen[$index], 'fa-chevron-right': !status.isOpen[$index]}"></i>
+                           ng-class="{'fa-chevron-down': status.isOpen[$index], 'fa-chevron-right': !status.isOpen[$index]}"></i>
                     </uib-accordion-heading>
                     <uib-accordion-body>
                         <div class="checkbox" ng-repeat="aggregationItem in aggregation.items">
                             <label>
-                                <input type="checkbox" ng-click="searchResultsCtrl.selectItem(aggregation, aggregationItem)">
+                                <input type="checkbox"
+                                       ng-checked="searchResultsCtrl.isSelected(aggregation.title, aggregationItem.key)"
+                                       ng-click="searchResultsCtrl.selectItem(aggregation, aggregationItem)">
                                 <span class="checkbox-material">
                                 <span class="check"></span>
                                 </span>
@@ -91,18 +95,22 @@
     <div class="row movie-results-pagination">
         <div class="container">
             <div class="col-sm-9 pager-left">
-                <p class="text-left">Currently on page: {{searchResultsCtrl.selectedPage}} of {{searchResultsCtrl.totalPages}} <span
-                        class="total_results grey">({{searchResultsCtrl.totalItems}} results)</span></p>
+                <p class="text-left">Currently on page: {{searchResultsCtrl.selectedPage}} of
+                    {{searchResultsCtrl.totalPages}} <span
+                            class="total_results grey">({{searchResultsCtrl.totalItems}} results)</span>
+                </p>
             </div>
             <div class="col-sm-3">
                 <ul class="pager">
                     <li ng-class="{disabled: searchResultsCtrl.noPrevious()||ngDisabled}">
-                        <a class="withripple" ng-click="searchResultsCtrl.previousPage()">&laquo; Previous
+                        <a class="withripple" ng-click="searchResultsCtrl.previousPage()">&laquo;
+                            Previous
                             <div class="ripple-wrapper"></div>
                         </a>
                     </li>
                     <li ng-class="{disabled: searchResultsCtrl.noNext()||ngDisabled}">
-                        <a class="withripple" ng-click="searchResultsCtrl.nextPage()">Next &raquo;</a>
+                        <a class="withripple"
+                           ng-click="searchResultsCtrl.nextPage()">Next &raquo;</a>
                     </li>
                 </ul>
             </div>

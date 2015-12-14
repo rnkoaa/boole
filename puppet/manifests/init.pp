@@ -5,6 +5,7 @@ class apt_update {
   }
 }
 
+
 class othertools {
   package { "git":
     ensure  => latest,
@@ -30,6 +31,12 @@ class othertools {
     ensure  => present,
     require => Exec["aptGetUpdate"]
   }
+}
+
+
+class { 'redis':
+  bind        => '0.0.0.0';
+  #masterauth  => 'secret';
 }
 
 class { 'elasticsearch':

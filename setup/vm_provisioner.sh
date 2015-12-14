@@ -25,22 +25,24 @@ sudo apt-get update
 
 mkdir -p /etc/puppet/modules;
 echo "Beginning install puppet modules..."
-#if [ ! -d /etc/puppet/modules/file_concat ]; then
-#    echo "Installing ispavailability module..."
-#    puppet module install ispavailability/file_concat
-#    echo "Done installing ispavailability."
-#fi
-
-if [ ! -d /etc/puppet/modules/apt ]; then
-    echo "Installing apt module..."
-    puppet module install puppetlabs-apt --version 2.2.0
-    echo "Done installing apt."
-fi
 
 if [ ! -d /etc/puppet/modules/stdlib ]; then
     echo "Installing stdlib module..."
-    puppet module install puppetlabs-stdlib --version 4.9.0
+    puppet module install puppetlabs-stdlib
     echo "Done installing stdlib."
+fi
+
+
+if [ ! -d /etc/puppet/modules/apt ]; then
+    echo "Installing apt module..."
+    puppet module install puppetlabs-apt
+    echo "Done installing apt."
+fi
+
+if [ ! -d /etc/puppet/modules/epel ]; then
+    echo "Installing epel module..."
+    puppet module install stahnma-epel
+    echo "Done installing epel."
 fi
 
 if [ ! -d /etc/puppet/modules/firewall ]; then
@@ -65,6 +67,12 @@ if [ ! -d /etc/puppet/modules/elasticsearch ]; then
     echo "Installing elasticsearch module..."
     puppet module install elasticsearch-elasticsearch -v 0.9.9 --ignore-dependencies
     echo "Done installing elasticsearch."
+fi
+
+if [ ! -d /etc/puppet/modules/redis ]; then
+    echo "Installing redis module..."
+    puppet module install arioch-redis
+    echo "Done installing redis."
 fi
 
 echo "done installing all puppet modules."

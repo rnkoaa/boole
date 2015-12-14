@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('booleApp')
-    .service('aggsService', ['_', function(_) {
+    .service('aggsService', ['_', function (_) {
         var aggsService = {};
 
         //used to parse raw elasticsearch results
-        aggsService.rawAvailableAggs = function(result) {
+        aggsService.rawAvailableAggs = function (result) {
             var aggs = result.data.aggregations;
             var groups = [];
-            _.each(aggs, function(val, key) {
+            _.each(aggs, function (val, key) {
                 if (val) {
                     var obj = {};
                     obj.groupName = sanitizeGroupName(key);
@@ -21,7 +21,7 @@ angular.module('booleApp')
             return groups;
         };
 
-        aggsService.availableAggs = function(response) {
+        aggsService.availableAggs = function (response) {
             var aggregations = [];
             _.each(response.data.aggregations, function (val, key) {
                 if (val) {
@@ -38,45 +38,50 @@ angular.module('booleApp')
         /**
          when an item is checked, process add the bucket if the
          main aggregation is already selected.
+         selectedFilters, selectedAgg, availableAggs
          */
-        aggsService.selectItem = function(selectedAggs, selectedAggregation, aggregations) {
-            console.log(selectedAggregation);
+        aggsService.selectItem = function (selectedFilters, selectedAggregation, aggregations) {
             var selectedAgg = {
-                title: aggregations.title
+                key: aggregations.title
             };
-            var existingAgg = _.findWhere(selectedAggs, selectedAgg);
+            var existingAgg = _.findWhere(selectedFilters, selectedAgg);
 
             if (_.isUndefined(existingAgg) || existingAgg === null) {
                 existingAgg = selectedAgg;
-                existingAgg.buckets = [];
-                selectedAggs.push(existingAgg);
+                existingAgg.value = [];
+                selectedFilters.push(existingAgg);
             } else {
-                if (_.isUndefined(existingAgg.buckets)) {
-                    existingAgg.buckets = [];
+                if (_.isUndefined(existingAgg.value)) {
+                    existingAgg.value = [];
                 }
             }
 
-            var existingBuckets = existingAgg.buckets;
+            var existingBuckets = existingAgg.value;
             var isBucketSelected = isAlreadySelected(existingBuckets, stripBucketName(selectedAggregation.key));
             if (isBucketSelected) {
                 //remove this item from the selected lists
+                console.log('existing buckets has length more than 1');
                 var keyIndex = existingBuckets.indexOf(stripBucketName(selectedAggregation.key));
-                existingBuckets.splice(keyIndex, keyIndex + 1);
+                console.log("Key Index: ", keyIndex);
+                existingBuckets.splice(keyIndex, 1);
+                console.log("existing bucket: ", JSON.stringify(existingBuckets));
             } else {
                 existingBuckets.push(stripBucketName(selectedAggregation.key));
             }
-            return selectedAggs;
+
+            existingAgg.value = existingBuckets;
+            return selectedFilters;
         };
 
 
-        aggsService.prepareRequestParams = function(selectedParams, requestParams) {
+        aggsService.prepareRequestParams = function (selectedParams, requestParams) {
             if (_.isUndefined(requestParams))
                 requestParams = {};
 
-            _.each(selectedParams, function(item) {
-                var buckets = item.buckets;
+            _.each(selectedParams, function (item) {
+                var buckets = item.value;
                 if (!_.isUndefined(buckets) && buckets.length > 0) {
-                    requestParams[item.title] = buckets.join(',');
+                    requestParams[item.key] = buckets.join(',');
                 }
             });
             return requestParams;
@@ -86,7 +91,8 @@ angular.module('booleApp')
          * Check to see if a bucket has already been selected.
          */
         function isAlreadySelected(buckets, bucketKey) {
-            return _.indexOf(buckets, bucketKey) > -1;
+            //return _.indexOf(buckets, bucketKey) > -1;
+            return buckets.indexOf(bucketKey) > -1;
         }
 
         /**
@@ -105,5 +111,6 @@ angular.module('booleApp')
             var _pos = val.indexOf('|');
             return val.substr(_pos + 1, val.length);
         }
+
         return aggsService;
     }]);
