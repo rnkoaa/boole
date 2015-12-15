@@ -70,7 +70,6 @@ angular.module('booleApp')
                  selectedFilters = aggsService.selectItem(selectedFilters, selectedAgg, availableAggs);
 
                 var requestParams = aggsService.prepareRequestParams(selectedFilters);
-                console.log("request params: ", JSON.stringify(requestParams));
                 requestParams.q = searchResultsCtrl.searchTerms;
                 $state.transitionTo('searchResults', requestParams, { notify: false });
             };

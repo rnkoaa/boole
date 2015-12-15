@@ -32,6 +32,7 @@ public class SearchController extends AbstractRestController {
     public DeferredResult<RestResponse<SearchRestResponse>> simpleSearch(@RequestParam("q") final String searchTerm,
                                                                          @RequestParam Map<String, String> requestParams) {
         logger.info("Request received for Search Param: {}", searchTerm);
+        spit(requestParams);
         final Pageable pageable = createPageable(requestParams, null);
         DeferredResult<RestResponse<SearchRestResponse>> deferredResult = new DeferredResult<>();
         CompletableFuture
@@ -41,6 +42,14 @@ public class SearchController extends AbstractRestController {
                         deferredResult.setResult(createPage(pageable, result)));
 
         return deferredResult;
+    }
+
+    private void spit(Map<String, String> requestParams) {
+        System.out.println("Request Params --------------------------------------------");
+        requestParams
+                .forEach((key, value) ->{
+                    logger.debug("Key: {}, Value: {}", key, value);
+                });
     }
 
     private RestResponse<SearchRestResponse> createPage(Pageable pageable, SearchResponse result) {
