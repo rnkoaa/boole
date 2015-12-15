@@ -27,8 +27,6 @@ angular.module('booleApp')
                     selectedFilters.push(obj);
                 }
             });
-            console.log("Selected Filters: ", JSON.stringify(selectedFilters));
-
 
             searchResultsCtrl.status = {
                 isOpen: new Array(searchResultsCtrl.aggregations.length)
@@ -71,16 +69,10 @@ angular.module('booleApp')
             searchResultsCtrl.selectItem = function (availableAggs, selectedAgg) {
                  selectedFilters = aggsService.selectItem(selectedFilters, selectedAgg, availableAggs);
 
-                //console.log("selected filters: ", JSON.stringify(selectedFilters));
-                var requestParams = aggsService.prepareRequestParams(selectedFilters, searchResultsCtrl.requestParams);
-                //console.log("request params: ", JSON.stringify(requestParams));
-                /*_.each(requestParams, function (val, key) {
-                    if (val) {
-                        searchResultsCtrl.requestParams[key] = val;
-                    }
-                });*/
-                //$state.go('.', searchResultsCtrl.requestParams, {reload: false});
-               // console.log(JSON.stringify(selectedFilters));
+                var requestParams = aggsService.prepareRequestParams(selectedFilters);
+                console.log("request params: ", JSON.stringify(requestParams));
+                requestParams.q = searchResultsCtrl.searchTerms;
+                $state.transitionTo('searchResults', requestParams, { notify: false });
             };
 
             searchResultsCtrl.previousPage = function () {

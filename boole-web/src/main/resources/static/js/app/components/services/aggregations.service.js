@@ -60,11 +60,8 @@ angular.module('booleApp')
             var isBucketSelected = isAlreadySelected(existingBuckets, stripBucketName(selectedAggregation.key));
             if (isBucketSelected) {
                 //remove this item from the selected lists
-                console.log('existing buckets has length more than 1');
                 var keyIndex = existingBuckets.indexOf(stripBucketName(selectedAggregation.key));
-                console.log("Key Index: ", keyIndex);
                 existingBuckets.splice(keyIndex, 1);
-                console.log("existing bucket: ", JSON.stringify(existingBuckets));
             } else {
                 existingBuckets.push(stripBucketName(selectedAggregation.key));
             }
@@ -74,9 +71,8 @@ angular.module('booleApp')
         };
 
 
-        aggsService.prepareRequestParams = function (selectedParams, requestParams) {
-            if (_.isUndefined(requestParams))
-                requestParams = {};
+        aggsService.prepareRequestParams = function (selectedParams) {
+           var requestParams = {};
 
             _.each(selectedParams, function (item) {
                 var buckets = item.value;
