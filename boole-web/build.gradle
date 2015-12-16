@@ -9,6 +9,7 @@
 
 dependencies {
     compile project(':boole-indexer')
+    compile("org.springframework.boot:spring-boot-devtools")
 
     compile('org.springframework.boot:spring-boot-starter-actuator')
     //compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
@@ -41,4 +42,9 @@ dependencies {
     // for use in serving redirects; see urlrewrite.xml
     //compile 'org.tuckey:urlrewritefilter:4.0.4'
 
+}
+
+bootRun {
+    // Use Spring Boot DevTool only when we run Gradle bootRun task
+    //classpath = sourceSets.main.runtimeClasspath + configurations.dev
 }

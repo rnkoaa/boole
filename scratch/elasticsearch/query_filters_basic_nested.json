@@ -1,0 +1,29 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "match": {
+          "_all": {
+            "query": "terminator"
+          }
+        }
+      },
+      "filter": {
+        "nested": {
+          "path": "directors",
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "match": {
+                    "directors.name.untouched": "Ed W. Marsh"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

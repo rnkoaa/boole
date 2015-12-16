@@ -27,9 +27,11 @@
         <appender-ref ref="consoleAppender"/>
     </root>
 
-    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
 
-    <logger name="org.springframework.web" level="TRACE"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
+    <logger name="org.springframework.web" level="INFO"/>
     <logger name="org.hibernate.type.BasicTypeRegistry " level="FATAL"/>
     <logger name="org.eclipse.jetty" level="ERROR"/>
 

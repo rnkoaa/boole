@@ -67,11 +67,25 @@ angular.module('booleApp')
             };
 
             searchResultsCtrl.selectItem = function (availableAggs, selectedAgg) {
-                 selectedFilters = aggsService.selectItem(selectedFilters, selectedAgg, availableAggs);
+                selectedFilters = aggsService.selectItem(selectedFilters, selectedAgg, availableAggs);
 
                 var requestParams = aggsService.prepareRequestParams(selectedFilters);
                 requestParams.q = searchResultsCtrl.searchTerms;
-                $state.transitionTo('searchResults', requestParams, { notify: false });
+                requestParams.page = searchResultsCtrl.selectedPage;
+                requestParams.limit = searchResultsCtrl.itemsPerPage;
+
+                searchService.searchFilter(requestParams)
+                    .then(function (response) {
+                        searchResultsCtrl.searchResults = response;
+                        searchResultsCtrl.totalPages = response.meta.totalPages;
+                        searchResultsCtrl.totalItems = response.meta.size;
+
+                        searchResultsCtrl.aggregations = aggsService.availableAggs(response);
+                        $state.transitionTo('searchResults', requestParams, {notify: false});
+
+                    }, function (error) {
+
+                    });
             };
 
             searchResultsCtrl.previousPage = function () {

@@ -4,6 +4,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created using Intellij IDE
@@ -19,5 +20,5 @@ public interface SearchService {
      */
     SearchResponse search(String searchRequest);
 
-    SearchResponse search(String searchRequest, Pageable pageable);
+    SearchResponse search(String searchRequest, Map<String, String[]> filters, Pageable pageable);
 }

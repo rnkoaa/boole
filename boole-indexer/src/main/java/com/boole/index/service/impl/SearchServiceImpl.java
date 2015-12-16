@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created using Intellij IDE
@@ -50,7 +51,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public SearchResponse search(String searchRequest, Pageable pageable) {
+    public SearchResponse search(String searchRequest, Map<String, String[]> filters, Pageable pageable) {
         MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("_all", searchRequest);
 
         SearchRequestBuilder builder = movieSearchRequestBuilder(client);//.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).addFields("countryName","states");

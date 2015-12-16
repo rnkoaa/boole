@@ -29,7 +29,10 @@
 
     <logger name="org.springframework.jdbc.core.JdbcTemplate" level="WARN"/>
 
-    <logger name="org.springframework.web" level="DEBUG"/>
+    <logger name="ch.qos.logback" level="WARN"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.hibernate" level="WARN" />
     <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="WARN" />
     <logger name="org.hibernate.type.BasicTypeRegistry " level="FATAL"/>
     <logger name="org.eclipse.jetty" level="ERROR"/>
