@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import static com.boole.index.service.SearchServiceUtils.KNOWN_FILTERS;
@@ -70,21 +68,25 @@ public class SearchServiceImpl implements SearchService {
 
         SearchRequestBuilder builder = movieSearchRequestBuilder(client);//.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).addFields("countryName","states");
 
-        BoolFilterBuilder filterBuilder = FilterBuilders.boolFilter();
 
-        filters.entrySet()
-                .forEach(entry -> {
-                    String key = entry.getKey();
-                    String[] values = entry.getValue();
-                    BoolQueryBuilder mQueryBuilder = QueryBuilders.boolQuery();
-                    for (String value : values) {
-                        mQueryBuilder.should(QueryBuilders.matchQuery(key + ".name.untouched", value));
-                    }
-                    filterBuilder.should(FilterBuilders.nestedFilter(entry.getKey(), mQueryBuilder));
-                });
+        if (filters.size() > 0) {
+            BoolFilterBuilder filterBuilder = FilterBuilders.boolFilter();
+            filters.entrySet()
+                    .forEach(entry -> {
+                        String key = entry.getKey();
+                        String[] values = entry.getValue();
+                        BoolQueryBuilder mQueryBuilder = QueryBuilders.boolQuery();
+                        for (String value : values) {
+                            mQueryBuilder.should(QueryBuilders.matchQuery(key + ".name.untouched", value));
+                        }
+                        filterBuilder.must(FilterBuilders.nestedFilter(entry.getKey(), mQueryBuilder));
+                    });
 
-        FilteredQueryBuilder filteredQueryBuilder = QueryBuilders.filteredQuery(queryBuilder, filterBuilder);
-        builder.setQuery(filteredQueryBuilder);
+            FilteredQueryBuilder filteredQueryBuilder = QueryBuilders.filteredQuery(queryBuilder, filterBuilder);
+            builder.setQuery(filteredQueryBuilder);
+        } else {
+            builder.setQuery(queryBuilder);
+        }
 
         return builder;
     }

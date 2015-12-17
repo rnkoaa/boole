@@ -89,11 +89,13 @@ angular.module('booleApp')
             };
 
             searchResultsCtrl.previousPage = function () {
-                $state.go('.', {page: prevPage});
+                if (!searchResultsCtrl.noPrevious())
+                    $state.go('.', {page: prevPage});
             };
 
             searchResultsCtrl.nextPage = function () {
-                $state.go('.', {page: searchResultsCtrl.selectedPage + 1});
+                if (!searchResultsCtrl.noNext())
+                    $state.go('.', {page: searchResultsCtrl.selectedPage + 1});
             };
 
             searchResultsCtrl.noPrevious = function () {
