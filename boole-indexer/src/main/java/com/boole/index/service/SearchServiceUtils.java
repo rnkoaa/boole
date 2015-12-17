@@ -4,6 +4,10 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created using Intellij IDE
@@ -12,6 +16,16 @@ import java.io.IOException;
 public class SearchServiceUtils {
 
     private SearchServiceUtils() {
+    }
+
+    public static final List<String> KNOWN_FILTERS = new ArrayList<>(5);
+
+    static {
+        KNOWN_FILTERS.add("directors");
+        KNOWN_FILTERS.add("writers");
+        KNOWN_FILTERS.add("producers");
+        KNOWN_FILTERS.add("genres");
+        KNOWN_FILTERS.add("actors");
     }
 
     public static final SearchServiceUtils searchServiceUtils = new SearchServiceUtils();
@@ -26,11 +40,18 @@ public class SearchServiceUtils {
         builder
                 .startObject("aggs");
 
-        buildBucket("directors", builder, scripted);
-        buildBucket("writers", builder, scripted);
+        KNOWN_FILTERS.forEach(knownFilter -> {
+            try {
+                buildBucket(knownFilter, builder, scripted);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+        /*buildBucket("writers", builder, scripted);
         buildBucket("producers", builder, scripted);
         buildBucket("genres", builder, scripted);
-        buildBucket("actors", builder, scripted);
+        buildBucket("actors", builder, scripted);*/
 
         builder.endObject();
     }
@@ -76,6 +97,21 @@ public class SearchServiceUtils {
         buildAggregations(builder, scriptedAggregations);
         builder.endObject();
         return builder;
+    }
+
+    public Map<String, String[]> extractFilters(Map<String, String> requestParams) {
+        Map<String, String[]> results = new HashMap<>();
+        requestParams.entrySet()
+                .forEach(entry -> {
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+
+                    if (KNOWN_FILTERS.contains(key)) {
+                        String[] filters = value.split(",");
+                        results.put(key, filters);
+                    }
+                });
+        return results;
     }
 
     public static SearchServiceUtils getInstance() {

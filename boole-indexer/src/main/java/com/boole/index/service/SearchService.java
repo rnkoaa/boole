@@ -1,5 +1,6 @@
 package com.boole.index.service;
 
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.springframework.data.domain.Pageable;
 
@@ -20,5 +21,7 @@ public interface SearchService {
      */
     SearchResponse search(String searchRequest);
 
-    SearchResponse search(String searchRequest, Map<String, String[]> filters, Pageable pageable);
+    SearchResponse search(String searchRequest, Map<String, String> requestParams, Pageable pageable);
+
+    SearchRequestBuilder buildQuery(String terminator, Map<String, String[]> filters);
 }

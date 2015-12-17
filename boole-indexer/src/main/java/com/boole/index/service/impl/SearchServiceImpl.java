@@ -5,13 +5,9 @@ import com.boole.index.service.SearchServiceUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.bucket.nested.Nested;
-import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +17,8 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static com.boole.index.service.SearchServiceUtils.KNOWN_FILTERS;
 
 /**
  * Created using Intellij IDE
@@ -51,11 +49,11 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public SearchResponse search(String searchRequest, Map<String, String[]> filters, Pageable pageable) {
-        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("_all", searchRequest);
+    public SearchResponse search(String searchRequest, Map<String, String> requestParams, Pageable pageable) {
 
-        SearchRequestBuilder builder = movieSearchRequestBuilder(client);//.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).addFields("countryName","states");
-        builder.setQuery(queryBuilder);
+        Map<String, String[]> filters = searchServiceUtils.extractFilters(requestParams);
+
+        SearchRequestBuilder builder = buildQuery(searchRequest, filters);
         builder.setFrom(pageable.getPageNumber())
                 .setSize(pageable.getPageSize());
 
@@ -67,9 +65,32 @@ public class SearchServiceImpl implements SearchService {
         return builder.execute().actionGet();
     }
 
+    public SearchRequestBuilder buildQuery(String searchRequest, Map<String, String[]> filters) {
+        MatchQueryBuilder queryBuilder = QueryBuilders.matchQuery("_all", searchRequest);
+
+        SearchRequestBuilder builder = movieSearchRequestBuilder(client);//.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).addFields("countryName","states");
+
+        BoolFilterBuilder filterBuilder = FilterBuilders.boolFilter();
+
+        filters.entrySet()
+                .forEach(entry -> {
+                    String key = entry.getKey();
+                    String[] values = entry.getValue();
+                    BoolQueryBuilder mQueryBuilder = QueryBuilders.boolQuery();
+                    for (String value : values) {
+                        mQueryBuilder.should(QueryBuilders.matchQuery(key + ".name.untouched", value));
+                    }
+                    filterBuilder.should(FilterBuilders.nestedFilter(entry.getKey(), mQueryBuilder));
+                });
+
+        FilteredQueryBuilder filteredQueryBuilder = QueryBuilders.filteredQuery(queryBuilder, filterBuilder);
+        builder.setQuery(filteredQueryBuilder);
+
+        return builder;
+    }
+
     private void addAggregations(SearchRequestBuilder builder) {
-        List<String> aggFields = Arrays.asList("directors", "producers", "actors", "writers", "genres");
-        aggFields.forEach(aggField -> {
+        KNOWN_FILTERS.forEach(aggField -> {
             AggregationBuilder aggregationBuilder = AggregationBuilders
                     .nested(aggField + "_aggs")
                     .path(aggField);
